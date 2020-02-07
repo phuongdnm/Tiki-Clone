@@ -1,4 +1,12 @@
-# Git training guide:
+# Introduction
+(add later)
+
+# Tech stacks: MERN stack
+- ReactJS, Redux
+- NodeJS with Express 
+- MongoDB
+
+# Git guide:
 
 ## What you need to do ONE TIME:
 - **Fork this repo**: so that you will have a "thing" to push code to and pull request to me or compare code in different branches.
@@ -31,4 +39,4 @@ $ git stash pop
 - Commit your code in your dev_name branch (or **dev** if you work in dev branch).
 - Checkout to dev branch and merge dev_yourname to it (using ```git checkout dev``` and ```git merge dev_yourname```).
 - Push ```dev``` to your forked repo on Github.
-- Make a pull request in Github page (**REMEMBER TO CHECK THE BRANCHES IS CORRECT OR NOT**), tell me to review.
+- Make a pull request in Github page (**REMEMBER TO CHECK THE BRANCHES ARE CORRECT OR NOT**), tell me to review.
