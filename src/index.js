@@ -1,15 +1,14 @@
 // Import the React and ReactDOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
-
+import Navbar from './components/Navbar'
 
 // Create a react component
 const App = () => {
   return (
-    <Button variant="contained" color="primary">
-      Hello World!
-    </Button>
+    <Navbar>
+    </Navbar>
+
   );
 };
 
