@@ -5,6 +5,7 @@ import HomePage from "./components/pages/HomePage";
 import ProductCategoryPage from "./components/pages/ProductCategoryPage";
 import ProductDetailPage from "./components/pages/ProductDetailPage";
 import Cart from "./components/Cart";
+import OrdersPage from "./components/pages/OrdersPage";
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
               exact
               path={"/cart"}
               render={(routeProps)=><Cart {...routeProps}/>}
+          />
+          <Route
+              exact
+              path={"/orders"}
+              render={(routeProps)=><OrdersPage {...routeProps}/>}
           />
       </Switch>
 

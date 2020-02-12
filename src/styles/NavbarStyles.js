@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
-            width: 'auto',
+            width: '45%',
         },
     },
     searchIcon: {
@@ -58,6 +58,14 @@ const useStyles = makeStyles(theme => ({
             display: 'flex',
         },
     },
+    sectionDesktop2: {
+        display: 'none',
+
+        [theme.breakpoints.up('md')]: {
+            display: 'flex',
+            fontSize: 15
+        },
+    },
     sectionMobile: {
         display: 'flex',
         [theme.breakpoints.up('md')]: {
@@ -76,19 +84,19 @@ const useStyles = makeStyles(theme => ({
         lineHeight: 0.4
     },
     iconNav: {
-        paddingLeft: "1em",
-        paddingRight: "0.2em"
+        marginLeft: "1em",
+        marginRight: "0.2em"
     } ,
     iconNav2: {
         marginRight: "1em"
     },
     navText2:{
-        marginLeft: "5em",
-        marginTop: "4em",
+        marginLeft: "2em",
+        // marginTop: "4em",
         // marginBottom: "4em",
         paddingLeft: "3em",
         paddingRight: "3em",
-        paddingTop: "0.65em",
+        paddingTop: "0.85em",
         paddingBottom: "0.5em",
         fontSize: "0.7em",
         border: "2px solid white"
@@ -100,6 +108,56 @@ const useStyles = makeStyles(theme => ({
         },
         fontSize: "0.9em",
         // marginRight: "3em"
+    },
+    removeDefaultLink:{
+        textDecoration: "none",
+        color: "inherit !important" ,
+    },
+    productModal:{
+        display: "block !important"
+    },
+    loginToolTip:{
+        display: "flex !important",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        position: "absolute",
+        zIndex: 10,
+        top: "4.4em",
+        right: 0,
+        bottom: 0,
+        left: "70%",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        borderRadius: "0.5em"
+
+    },
+    customModal:{
+        margin: 0,
+        padding: 0,
+        position: "absolute",
+        top: "4.4em",
+        right: 0,
+        left: 0,
+        bottom: 0,
+        width: "100vw",
+        height: "70vh",
+        backgroundColor: "rgba(0, 0, 0, 0.15)"
+    },
+    customSubModal:{
+        margin: 0,
+        marginRight: "20vw",
+        marginLeft: "20vw",
+        padding: 0,
+        position: "absolute",
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        width: "60vw",
+        height: "20vh",
+        color: "gray",
+        backgroundColor: "white",
+        textAlign: "center",
+        borderRadius: "0.5em"
     }
 }));
 
