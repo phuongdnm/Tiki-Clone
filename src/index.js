@@ -1,22 +1,19 @@
-// Import the React and ReactDOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter} from "react-router-dom";
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
-// Import page component
-import {HomePage, CategoryPage, DetailPage, CartPage} from './components'
-// Create a react component
-const App = () => {
-  return (
-    <Router>
-      <Route path="/home" exact component={HomePage}/>
-      <Route path="/home/category" exact component={CategoryPage}/>
-      <Route path="/home/category/:id" exact component={DetailPage}/>
-      <Route path="/home/cart" exact component={CartPage}/>
-      
-    </Router>
-  );
-};
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+);
 
-// Take the react component and show it on the screen
-ReactDOM.render(<App />, document.querySelector('#root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
