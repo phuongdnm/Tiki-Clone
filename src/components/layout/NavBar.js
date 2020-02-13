@@ -37,6 +37,21 @@ import zaloLogo from '../../image/Logo_Zalo.png'
 import userStyles from '../../styles/NavbarStyles'
 import {loadCSS} from 'fg-loadcss';
 
+// import for modal
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+// import for modal formcontrol
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Input from '@material-ui/core/Input'
+import FormHelperText from '@material-ui/core/FormHelperText'
+// import for modal tab
+import PropTypes from 'prop-types';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
 
 function NavBar() {
     const classes = userStyles();
@@ -103,7 +118,151 @@ function NavBar() {
             </MenuItem>
         </Menu>
     );
+//  modal when clicking to login or signup button
+    const useStyles = makeStyles(theme => ({
+        modal: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        paper: {
+          backgroundColor: theme.palette.background.paper,
+          border: '2px solid #000',
+          boxShadow: theme.shadows[5],
+        //   padding: theme.spacing(10, 20),
+        //   padding: `${theme.spacing(1)}% ${theme.spacing(1)}%`,
+          width: "auto"
+        },
+        destab: {
+            display: "flex",
+            flexDirection: "row", 
+            width: "100%",
+            position: "auto"
+        },
+        tabSection: {
+            position: "relative", 
+            backgroundColor: theme.palette.background.paper
+        },
+        descriptionSection: {
+            position: "relative",
+            backgroundColor: "lightblue",
+            marginRight: "2%"
+        }
+      }));
+    
+    const modalClasses = useStyles()
+    const [open, setOpen] = React.useState(false)
 
+    const handleOnClick=()=>{
+        // const {value}=this.props
+        // console.log("value from handleOnClick: ", value)
+        setOpen(true)
+       
+    }
+
+    const handleCloseModal = ()=>{
+        setOpen(false)
+    }
+
+    const loginForm =(
+        <div>
+            <h3>This is login Form</h3>
+            <FormControl>
+            
+                <InputLabel htmlFor="my-input">Email address</InputLabel>
+                <Input id="my-input" aria-describedby="my-helper-text" />
+                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+            </FormControl> 
+        </div>
+        
+    )
+    const signupForm = (
+        <div>
+            <h3>This is signup</h3>
+            <FormControl>
+                <InputLabel htmlFor="my-input">Email address</InputLabel>
+                <Input id="my-input" aria-describedby="my-helper-text" />
+                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+            </FormControl>
+        </div>
+    )
+    // modal tab(between login and signup)
+    
+    const TabPanel = (props)=>{
+        const {children, value, index, ...other} = props
+        return(
+            <Typography
+                component="div"
+                role="tabpanel"
+                hidden={value !== index}
+                id={`wrapped-tabpanel-${index}`}
+                {...other}
+            >
+                {value === index && <Box p={2}>{children}</Box>}
+            </Typography>
+        )
+    }
+
+    TabPanel.prototype={
+        children: PropTypes.node,
+        index: PropTypes.any.isRequired,
+        value: PropTypes.any.isRequired
+    }
+
+    const a11yProps = (index)=>{
+        return{
+            id: `wrapped-tab-${index}`,
+            'aria-controls': `wrapped-tabpanel-${index}`
+        }
+    }
+
+    const [value, setValue] = React.useState('one')
+    console.log("value: ", value, "setValue: ", setValue)
+
+    const handleChangeTab = (event, newValue)=>{
+        setValue(newValue)
+    }
+
+    const modalTabSection = (
+        <div className={modalClasses.tabSection}>
+            <AppBar position="static">
+                <Tabs value={value} onChange={handleChangeTab} aria-label="wrapped label tabs example">
+                    <Tab value="one" label="Sign Up" wrapped {...a11yProps('one')}/>
+                    <Tab value="two" label="Log in" {...a11yProps('two')} />
+                </Tabs>
+            </AppBar>
+            <TabPanel value={value} index="one">
+                {signupForm}
+            </TabPanel>
+            <TabPanel value={value} index="two">
+                {loginForm}
+            </TabPanel>
+        </div>
+    )
+
+    const descriptionSection = (
+        <div className={modalClasses.descriptionSection}>
+            <TabPanel value={value} index="one">
+                Hello from tab one
+            </TabPanel>
+            <TabPanel value={value} index="two">
+                Hello from tab two
+            </TabPanel>
+        </div>
+    )
+    
+    // modal with text description and tab 
+    const modalWithDesTab = (
+        <div className={modalClasses.destab}>
+            <div className="description-section">
+                {descriptionSection}
+            </div>
+            <div className="tab-section">
+                {modalTabSection}
+            </div>
+        </div>
+    )
+// finish code for: modal
     const authLinks = isLoggedIn ? (
         <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
                   onMouseLeave={()=>{setIsLoginTip(false)}}
@@ -161,11 +320,31 @@ function NavBar() {
         <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
                   onMouseLeave={()=>{setIsLoginTip(false)}}
                   style={{width: "18em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={modalClasses.modal}
+                open={open}
+                onClose={handleCloseModal}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                <div className={modalClasses.paper}>
+                    {modalWithDesTab}
+                </div>
+                </Fade>
+            </Modal>
             <Button
                 variant="contained"
                 size={"small"}
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonIcon/>}
+                value="one"
+                onClick={handleOnClick}
             >
                 Login
             </Button>
@@ -174,6 +353,8 @@ function NavBar() {
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonAddIcon />}
+                value="two"
+                onClick={handleOnClick}
             >
                 Create Account
             </Button>
@@ -304,7 +485,6 @@ function NavBar() {
             </IconButton>
         </Typography>
     </Toolbar>;
-
     const NavSection3 =  <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}} onMouseEnter={() => {
         setProductModal(false)
     }}>
@@ -401,7 +581,6 @@ function NavBar() {
             </IconButton>
         </div>
     </Toolbar>;
-
     const NavSection4 =  <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop) }
                                   onMouseEnter={()=>{setIsLoginTip(false)}}
                                   style={{backgroundColor: "#189EFF"}}>
