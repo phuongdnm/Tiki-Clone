@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import NavBar from "../layout/NavBar";
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Input from '@material-ui/core/Input'
+import FormHelperText from '@material-ui/core/FormHelperText'
+
 class Login extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        <h3>This is login page</h3>
+        <h3>This is login Form</h3>
+        <FormControl>
+
+          <InputLabel htmlFor="my-input">Email address</InputLabel>
+          <Input id="my-input" aria-describedby="my-helper-text" />
+          <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+        </FormControl>
       </div>
     );
   }
 }
 
-export default Login;
+export default Login

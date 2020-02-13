@@ -32,7 +32,7 @@ import sprite from '../../image/sprite.png'
 import tikiNow from '../../image/tiki-now.png'
 import ticketBox from '../../image/ticketBox.png'
 import zaloLogo from '../../image/Logo_Zalo.png'
-
+import tikiGraphicMap from '../../image/tiki-graphic-map.png'
 
 import userStyles from '../../styles/NavbarStyles'
 import {loadCSS} from 'fg-loadcss';
@@ -43,10 +43,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 // import for modal formcontrol
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import Input from '@material-ui/core/Input'
-import FormHelperText from '@material-ui/core/FormHelperText'
+import Login from '../user/Login'
+import SignUp from '../user/SignUp'
 // import for modal tab
 import PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
@@ -68,17 +66,57 @@ function NavBar() {
 
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-
-
     const handleMobileMenuOpen = event => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+    // function to open and close modal
+    const [open, setOpen] = React.useState(false)
+
+    const handleOnClick=()=>{
+        setOpen(true)
+    }
+    const handleCloseModal = ()=>{
+        setOpen(false)
+    }
+    //  modal when clicking to login or signup button
+    const useStyles = makeStyles(theme => ({
+        modal: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        paper: {
+          backgroundColor: 'rgb(248, 248, 248)',
+          border: 'none',
+          borderRadius: 6,
+          boxShadow: theme.shadows[5],
+          width: "50%"
+        },
+        destab: {
+            display: "flex",
+            flexDirection: "row", 
+            width: "100%",
+            position: "auto"
+        },
+        tabSection: {
+            position: "relative", 
+            flexGrow: 1,
+            backgroundColor: theme.palette.background.paper
+        },
+        descriptionSection: {
+            position: "relative",
+            backgroundColor: theme.palette.background.paper,
+            marginRight: "2%",
+            width: `25%`,
+            padding: '45px 30px'
+        }
+      }));
+    
+    const modalClasses = useStyles()
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -109,7 +147,7 @@ function NavBar() {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={handleOnClick}>
                 <IconButton aria-label="Log In" color="inherit" className={classes.iconNav}>
                     <Icon className={"fas fa-user"}
                           style={{paddingTop: "0.05em"}}/>
@@ -118,76 +156,8 @@ function NavBar() {
             </MenuItem>
         </Menu>
     );
-//  modal when clicking to login or signup button
-    const useStyles = makeStyles(theme => ({
-        modal: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        paper: {
-          backgroundColor: theme.palette.background.paper,
-          border: '2px solid #000',
-          boxShadow: theme.shadows[5],
-        //   padding: theme.spacing(10, 20),
-        //   padding: `${theme.spacing(1)}% ${theme.spacing(1)}%`,
-          width: "auto"
-        },
-        destab: {
-            display: "flex",
-            flexDirection: "row", 
-            width: "100%",
-            position: "auto"
-        },
-        tabSection: {
-            position: "relative", 
-            backgroundColor: theme.palette.background.paper
-        },
-        descriptionSection: {
-            position: "relative",
-            backgroundColor: "lightblue",
-            marginRight: "2%"
-        }
-      }));
-    
-    const modalClasses = useStyles()
-    const [open, setOpen] = React.useState(false)
 
-    const handleOnClick=()=>{
-        // const {value}=this.props
-        // console.log("value from handleOnClick: ", value)
-        setOpen(true)
-       
-    }
-
-    const handleCloseModal = ()=>{
-        setOpen(false)
-    }
-
-    const loginForm =(
-        <div>
-            <h3>This is login Form</h3>
-            <FormControl>
-            
-                <InputLabel htmlFor="my-input">Email address</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-            </FormControl> 
-        </div>
-        
-    )
-    const signupForm = (
-        <div>
-            <h3>This is signup</h3>
-            <FormControl>
-                <InputLabel htmlFor="my-input">Email address</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-            </FormControl>
-        </div>
-    )
     // modal tab(between login and signup)
-    
     const TabPanel = (props)=>{
         const {children, value, index, ...other} = props
         return(
@@ -232,34 +202,36 @@ function NavBar() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index="one">
-                {signupForm}
+                <Login/>
             </TabPanel>
             <TabPanel value={value} index="two">
-                {loginForm}
+                <SignUp/>
             </TabPanel>
         </div>
     )
 
     const descriptionSection = (
         <div className={modalClasses.descriptionSection}>
-            <TabPanel value={value} index="one">
-                Hello from tab one
-            </TabPanel>
-            <TabPanel value={value} index="two">
-                Hello from tab two
-            </TabPanel>
+            <div className="description-section">
+                <TabPanel value={value} index="one">
+                    <h2>Sign up</h2>
+                    <p>Signing up to track your orders, save your favorite products, get many interesting news</p>
+                </TabPanel>
+                <TabPanel value={value} index="two">
+                    Hello from tab two
+                </TabPanel>
+            </div>
+            <div className="image-section">
+                <img src={tikiGraphicMap} alt="tiki-graphic-map"/>
+            </div>
+            
         </div>
     )
     
     // modal with text description and tab 
     const modalWithDesTab = (
         <div className={modalClasses.destab}>
-            <div className="description-section">
-                {descriptionSection}
-            </div>
-            <div className="tab-section">
-                {modalTabSection}
-            </div>
+            {descriptionSection},{modalTabSection}
         </div>
     )
 // finish code for: modal
