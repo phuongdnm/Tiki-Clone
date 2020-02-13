@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "react-material-ui-carousel": "^1.1.1",
     "classnames": "^2.2.6",
     "fg-loadcss": "^2.1.0",
     "react": "^16.12.0",

@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from "../layout/NavBar";
 
 
-function ProductDetailPage(props) {
+const ProductDetailPage = (props)=> {
     const {productName, productId} = props.match.params;
     console.log(props);
     return (
@@ -13,7 +13,7 @@ function ProductDetailPage(props) {
             <h1>{productId}</h1>
         </div>
     )
-}
+};
 
 export default ProductDetailPage
 
