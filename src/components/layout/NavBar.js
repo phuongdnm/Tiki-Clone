@@ -36,9 +36,10 @@ import zaloLogo from '../../image/Logo_Zalo.png'
 
 import userStyles from '../../styles/NavbarStyles'
 import {loadCSS} from 'fg-loadcss';
+import ProductNavigation from "../ProductNavigation";
 
 
-function NavBar() {
+const NavBar = (props) => {
     const classes = userStyles();
     React.useEffect(() => {
         loadCSS(
@@ -49,6 +50,7 @@ function NavBar() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const [productModal, setProductModal] = useState(false);
     const [isLoginTip, setIsLoginTip] = useState(false);
+    const [productNavigation, setProductNavigation] = useState(false);
     const isLoggedIn = false;
 
 
@@ -105,14 +107,24 @@ function NavBar() {
     );
 
     const authLinks = isLoggedIn ? (
-        <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
-                  onMouseLeave={()=>{setIsLoginTip(false)}}
-                  style={{width: "18em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
+        <section className={classNames({[classes.loginToolTip]: isLoginTip})}
+                 onMouseLeave={() => {
+                     setIsLoginTip(false)
+                 }}
+                 style={{
+                     width: "18em",
+                     height: "17em",
+                     textAlign: "center",
+                     padding: "1.2em",
+                     backgroundColor: "rgba(255,255,255,0.8)",
+                     margin: 0,
+                     display: "None"
+                 }}>
             <Button
                 variant="contained"
                 size={"small"}
                 style={{backgroundColor: "#FDDE54"}}
-                startIcon={<PersonAddDisabledIcon />}
+                startIcon={<PersonAddDisabledIcon/>}
             >
                 Logout
             </Button>
@@ -120,7 +132,7 @@ function NavBar() {
                 size={"small"}
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
-                startIcon={<PersonIcon />}
+                startIcon={<PersonIcon/>}
             >
                 My account
             </Button>
@@ -128,7 +140,7 @@ function NavBar() {
                 size={"small"}
                 variant="contained"
                 className={classes.button}
-                style={{ color: "black"}}
+                style={{color: "black"}}
             >
                 Product to buy later
             </Button>
@@ -136,7 +148,7 @@ function NavBar() {
                 size={"small"}
                 variant="contained"
                 className={classes.button}
-                style={{ color: "black"}}
+                style={{color: "black"}}
             >
                 Review product purchased
             </Button>
@@ -144,7 +156,7 @@ function NavBar() {
                 size={"small"}
 
                 variant="contained"
-                style={{ color: "black"}}
+                style={{color: "black"}}
             >
                 My comment
             </Button>
@@ -157,10 +169,20 @@ function NavBar() {
             </Button>
         </section>
 
-    ):(
-        <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
-                  onMouseLeave={()=>{setIsLoginTip(false)}}
-                  style={{width: "18em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
+    ) : (
+        <section className={classNames({[classes.loginToolTip]: isLoginTip})}
+                 onMouseLeave={() => {
+                     setIsLoginTip(false)
+                 }}
+                 style={{
+                     width: "18em",
+                     height: "17em",
+                     textAlign: "center",
+                     padding: "1.2em",
+                     backgroundColor: "rgba(255,255,255,0.8)",
+                     margin: 0,
+                     display: "None"
+                 }}>
             <Button
                 variant="contained"
                 size={"small"}
@@ -173,7 +195,7 @@ function NavBar() {
                 size={"small"}
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
-                startIcon={<PersonAddIcon />}
+                startIcon={<PersonAddIcon/>}
             >
                 Create Account
             </Button>
@@ -206,20 +228,26 @@ function NavBar() {
         </section>
     );
 
-    const NavSection1=   <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
-                                  style={{paddingLeft: 0, paddingRight: 0, marginTop: "-0.1em", height: "1.8em"}}>
+    const NavSection1 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
+                                 style={{paddingLeft: 0, paddingRight: 0, marginTop: "-0.1em", height: "1.8em"}}>
         <img src={navImage} alt="image" style={{height: "100%", width: "100%"}}/>
     </Toolbar>;
-    const NavSection2 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)} style={{
-        padding: 0,
-        backgroundColor: "#1D71AB",
-        minHeight: "1.6em",
-        height: "1.6em",
-        marginTop: "-0.1em",
-        justifyContent: "space-around",
-        paddingRight: "4em",
-        paddingLeft: "4em"
-    }}>
+    const NavSection2 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
+                                 style={{
+                                     padding: 0,
+                                     backgroundColor: "#1D71AB",
+                                     minHeight: "1.6em",
+                                     height: "1.6em",
+                                     marginTop: "-0.1em",
+                                     justifyContent: "space-around",
+                                     paddingRight: "4em",
+                                     paddingLeft: "4em"
+                                 }}
+                                 onMouseEnter={() => {
+                                     setIsLoginTip(false)
+                                 }}
+
+    >
         <Typography className={classes.title} variant="subtitle2" noWrap>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <img src={ticketBox} alt="ticketBox" style={{height: "50%", width: "50%"}}/>
@@ -305,13 +333,20 @@ function NavBar() {
         </Typography>
     </Toolbar>;
 
-    const NavSection3 =  <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}} onMouseEnter={() => {
-        setProductModal(false)
-    }}>
-        <Typography className={classes.title} variant="h6" noWrap>
-            TIKI
-        </Typography>
-        <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
+    const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}}
+                                 onMouseEnter={() => {
+                                     setProductModal(false);
+                                     setProductNavigation(false)
+                                 }}>
+        <Link to={"/"} className={classes.removeDefaultLink}>
+            <Typography className={classes.title3} variant="h6" noWrap>
+                TIKI
+            </Typography>
+        </Link>
+        <Link to={"/"} className={classes.removeDefaultLink}>
+
+            <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
+        </Link>
         <div className={classes.search}>
             <div className={classes.searchIcon}>
                 <SearchIcon/>
@@ -348,7 +383,9 @@ function NavBar() {
                 <Icon className={"fas fa-bell"}
                       style={{fontSize: 20, paddingTop: "0.05em", width: "1.5em"}}/>
             </IconButton>
-            <Typography>
+            <Typography onMouseEnter={() => {
+                setIsLoginTip(false)
+            }}>
                 <span className={classes.navText}>Your </span>
 
                 <Typography className={classes.navTypo}>
@@ -357,13 +394,17 @@ function NavBar() {
                 </Typography>
 
             </Typography>
-            <IconButton aria-label="Log In" color="inherit" className={classes.iconNav} onMouseEnter={()=>{setIsLoginTip(true)}}>
+            <IconButton aria-label="Log In" color="inherit" className={classes.iconNav} onMouseEnter={() => {
+                setIsLoginTip(true)
+            }}>
                 <Icon className={"fas fa-user"}
                       style={{paddingTop: "0.05em"}}/>
             </IconButton>
 
-            <Typography >
-                <Link to={"#"} onMouseEnter={()=>{setIsLoginTip(true)}} className={classes.removeDefaultLink} >
+            <Typography>
+                <Link to={"#"} onMouseEnter={() => {
+                    setIsLoginTip(true)
+                }} className={classes.removeDefaultLink}>
 
                     <span className={classes.navText}>Login </span>
 
@@ -378,14 +419,13 @@ function NavBar() {
 
             <Link to={"/cart"} onClick={e => e.stopPropagation()} className={classes.removeDefaultLink}>
 
-                <Typography style={{marginTop: "0.8em"}} className={classes.navText2}>
+                <Typography className={classes.navText2}>
                     <Badge badgeContent={4} color="error" className={classes.iconNav2}>
-                        <ShoppingCartIcon/>
+                        <ShoppingCartIcon style={{paddingLeft: "20%"}}/>
                     </Badge>
                     Cart
                 </Typography>
             </Link>
-
 
 
         </div>
@@ -402,14 +442,19 @@ function NavBar() {
         </div>
     </Toolbar>;
 
-    const NavSection4 =  <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop) }
-                                  onMouseEnter={()=>{setIsLoginTip(false)}}
-                                  style={{backgroundColor: "#189EFF"}}>
+    const NavSection4 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
+                                 onMouseEnter={() => {
+                                     setIsLoginTip(false)
+                                 }}
+                                 style={{backgroundColor: "#189EFF"}}>
         <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onMouseEnter={() => {
+                setProductNavigation(true)
+            }}
         >
             <MenuIcon/>
         </IconButton>
@@ -494,17 +539,27 @@ function NavBar() {
 
 
     return (
-        <div className={classes.grow}>
-            <AppBar position="static">
-                {NavSection1}
-                {NavSection2}
-                {NavSection3}
-                {NavSection4}
-            </AppBar>
-            {renderMobileMenu}
-        </div>
+        <section>
+            <div className={classes.grow}>
+                <AppBar position="static">
+                    {NavSection1}
+                    {NavSection2}
+                    {NavSection3}
+                    {NavSection4}
+                </AppBar>
+                {renderMobileMenu}
+            </div>
+            {productNavigation && <ProductNavigation
+                // style={{paddingBottom: "2em"}}
+                toggleDrawer={() => {
+                    setProductNavigation(false)
+                }}
+            />}
+        </section>
+
+
     );
-}
+};
 
 export default NavBar
 

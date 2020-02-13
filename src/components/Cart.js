@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from "./layout/NavBar";
 
-function Cart(props) {
+const Cart = (props) =>{
     return (
         <div>
             <NavBar/>
