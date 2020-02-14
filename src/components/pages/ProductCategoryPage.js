@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from "../layout/NavBar";
 
 
-function ProductCategoryPage(props) {
+const ProductCategoryPage = (props) => {
     const {type} = props.match.params;
     return (
         <div>
@@ -12,7 +12,7 @@ function ProductCategoryPage(props) {
         </div>
 
     )
-}
+};
 
 export default ProductCategoryPage
 

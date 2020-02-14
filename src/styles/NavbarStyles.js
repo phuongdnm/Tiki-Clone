@@ -14,6 +14,13 @@ const useStyles = makeStyles(theme => ({
             display: 'block',
         },
     },
+    title3: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+            minWidth: "2em"
+        },
+    },
     // toolbar: {
     //   width: "100%"
     // },
@@ -49,7 +56,7 @@ const useStyles = makeStyles(theme => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: 600,
+            width: "50%",
         },
     },
     sectionDesktop: {
@@ -84,7 +91,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: 0.4
     },
     iconNav: {
-        marginLeft: "1em",
+        marginLeft: "1%",
         marginRight: "0.2em"
     } ,
     iconNav2: {
@@ -94,12 +101,14 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "2em",
         // marginTop: "4em",
         // marginBottom: "4em",
-        paddingLeft: "3em",
-        paddingRight: "3em",
-        paddingTop: "0.85em",
-        paddingBottom: "0.5em",
+        paddingLeft: "4.5em",
+        paddingRight: "4.5em",
+        paddingTop: "3%",
+        paddingBottom: "0.3%",
         fontSize: "0.7em",
-        border: "2px solid white"
+        border: "2px solid white",
+        textAlign: "center",
+        alignItems: "center"
     },
     title2:{
         display: 'none',
@@ -138,7 +147,7 @@ const useStyles = makeStyles(theme => ({
         right: 0,
         left: 0,
         bottom: 0,
-        width: "100vw",
+        width: "98.5vw",
         height: "70vh",
         backgroundColor: "rgba(0, 0, 0, 0.15)"
     },
@@ -157,7 +166,7 @@ const useStyles = makeStyles(theme => ({
         color: "gray",
         backgroundColor: "white",
         textAlign: "center",
-        borderRadius: "0.5em"
+        borderRadius: "0.5em",
     }
 }));
 
