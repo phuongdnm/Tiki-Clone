@@ -32,12 +32,27 @@ import sprite from '../../image/sprite.png'
 import tikiNow from '../../image/tiki-now.png'
 import ticketBox from '../../image/ticketBox.png'
 import zaloLogo from '../../image/Logo_Zalo.png'
-
+import tikiGraphicMap from '../../image/tiki-graphic-map.png'
 
 import userStyles from '../../styles/NavbarStyles'
 import {loadCSS} from 'fg-loadcss';
 import ProductNavigation from "../ProductNavigation";
 
+// import for modal
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+// import for modal formcontrol
+import Login from '../user/Login'
+import SignUp from '../user/SignUp'
+// import for modal tab
+import PropTypes from 'prop-types';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
+// import style for modal tab
+import ModalStyles from '../../styles/ModalStyles'
 
 const NavBar = (props) => {
     const classes = userStyles();
@@ -55,17 +70,24 @@ const NavBar = (props) => {
 
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-
-
     const handleMobileMenuOpen = event => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+    // function to open and close modal
+    const [open, setOpen] = React.useState(false)
+
+    const handleOnClick=()=>{
+        setOpen(true)
+    }
+    const handleCloseModal = ()=>{
+        setOpen(false)
+    }
+    
+    const modalClasses = ModalStyles()
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -96,7 +118,7 @@ const NavBar = (props) => {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={handleOnClick}>
                 <IconButton aria-label="Log In" color="inherit" className={classes.iconNav}>
                     <Icon className={"fas fa-user"}
                           style={{paddingTop: "0.05em"}}/>
@@ -106,6 +128,85 @@ const NavBar = (props) => {
         </Menu>
     );
 
+    // modal tab(between login and signup)
+    const TabPanel = (props)=>{
+        const {children, value, index, ...other} = props
+        return(
+            <Typography
+                component="div"
+                role="tabpanel"
+                hidden={value !== index}
+                id={`wrapped-tabpanel-${index}`}
+                {...other}
+            >
+                {value === index && <Box p={2}>{children}</Box>}
+            </Typography>
+        )
+    }
+
+    TabPanel.prototype={
+        children: PropTypes.node,
+        index: PropTypes.any.isRequired,
+        value: PropTypes.any.isRequired
+    }
+
+    const a11yProps = (index)=>{
+        return{
+            id: `wrapped-tab-${index}`,
+            'aria-controls': `wrapped-tabpanel-${index}`
+        }
+    }
+
+    const [value, setValue] = React.useState('one')
+    console.log("value: ", value, "setValue: ", setValue)
+
+    const handleChangeTab = (event, newValue)=>{
+        setValue(newValue)
+    }
+
+    const modalTabSection = (
+        <div className={modalClasses.tabSection}>
+            <AppBar position="static">
+                <Tabs value={value} onChange={handleChangeTab} aria-label="wrapped label tabs example">
+                    <Tab value="one" label="Sign Up" wrapped {...a11yProps('one')}/>
+                    <Tab value="two" label="Log in" {...a11yProps('two')} />
+                </Tabs>
+            </AppBar>
+            <TabPanel value={value} index="one" className={modalClasses.formStyle}>
+                <SignUp/>
+            </TabPanel>
+            <TabPanel value={value} index="two" className={modalClasses.formStyle}>
+                <Login/>
+            </TabPanel>
+        </div>
+    )
+
+    const descriptionSection = (
+        <div className={modalClasses.descriptionSection}>
+            <div className="description-section">
+                <TabPanel value={value} index="one">
+                    <h2>Sign up</h2>
+                    <p className={modalClasses.textDescription}>Signing up to track your orders, save your favorite products, get many interesting news</p>
+                </TabPanel>
+                <TabPanel value={value} index="two">
+                    <h2>Log in</h2>
+                    <p className={modalClasses.textDescription}>Loggin in to track your orders, save your favorite products, get many interesting news</p>
+                </TabPanel>
+            </div>
+            <div className="image-section">
+                <img src={tikiGraphicMap} alt="tiki-graphic-map"/>
+            </div>
+            
+        </div>
+    )
+    
+    // modal with text description and tab 
+    const modalWithDesTab = (
+        <div className={modalClasses.destab}>
+            {descriptionSection},{modalTabSection}
+        </div>
+    )
+// finish code for: modal
     const authLinks = isLoggedIn ? (
         <section className={classNames({[classes.loginToolTip]: isLoginTip})}
                  onMouseLeave={() => {
@@ -169,25 +270,35 @@ const NavBar = (props) => {
             </Button>
         </section>
 
-    ) : (
-        <section className={classNames({[classes.loginToolTip]: isLoginTip})}
-                 onMouseLeave={() => {
-                     setIsLoginTip(false)
-                 }}
-                 style={{
-                     width: "18em",
-                     height: "17em",
-                     textAlign: "center",
-                     padding: "1.2em",
-                     backgroundColor: "rgba(255,255,255,0.8)",
-                     margin: 0,
-                     display: "None"
-                 }}>
+    ):(
+        <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
+                  onMouseLeave={()=>{setIsLoginTip(false)}}
+                  style={{width: "18em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={modalClasses.modal}
+                open={open}
+                onClose={handleCloseModal}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                <div className={modalClasses.paper}>
+                    {modalWithDesTab}
+                </div>
+                </Fade>
+            </Modal>
             <Button
                 variant="contained"
                 size={"small"}
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonIcon/>}
+                value="one"
+                onClick={handleOnClick}
             >
                 Login
             </Button>
@@ -195,7 +306,9 @@ const NavBar = (props) => {
                 size={"small"}
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
-                startIcon={<PersonAddIcon/>}
+                startIcon={<PersonAddIcon />}
+                value="two"
+                onClick={handleOnClick}
             >
                 Create Account
             </Button>
@@ -332,6 +445,15 @@ const NavBar = (props) => {
             </IconButton>
         </Typography>
     </Toolbar>;
+<<<<<<< HEAD
+    const NavSection3 =  <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}} onMouseEnter={() => {
+        setProductModal(false)
+    }}>
+        <Typography className={classes.title} variant="h6" noWrap>
+            TIKI
+        </Typography>
+        <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
+=======
 
     const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}}
                                  onMouseEnter={() => {
@@ -347,6 +469,7 @@ const NavBar = (props) => {
 
             <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
         </Link>
+>>>>>>> upstream/dev
         <div className={classes.search}>
             <div className={classes.searchIcon}>
                 <SearchIcon/>
@@ -441,12 +564,18 @@ const NavBar = (props) => {
             </IconButton>
         </div>
     </Toolbar>;
+<<<<<<< HEAD
+    const NavSection4 =  <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop) }
+                                  onMouseEnter={()=>{setIsLoginTip(false)}}
+                                  style={{backgroundColor: "#189EFF"}}>
+=======
 
     const NavSection4 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
                                  }}
                                  style={{backgroundColor: "#189EFF"}}>
+>>>>>>> upstream/dev
         <IconButton
             edge="start"
             className={classes.menuButton}
