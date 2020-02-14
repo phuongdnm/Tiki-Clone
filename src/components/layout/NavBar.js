@@ -50,6 +50,8 @@ import PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+// import style for modal tab
+import ModalStyles from '../../styles/ModalStyles'
 
 function NavBar() {
     const classes = userStyles();
@@ -82,41 +84,8 @@ function NavBar() {
     const handleCloseModal = ()=>{
         setOpen(false)
     }
-    //  modal when clicking to login or signup button
-    const useStyles = makeStyles(theme => ({
-        modal: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        paper: {
-          backgroundColor: 'rgb(248, 248, 248)',
-          border: 'none',
-          borderRadius: 6,
-          boxShadow: theme.shadows[5],
-          width: "50%"
-        },
-        destab: {
-            display: "flex",
-            flexDirection: "row", 
-            width: "100%",
-            position: "auto"
-        },
-        tabSection: {
-            position: "relative", 
-            flexGrow: 1,
-            backgroundColor: theme.palette.background.paper
-        },
-        descriptionSection: {
-            position: "relative",
-            backgroundColor: theme.palette.background.paper,
-            marginRight: "2%",
-            width: `25%`,
-            padding: '45px 30px'
-        }
-      }));
     
-    const modalClasses = useStyles()
+    const modalClasses = ModalStyles()
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -201,11 +170,11 @@ function NavBar() {
                     <Tab value="two" label="Log in" {...a11yProps('two')} />
                 </Tabs>
             </AppBar>
-            <TabPanel value={value} index="one">
-                <Login/>
-            </TabPanel>
-            <TabPanel value={value} index="two">
+            <TabPanel value={value} index="one" className={modalClasses.formStyle}>
                 <SignUp/>
+            </TabPanel>
+            <TabPanel value={value} index="two" className={modalClasses.formStyle}>
+                <Login/>
             </TabPanel>
         </div>
     )
@@ -215,10 +184,11 @@ function NavBar() {
             <div className="description-section">
                 <TabPanel value={value} index="one">
                     <h2>Sign up</h2>
-                    <p>Signing up to track your orders, save your favorite products, get many interesting news</p>
+                    <p className={modalClasses.textDescription}>Signing up to track your orders, save your favorite products, get many interesting news</p>
                 </TabPanel>
                 <TabPanel value={value} index="two">
-                    Hello from tab two
+                    <h2>Log in</h2>
+                    <p className={modalClasses.textDescription}>Loggin in to track your orders, save your favorite products, get many interesting news</p>
                 </TabPanel>
             </div>
             <div className="image-section">
