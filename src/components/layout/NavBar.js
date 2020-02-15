@@ -445,15 +445,6 @@ const NavBar = (props) => {
             </IconButton>
         </Typography>
     </Toolbar>;
-<<<<<<< HEAD
-    const NavSection3 =  <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}} onMouseEnter={() => {
-        setProductModal(false)
-    }}>
-        <Typography className={classes.title} variant="h6" noWrap>
-            TIKI
-        </Typography>
-        <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
-=======
 
     const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}}
                                  onMouseEnter={() => {
@@ -469,7 +460,6 @@ const NavBar = (props) => {
 
             <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
         </Link>
->>>>>>> upstream/dev
         <div className={classes.search}>
             <div className={classes.searchIcon}>
                 <SearchIcon/>
@@ -564,18 +554,12 @@ const NavBar = (props) => {
             </IconButton>
         </div>
     </Toolbar>;
-<<<<<<< HEAD
-    const NavSection4 =  <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop) }
-                                  onMouseEnter={()=>{setIsLoginTip(false)}}
-                                  style={{backgroundColor: "#189EFF"}}>
-=======
 
     const NavSection4 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
                                  }}
                                  style={{backgroundColor: "#189EFF"}}>
->>>>>>> upstream/dev
         <IconButton
             edge="start"
             className={classes.menuButton}

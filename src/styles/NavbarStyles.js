@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
-            minWidth: "2em"
-        },
+            minWidth:"2em",
+        }
     },
     // toolbar: {
     //   width: "100%"
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
+        },  
         marginRight: theme.spacing(2),
         marginLeft: 0,
         width: '100%',
