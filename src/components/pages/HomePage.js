@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from "../layout/NavBar";
 import ProductCategoryDeal from "../ProductCategoryDeal";
 import ProductNavigation from "../ProductNavigation";
+import Footer from '../layout/Footer';
 
 
 const HomePage = (props) => {
@@ -12,6 +13,7 @@ const HomePage = (props) => {
             <ProductCategoryDeal/>
 
             <h3>This is Home Page</h3>
+            <Footer/>
 
         </div>
     )

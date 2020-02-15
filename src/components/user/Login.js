@@ -5,7 +5,6 @@ import Input from "@material-ui/core/Input";
 import FormGroup from "@material-ui/core/FormGroup";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PersonIcon from "@material-ui/icons/Person";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import zaloLogo from "../../image/Logo_Zalo.png";
