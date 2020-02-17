@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
     root:{
         flexGrow: 1,
         width: "20%",
-        height: "83% !important",
+        height: "68vh !important",
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     resize:{
         flexGrow: 1,
         width: "80%",
-        height: "83% !important",
+        height: "68vh !important",
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",

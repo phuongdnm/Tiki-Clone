@@ -41,7 +41,7 @@ function Footer() {
         </Grid>
         <Grid item xs={7} sm={5} >
           <form className={classes.form} noValidate autoComplete="off" >
-            <TextField id="email" label="Your email" variant="outlined" 
+            <TextField id="email" label="Your email" variant="outlined"
             className={classes.subscribeText} InputProps={{classes: { input : classes.input1 }  }} />
             <Button variant="contained" color="primary" style={{marginLeft:"0.3em"}}>
               Subscribe
@@ -54,7 +54,7 @@ function Footer() {
 
   </Grid>;
 
-  const about = <Grid container spacing={1}>
+  const about = <Grid container spacing={0}>
     <Grid container item xs={3} spacing={2} className={classes.mobileMode} >
       <Grid item xs={6} sm={12}>
         <Typography style={{fontWeight:'bold',lineHeight:3,paddingBottom:"0.47em"}}>Customer Service</Typography>
@@ -99,31 +99,31 @@ function Footer() {
         </Grid>
         <Grid item xs={6} sm={12}>Sell with Tiki
         </Grid>
-      </Grid>      
+      </Grid>
     </Grid>
     <Grid container item xs={6} sm={6} md={2} spacing={0} style={{paddingLeft:"1em"}} >
       <Typography style={{fontWeight:'bold',lineHeight:3,paddingBottom:"1.3em"}}>Payment Method
       <Grid style={{paddingTop:"1.3em",lineHeight:1}}>
         <Icon className={classes.iconRoot}>
           <img alt="visa" className={classes.icon} src={visaIcon} />
-        </Icon> 
+        </Icon>
         <Icon className={classes.iconRoot}>
           <img alt="master" className={classes.icon} src={mastercardIcon} />
-        </Icon> 
+        </Icon>
         <Icon className={classes.iconRoot}>
           <img alt="jcb" className={classes.icon} src={jcbIcon} />
-        </Icon> 
+        </Icon>
       </Grid>
       <Grid>
         <Icon className={classes.iconRoot}>
           <img alt="cash" className={classes.icon} src={cashIcon} />
-        </Icon> 
+        </Icon>
         <Icon className={classes.iconRoot}>
           <img alt="internet" className={classes.icon} src={internetIcon} />
-        </Icon> 
+        </Icon>
         <Icon className={classes.iconRoot}>
           <img alt="installment" className={classes.icon} src={installmentIcon} />
-        </Icon> 
+        </Icon>
       </Grid>
       </Typography>
 
@@ -134,14 +134,14 @@ function Footer() {
           <Link href="https://www.facebook.com/praise.oketola" >
             <Icon className={classes.iconRoot}>
               <img alt="fb" className={classes.icon} src={fbIcon} />
-            </Icon> 
+            </Icon>
           </Link>
           <Icon className={classes.iconRoot}>
             <img alt="yt" className={classes.icon} src={youtubeIcon} />
-          </Icon> 
+          </Icon>
           <Icon className={classes.iconRoot}>
             <img alt="zalo" className={classes.icon} src={zalo} style={{width:32,height:32}}/>
-          </Icon> 
+          </Icon>
         </Grid>
         <Grid>
           <Typography style={{fontWeight:'bold',lineHeight:3}}>Install App On Your Mobile
@@ -154,7 +154,7 @@ function Footer() {
       </Typography>
 
     </Grid>
-  </Grid> 
+  </Grid>
 
   return (
     <div className={classes.root}>
@@ -162,7 +162,7 @@ function Footer() {
         {newsletter}
       </div>
       <div className= {classes.about}>
-      {about} 
+      {about}
       </div>
     </div>
   );
