@@ -10,10 +10,14 @@ const useStyles = makeStyles(theme => ({
 
     },
     container: {
-        width: "60%",
+        width: '90%',
+        marginLeft: '5%',
         marginTop: "0.5%",
-        marginLeft: "30%",
-        marginBottom: '5em'
+        marginBottom: '5em',
+        [theme.breakpoints.up('md')]: {
+            width: "60%",
+            marginLeft: "30%",
+        },
         // backgroundColor:"#F4F4F4",
 
     },
