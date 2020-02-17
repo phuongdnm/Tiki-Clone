@@ -65,12 +65,11 @@ const useStyles = makeStyles(theme => ({
   buttonStyle: {
     marginTop: "8px"
   }
-  // date/time select style
 }));
+
 // radio function
 const StyledRadio = props => {
   const classes = useStyles();
-
   return (
     <Radio
       className={classes.root}
@@ -86,23 +85,54 @@ const StyledRadio = props => {
 const SignUp = () => {
   const classes = useStyles();
   // date time select function
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [name, setName] = React.useState('')
+  const [phone, setPhone] = React.useState('')
+  const [address, setAddress] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [gender, setGender] = React.useState('female')
+  const [selectedDate, setSelectedDate] = React.useState(new Date("2014-08-18T21:11:54"));
 
+  // handle change input
+  const handleChangeInputName = (e) => {
+    setName(e.target.value)
+  };
+  const handleChangeInputPhone = (e) => {
+    setPhone(e.target.value)
+  };
+  const handleChangeInputAddress = (e) => {
+    setAddress(e.target.value)
+  };
+  const handleChangeInputEmail = (e) => {
+    setEmail(e.target.value)
+  };
+  const handleChangeInputPassword = (e) => {
+    setPassword(e.target.value)
+  };
+  const handleChangeInputGender = (e) => {
+    setGender(e.target.value)
+  };
   const handleDateChange = date => {
     setSelectedDate(date);
-    console.log("date: ", date);
   };
+
+  // handle change submit
   const handleSubmit = () => {
-    window.alert("You've just clicked Signup button");
+    const text = {name, phone, address, email, password, gender, selectedDate}
+    const textJson = JSON.stringify(text)
+    console.log("text json: ", textJson)
   };
   return (
     <div>
       <FormGroup>
         <FormControl>
           <InputLabel htmlFor="my-input">Name</InputLabel>
-          <Input id="my-input" aria-describedby="my-helper-text" />
+          <Input
+            id="my-input"
+            aria-describedby="my-helper-text"
+            name="name"
+            onChange={handleChangeInputName}
+          />
         </FormControl>
         <FormControl margin="normal">
           <InputLabel htmlFor="my-input">Phone</InputLabel>
@@ -111,6 +141,8 @@ const SignUp = () => {
             aria-describedby="my-helper-text"
             fullWidth="true"
             required="true"
+            name="phone"
+            onChange={handleChangeInputPhone}
           />
         </FormControl>
         <FormControl margin="normal">
@@ -120,6 +152,8 @@ const SignUp = () => {
             aria-describedby="my-helper-text"
             fullWidth="true"
             required="true"
+            name="address"
+            onChange={handleChangeInputAddress}
           />
         </FormControl>
         <FormControl margin="normal">
@@ -128,6 +162,8 @@ const SignUp = () => {
             id="my-input"
             aria-describedby="my-helper-text"
             fullWidth="true"
+            name="email"
+            onChange={handleChangeInputEmail}
           />
         </FormControl>
         <FormControl margin="normal">
@@ -137,8 +173,11 @@ const SignUp = () => {
             aria-describedby="my-helper-text"
             fullWidth="true"
             required="true"
+            name="password"
+            onChange={handleChangeInputPassword}
           />
         </FormControl>
+
         {/* radio group */}
         <FormControl component="fieldset" margin="normal">
           <FormLabel component="legend">Gender</FormLabel>
@@ -147,6 +186,7 @@ const SignUp = () => {
             aria-label="gender"
             name="customized-radios"
             row
+            onChange={handleChangeInputGender}
           >
             <FormControlLabel
               value="female"
@@ -166,6 +206,7 @@ const SignUp = () => {
           </RadioGroup>
         </FormControl>
       </FormGroup>
+
       {/* date time select */}
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
