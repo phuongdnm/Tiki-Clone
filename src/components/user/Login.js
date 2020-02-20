@@ -36,7 +36,7 @@ const Login = () => {
     setPasswordState(e.target.value)
     console.log("password: ", e.target.value)
   }
-  
+
   const handleSubmit = (e)=>{
     const text = {email, password}
     const textJson = JSON.stringify(text)
