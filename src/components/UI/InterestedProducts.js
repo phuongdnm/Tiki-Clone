@@ -1,12 +1,12 @@
 import React from 'react'
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-import IP1 from '../image/IP1.jpg'
-import IP2 from '../image/IP2.jpg'
-import IP3 from '../image/IP3.png'
-import IP4 from '../image/IP4.png'
-import IP5 from '../image/IP5.png'
-import IP6 from '../image/IP6.png'
+import IP1 from '../../image/IP1.jpg'
+import IP2 from '../../image/IP2.jpg'
+import IP3 from '../../image/IP3.png'
+import IP4 from '../../image/IP4.png'
+import IP5 from '../../image/IP5.png'
+import IP6 from '../../image/IP6.png'
 import {makeStyles} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 

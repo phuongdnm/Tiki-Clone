@@ -1,7 +1,7 @@
 import React from 'react'
-import Deal1 from '../image/productDeal2Image1.png'
-import Deal2 from '../image/productDeal2Image2.png'
-import Deal3 from '../image/productDeal2Image3.png'
+import Deal1 from '../../image/productDeal2Image1.png'
+import Deal2 from '../../image/productDeal2Image2.png'
+import Deal3 from '../../image/productDeal2Image3.png'
 import {Link} from "react-router-dom";
 import Ripples from 'react-ripples'
 

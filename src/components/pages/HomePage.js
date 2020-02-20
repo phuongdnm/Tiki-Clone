@@ -1,14 +1,14 @@
 import React from 'react'
 import NavBar from "../layout/NavBar";
-import ProductCategoryDeal from "../ProductCategoryDeal";
-import ProductNavigation from "../ProductNavigation";
+import ProductCategoryDeal from "../UI/ProductCategoryDeal";
+import ProductNavigation from "../UI/ProductNavigation";
 import Footer from '../layout/Footer';
-import Card from "../Card";
-import ProductDeal from "../ProductDeal";
+import Card from "../UI/Card";
+import ProductDeal from "../UI/ProductDeal";
 import BottleWarmer from '../../image/bottoleWarmer.jpg'
-import InterestedProducts from "../InterestedProducts";
-import HotKeyword from "../HotKeyword";
-import ItemContainer from "../ItemContainer";
+import InterestedProducts from "../UI/InterestedProducts";
+import HotKeyword from "../UI/HotKeyword";
+import ItemContainer from "../UI/ItemContainer";
 
 
 const HomePage = (props) => {

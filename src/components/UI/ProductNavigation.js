@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import userStyles from '../styles/ProductNavigationStyles'
+import userStyles from '../../styles/ProductNavigationStyles'
 import classNames from "classnames";
 import Icon from "@material-ui/core/Icon";
 import {Link} from "react-router-dom";
@@ -23,11 +23,11 @@ import LanguageIcon from '@material-ui/icons/Language';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 
-import OvenIcon from '../image/oven.png'
-import FryingPanIcon from '../image/fryingPan.png'
-import CleanerIcon from '../image/cleaner.png'
-import LipStickIcon from '../image/lipstick.png'
-import cooker from '../image/cooker.png'
+import OvenIcon from '../../image/oven.png'
+import FryingPanIcon from '../../image/fryingPan.png'
+import CleanerIcon from '../../image/cleaner.png'
+import LipStickIcon from '../../image/lipstick.png'
+import cooker from '../../image/cooker.png'
 
 
 const ProductNavigation = props => {

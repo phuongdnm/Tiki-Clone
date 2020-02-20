@@ -2,7 +2,7 @@ import React from 'react'
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import sprite from "../image/sprite.png";
+import sprite from "../../image/sprite.png";
 import IconButton from "@material-ui/core/IconButton";
 
 
@@ -64,7 +64,7 @@ const ItemContainer = (props) =>{
             ))}
             <Grid container >
                 <Grid item xs={12} style={{textAlign: 'center'}}>
-                    <Button variant="outlined" color="primary" style={{fontSize: '0.7em', padding: '0.5em', paddingLeft: '4em', paddingRight: '4em', marginBottom: '1.7 em', textTransform: 'lowercase'}}>
+                    <Button variant="outlined" color="primary" style={{fontSize: '0.7em', padding: '0.5em', paddingLeft: '4em', paddingRight: '4em', marginBottom: '1.7em', textTransform: 'lowercase'}}>
                         See more
                     </Button>
                 </Grid>
