@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from "./layout/NavBar";
+import NavBar from "../layout/NavBar";
 
 const Cart = (props) =>{
     return (

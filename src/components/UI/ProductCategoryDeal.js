@@ -1,21 +1,21 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import userStyles from '../styles/ProductCategoryDealStyles'
+import userStyles from '../../styles/ProductCategoryDealStyles'
 import Grid from "@material-ui/core/Grid";
 import Carousel from 'react-material-ui-carousel'
 
 
-import ProductDeal1 from '../image/productDealImage1.png'
-import ProductDeal2 from '../image/productDealImage2.png'
-import ProductDeal3 from '../image/productDealImage3.png'
-import ProductDeal4 from '../image/productDealImage4.png'
-import ProductDeal5 from '../image/productDealImage5.png'
-import ProductDeal7 from '../image/productDealImage7.png'
-import ProductDeal8 from '../image/productDealImage8.png'
-import ProductDeal9 from '../image/productDealImage9.png'
-import ProductDeal10 from '../image/productDealImage10.png'
-import ProductDeal11 from '../image/productDealImage11.png'
-import ProductDeal12 from '../image/productDealImage12.png'
+import ProductDeal1 from '../../image/productDealImage1.png'
+import ProductDeal2 from '../../image/productDealImage2.png'
+import ProductDeal3 from '../../image/productDealImage3.png'
+import ProductDeal4 from '../../image/productDealImage4.png'
+import ProductDeal5 from '../../image/productDealImage5.png'
+import ProductDeal7 from '../../image/productDealImage7.png'
+import ProductDeal8 from '../../image/productDealImage8.png'
+import ProductDeal9 from '../../image/productDealImage9.png'
+import ProductDeal10 from '../../image/productDealImage10.png'
+import ProductDeal11 from '../../image/productDealImage11.png'
+import ProductDeal12 from '../../image/productDealImage12.png'
 
 
 const ProductCategoryDeal = props => {

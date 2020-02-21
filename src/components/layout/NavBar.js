@@ -34,7 +34,7 @@ import ticketBox from '../../image/ticketBox.png'
 import zaloLogo from '../../image/Logo_Zalo.png'
 import userStyles from '../../styles/NavbarStyles'
 import {loadCSS} from 'fg-loadcss';
-import ProductNavigation from "../ProductNavigation";
+import ProductNavigation from "../UI/ProductNavigation";
 import ModalStyles from '../../styles/ModalStyles'
 import TransitionsModal from '../user/UserModal'
 
@@ -74,7 +74,7 @@ const NavBar = () => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-   
+
     console.log("index: ", index)
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -182,16 +182,16 @@ const NavBar = () => {
         <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
                   onMouseLeave={()=>{setIsLoginTip(false)}}
                   style={{width: "18em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
-        
-          
+
+
             <Button
                 variant="contained"
                 size={"small"}
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonIcon/>}
                 name="0"
-                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}} 
-                
+                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}}
+
             >
                 Login
             </Button>
@@ -200,7 +200,7 @@ const NavBar = () => {
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonAddIcon />}
-                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}} 
+                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}}
                 name="1"
             >
                 Create Account

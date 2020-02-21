@@ -5,9 +5,9 @@ import Rating from '@material-ui/lab/Rating';
 import Ripples from 'react-ripples'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TikiNow from '../image/tiki-now.png'
-import DealTag from '../image/dealTag.png'
-import userStyles from '../styles/CardStyles'
+import TikiNow from '../../image/tiki-now.png'
+import DealTag from '../../image/dealTag.png'
+import userStyles from '../../styles/CardStyles'
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
