@@ -1,16 +1,19 @@
 import React from 'react'
 import NavBar from "../layout/NavBar";
+import AccountDashBoard from "../UI/AccountDashboard";
+import Footer from "../layout/Footer";
 
 
-const OrdersPage = (props)=> {
+const OrdersPage = (props) => {
     return (
         <div>
-            <NavBar/>
-            <h3>This is Orders detail Page</h3>
+            < NavBar/>
+            < AccountDashBoard index={2}/>
+            < Footer/>
 
         </div>
     )
 };
 
-export default OrdersPage
+export default OrdersPage;
 

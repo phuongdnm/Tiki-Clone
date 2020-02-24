@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
         borderRadius: "0.5em !important",
         position: "absolute",
-        marginTop: "0.5%"
+        marginTop: "0.5%",
+        zIndex: '90'
     },
     resize:{
         flexGrow: 1,
