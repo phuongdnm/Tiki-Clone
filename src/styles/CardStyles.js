@@ -48,7 +48,36 @@ const useStyles = makeStyles(theme => ({
     },
     "@global .react-ripples": {
         display: 'inline-block !important'
-    }
+    },
+    // style for card in cart page:
+    root: {
+        flexGrow: 1,
+      },
+      paper: {
+        padding: theme.spacing(2),
+        margin: 'auto',
+        maxWidth: "100%"
+      },
+      image: {
+        width: 128,
+        height: 128,
+      },
+      img: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        overflow: 'hidden',
+        position: 'relative',
+        zIndex: 0
+      },
+      tikiArrow: {
+        maxHeight: "20px"
+      },
+      priceOrigin: {
+        color: "lightgrey",
+        textDecoration: "line-through"
+      },
 
 }));
 
