@@ -38,7 +38,7 @@ import ProductNavigation from "../UI/ProductNavigation";
 import ModalStyles from '../../styles/ModalStyles'
 import TransitionsModal from '../user/UserModal'
 
-const NavBar = () => {
+const NavBar = (props) => {
     const classes = userStyles();
      // function to open and close modal
      const [open, setOpen] = React.useState(false)
@@ -51,8 +51,8 @@ const NavBar = () => {
      }
      const handleOnClick=(event)=>{
          setIndex(event.currentTarget.name)
-         console.log("event name: ", event.currentTarget.name)
      }
+     console.log("amount received from cart: ", props.amount)
     React.useEffect(() => {
         loadCSS(
             'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
@@ -74,8 +74,6 @@ const NavBar = () => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-
-    console.log("index: ", index)
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
@@ -422,11 +420,11 @@ const NavBar = () => {
 
             </Typography>
             {authLinks}
-
+            {/* number of products */}
             <Link to={"/cart"} onClick={e => e.stopPropagation()} className={classes.removeDefaultLink}>
 
                 <Typography className={classes.navText2}>
-                    <Badge badgeContent={4} color="error" className={classes.iconNav2}>
+                    <Badge badgeContent={props.amount} color="error" className={classes.iconNav2}>
                         <ShoppingCartIcon style={{paddingLeft: "20%"}}/>
                     </Badge>
                     Cart
@@ -543,7 +541,6 @@ const NavBar = () => {
 
     </Toolbar>;
 
-
     return (
         <section>
             <div className={classes.grow}>
@@ -562,8 +559,6 @@ const NavBar = () => {
                 }}
             />}
         </section>
-
-
     );
 };
 

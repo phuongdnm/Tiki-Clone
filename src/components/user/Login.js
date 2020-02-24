@@ -61,6 +61,7 @@ const Login = () => {
           <InputLabel htmlFor="my-input">Password</InputLabel>
           <Input
             id="my-input"
+            type="password"
             aria-describedby="my-helper-text"
             fullWidth="true"
             required="true"

@@ -20,20 +20,22 @@ import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import tikiGraphicMap from "../../image/tiki-graphic-map.png";
+import Grid from '@material-ui/core/Grid';
 
 // style for both modal and tabs
 const useStyles = makeStyles(theme => ({
   modal: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+   
   },
   paper: {
     backgroundColor: "rgb(248, 248, 248)",
     border: "none",
     borderRadius: 6,
     boxShadow: theme.shadows[5],
-    width: "50%"
+    width: "auto"
   },
   destab: {
     display: "flex",
@@ -45,15 +47,12 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    margin: "2%",
     borderRadius: 6
   },
   descriptionSection: {
     position: "relative",
     backgroundColor: theme.palette.background.paper,
     marginRight: "2%",
-    width: `30%`,
-    padding: "45px 30px",
     borderRadius: 6
   },
   formStyle: {
@@ -62,9 +61,7 @@ const useStyles = makeStyles(theme => ({
   textDescription: {
     textAlign: "justify"
   },
-  tab: {
-    flexGrow: "1 !important"
-  }
+
 }));
 
 const tabTheme = createMuiTheme({
@@ -120,68 +117,84 @@ const ModalTabSection = props => {
     setValue(newValue);
   };
   return (
-    <div className={classes.destab}>
-      <div className={classes.descriptionSection}>
-        <div className="description-section">
-          <TabPanel value={value} index={0}>
-            <h2>Sign up</h2>
-            <p className={classes.textDescription}>
-              Signing up to track your orders, save your favorite products, get
-              many interesting news
+    <Grid container xl={12} md={12} xs={12} sm={12}>
+
+      <div className={classes.destab}>
+
+        <Grid item md={6} sm={6} xs={6}  >
+          <Grid container xs={3} alignItems="center">
+            <div className={classes.descriptionSection}>
+              <div className="description-section">
+                <TabPanel value={value} index={0}>
+                  <h2>Sign up</h2>
+                  <p className={classes.textDescription}>
+                    Signing up to track your orders, save your favorite products, get
+                    many interesting news
             </p>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <h2>Log in</h2>
-            <p className={classes.textDescription}>
-              Loggin in to track your orders, save your favorite products, get
-              many interesting news
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <h2>Log in</h2>
+                  <p className={classes.textDescription}>
+                    Loggin in to track your orders, save your favorite products, get
+                    many interesting news
             </p>
-          </TabPanel>
-        </div>
-        <div className="image-section">
-          <img src={tikiGraphicMap} alt="tiki-graphic-map" />
-        </div>
+                </TabPanel>
+              </div>
+              <div className="image-section">
+                <img src={tikiGraphicMap} alt="tiki-graphic-map" />
+              </div>
+            </div>
+          </Grid>
+        </Grid>
+        <Grid item md={12} sm={12} xs={12} >
+          <div className={classes.tabSection}>
+            <MuiThemeProvider theme={tabTheme}>
+              <AppBar position="static">
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="wrapped label tabs example"
+                >
+                  <Tab
+                    value={0}
+                    className={classes.tab}
+                    className={classes.Tab}
+                    label="Log in"
+                    {...a11yProps("zero")}
+                  />
+                  <Tab
+                    value={1}
+                    className={classes.Tab}
+                    label="Sign Up"
+                    wrapped
+                    {...a11yProps("one")}
+                  />
+                </Tabs>
+              </AppBar>
+              <TabPanel value={value} index={0} className={classes.formStyle}>
+                <Login />
+              </TabPanel>
+              <TabPanel value={value} index={1} className={classes.formStyle}>
+                <SignUp />
+              </TabPanel>
+            </MuiThemeProvider>
+          </div>
+        </Grid>
       </div>
-      <div className={classes.tabSection}>
-        <MuiThemeProvider theme={tabTheme}>
-          <AppBar position="static">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="wrapped label tabs example"
-            >
-              <Tab
-                value={0}
-                className={classes.tab}
-                className={classes.Tab}
-                label="Log in"
-                {...a11yProps("zero")}
-              />
-              <Tab
-                value={1}
-                className={classes.Tab}
-                label="Sign Up"
-                wrapped
-                {...a11yProps("one")}
-              />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={value} index={0} className={classes.formStyle}>
-            <Login />
-          </TabPanel>
-          <TabPanel value={value} index={1} className={classes.formStyle}>
-            <SignUp />
-          </TabPanel>
-        </MuiThemeProvider>
-      </div>
-    </div>
+
+
+
+
+
+
+    </Grid>
+
   );
 };
 
 // transition modal
 function TransitionsModal(props) {
   const classes = useStyles();
-  console.log("props: ", props);
   return (
     <div>
       <Modal

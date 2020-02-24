@@ -63,7 +63,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   buttonStyle: {
-    marginTop: "8px"
+    marginTop: "16px",
+    marginBottom: "8px"
   }
 }));
 
@@ -170,6 +171,7 @@ const SignUp = () => {
           <InputLabel htmlFor="my-input">Password</InputLabel>
           <Input
             id="my-input"
+            type="password"
             aria-describedby="my-helper-text"
             fullWidth="true"
             required="true"
