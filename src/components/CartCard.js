@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "line-through"
   },
 }));
+
 const CartCard = (props) => {
   const classes = useStyles();
 
