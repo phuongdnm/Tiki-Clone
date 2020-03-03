@@ -22,6 +22,19 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import TextField from '@material-ui/core/TextField'
 const Card = (props) => {
   const classes = userStyles();
+  // Renderer callback with condition
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <span>Offer is over!</span>;
+    } else {
+      if (days !== 0) {
+        return <span>{days} days {hours}:{minutes}:{seconds}</span>;
+      }
+      // Render a countdown
+      return <span>{hours}:{minutes}:{seconds}</span>;
+    }
+  };
 
   const discounted_price = props.price - ((parseInt(props.price) * parseInt(props.discount)) / 100);
   const numberWithCommas = (x) => {
@@ -36,15 +49,15 @@ const Card = (props) => {
   // var priceOneProduct = priceDiscounted*amount
 
   const handleDecrease = () => {
-    if(amount-1>=0){
+    if (amount - 1 >= 0) {
       setAmount(amount - 1)
-      props.update(name, discounted_price, amount-1)
+      props.update(name, discounted_price, amount - 1)
     }
-    
+
   }
   const handleIncrease = () => {
     setAmount(amount + 1)
-    props.update(name, discounted_price, amount+1)
+    props.update(name, discounted_price, amount + 1)
   }
   const handleChange = (e) => {
     setAmount(e.target.value)
@@ -52,19 +65,6 @@ const Card = (props) => {
   const handleRemove = () => {
     props.removeItem(name)
   }
-  // Renderer callback with condition
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-      return <span>Offer is over!</span>;
-    } else {
-      if (days !== 0) {
-        return <span>{days} days {hours}:{minutes}:{seconds}</span>;
-      }
-      // Render a countdown
-      return <span>{hours}:{minutes}:{seconds}</span>;
-    }
-  };
 
   if (props.time !== undefined) {
     // startTimer()

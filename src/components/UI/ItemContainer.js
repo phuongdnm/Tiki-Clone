@@ -58,7 +58,7 @@ const ItemContainer = (props) =>{
 
         <Grid container className={classes.grid}>
             {props.items.map((item, index)=>(
-                <Grid  item xs={2} key={index}>
+                <Grid  item xs={props.space !== undefined ? props.space : 2} key={index}>
                     {item}
                 </Grid>
             ))}
