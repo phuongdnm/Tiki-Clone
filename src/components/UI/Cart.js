@@ -10,13 +10,16 @@ import Card from './Card'
 import BottleWarmer from '../../image/bottoleWarmer.jpg'
 import Carousel from 'react-material-ui-carousel'
 import CartCard from '../CartCard'
+
+import ArrayList from '../pages/ArrayList'
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		padding: "0 15%"
 	},
 	paper: {
 		padding: theme.spacing(2),
-
+		textAlign: 'center'
 	},
 	cartLabel: {
 		marginTop: '20px'
@@ -28,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 		padding: "5%"
 	}
 }));
+
 
 const numberWithCommas = (x) => {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -45,48 +49,52 @@ const paperStyle = createMuiTheme({
 	}
 })
 
-const cart = [
-	{
-		name: "Bottle warmer",
-		image: BottleWarmer,
-		selledBy: "Tiki",
-		price: "36000",
-		discount: "3",
-		quantity: "2",
-		discounted_price: " "
-	},
-	{
-		name: "Bottle Warmer 2",
-		image: BottleWarmer,
-		selledBy: "Tiki clone",
-		price: "42000",
-		discount: "3",
-		quantity: "1",
-		discounted_price: " "
+// const cart = [
+// 	{
+// 		name: "Bottle warmer",
+// 		image: BottleWarmer,
+// 		selledBy: "Tiki",
+// 		price: "36000",
+// 		discount: "3",
+// 		quantity: "2",
+// 		discounted_price: " "
+// 	},
+// 	{
+// 		name: "Bottle Warmer 2",
+// 		image: BottleWarmer,
+// 		selledBy: "Tiki clone",
+// 		price: "42000",
+// 		discount: "3",
+// 		quantity: "1",
+// 		discounted_price: " "
 
-	},
-	{
-		name: "Bottle Warmer 3",
-		image: BottleWarmer,
-		selledBy: "Tiki clone and friends",
-		price: "450000",
-		discount: "15",
-		quantity: "2",
-		discounted_price: " "
+// 	},
+// 	{
+// 		name: "Bottle Warmer 3",
+// 		image: BottleWarmer,
+// 		selledBy: "Tiki clone and friends",
+// 		price: "450000",
+// 		discount: "15",
+// 		quantity: "2",
+// 		discounted_price: " "
 
-	}
-]
+// 	}
+// ]
+
 
 const Cart = (props) => {
 	const classes = useStyles();
 
 	const totalCalculate = (cart)=>{
 		setTotalPrice(numberWithCommas(cart.length ? cart.reduce((total, item) => (
-			total + (item.price - ((parseInt(item.price) * parseInt(item.discount)) / 100)) * item.quantity
+
+			total + item.discounted_price*item.amount
 		), 0) : 0))
 	}
 	// handle remove button
-	const [cartList, setCartList] = React.useState(cart)
+	const [cartList, setCartList] = React.useState(ArrayList)
+	console.log("product list: ", props.productList)
+
 	const handleRemoveItem = (name) => {
 		setCartList(cartList => cartList.filter(item => item.name !== name))
 		totalCalculate(cartList.filter(item => item.name !== name))
@@ -95,7 +103,7 @@ const Cart = (props) => {
 	// calculate total price
 	const [totalPrice, setTotalPrice] = React.useState(0)
 	React.useEffect(()=>{
-		console.log("card props: ", Card.name)
+
 		totalCalculate(cartList)
 	},[])
 	// handle update after changing quantity of products
@@ -114,7 +122,8 @@ const Cart = (props) => {
 
 	const itemList = cartList.map(item => {
 		return (
-			<CartCard type={'cart'} name={item.name} image={item.image} selledBy={item.selledBy} price={item.price} discount={item.discount} quantity={item.quantity} update={handleUpdate} removeItem={handleRemoveItem}></CartCard>
+			<CartCard type={'cart'} name={item.name} image={item.image} selledBy={item.selledBy} price={item.price} discount={item.discount} quantity={item.amount} update={handleUpdate} removeItem={handleRemoveItem}></CartCard>
+
 		)
 	})
 
@@ -226,7 +235,9 @@ const Cart = (props) => {
 	return (
 		<div>
 			<NavBar amount={cartLength} />
-			{CartSection(cartList)}
+
+			{CartSection(ArrayList)}
+
 			<Footer />
 		</div>
 	)

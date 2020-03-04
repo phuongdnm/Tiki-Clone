@@ -32,11 +32,6 @@ function App() {
         path={"/orders"}
         render={routeProps => <OrdersPage {...routeProps} />}
       />
-      {/* <Route
-        exact
-        path={"/login"}
-        render={routeProps => <Login {...routeProps} />}
-      /> */}
     </Switch>
   );
 }

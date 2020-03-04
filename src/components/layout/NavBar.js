@@ -52,7 +52,7 @@ const NavBar = (props) => {
      const handleOnClick=(event)=>{
          setIndex(event.currentTarget.name)
      }
-     console.log("amount received from cart: ", props.amount)
+
     React.useEffect(() => {
         loadCSS(
             'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
