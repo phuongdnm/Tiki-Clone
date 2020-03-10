@@ -21,7 +21,13 @@ import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import tikiGraphicMap from "../../image/tiki-graphic-map.png";
 import Grid from '@material-ui/core/Grid';
-
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import FormGroup from "@material-ui/core/FormGroup";
+import "date-fns";
+import Button from "@material-ui/core/Button";
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 // style for both modal and tabs
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -61,6 +67,10 @@ const useStyles = makeStyles(theme => ({
   textDescription: {
     textAlign: "justify"
   },
+  buttonStyle: {
+    marginTop: "16px",
+    marginBottom: "8px"
+  }
 
 }));
 
@@ -106,8 +116,7 @@ function a11yProps(index) {
 
 const ModalTabSection = props => {
   const classes = useStyles();
-  const piority = parseInt(props.piority, 10);
-
+  const piority = parseInt(props.value.piority, 10);
   const [value, setValue] = React.useState(piority);
 
   React.useEffect(() => {
@@ -181,40 +190,124 @@ const ModalTabSection = props => {
           </div>
         </Grid>
       </div>
-
-
-
-
-
-
     </Grid>
-
   );
 };
+
+const ModalComment = (props)=>{
+  const classes = useStyles()
+  const [title, setTitle] = React.useState('')
+  const [rating, setRating] = React.useState('')
+  const [text,setText] = React.useState('')
+  const handleChangeTitle=(e)=>{
+    setTitle(e.target.value)
+  }
+  const handleChangeRating=(e)=>{
+    setRating(e.target.value)
+  }
+  const handleChangeText=(e)=>{
+    setText(e.target.value)
+  }
+  const handleSubmit=async (props)=>{
+    const data = {title, rating, text}
+    const dataJson = JSON.stringify(data)
+    await fetch('http://34.87.156.245/api/v1/products/5e48f8970bedbc0e99c44f01/reviews',{
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body : dataJson
+    }).then(res=>{
+      if(res.ok){
+        window.alert('Commented successfully!')
+        console.log('Post successfully:: ', dataJson, 'res: ', res)
+      } else{
+        console.log('Failed: ', res)
+      }
+    })
+
+  }
+  const handleDiscard=()=>{
+
+  }
+
+  return(
+    <Grid item xl={12} md={12} sm={12} xs={12} style={{padding: '2%', minWidth: '420px'}}>
+      <FormGroup>
+        <FormControl fullWidth={true}>
+          <InputLabel htmlFor="my-input">Title</InputLabel>
+          <Input
+            id="my-input"
+            aria-describedby="my-helper-text"
+            name="title"
+            onChange={handleChangeTitle}
+          />
+        </FormControl>
+        <FormControl margin="normal">
+          <InputLabel htmlFor="my-input">Rating</InputLabel>
+          <Input
+            id="my-input"
+            aria-describedby="my-helper-text"
+            fullWidth="true"
+            required="true"
+            name="rating"
+            onChange={handleChangeRating}
+            defaultValue='/5, '
+          />
+        </FormControl>
+        <TextareaAutosize aria-label="empty textarea" rowsMin={3} placeholder="Write your comment here..." width="420px" onChange={handleChangeText}/>
+        
+      </FormGroup>
+        
+      <Button
+        variant="contained"
+        color="secondary"
+        fullWidth={true}
+        className={classes.buttonStyle}
+        onClick={handleSubmit}
+      >
+        Comment
+      </Button>
+      <Button variant='contained' color='primary' fullWidth={true} className={classes.buttonStyle} onClick={handleDiscard}>Discard</Button>
+    </Grid>
+  )
+}
+const bodyModal = (props)=>{
+  const value = false  
+  if(value){
+    return(
+      <ModalTabSection value={props}/>
+    )
+  } else{
+    return(
+      <ModalComment value={props}/>
+
+    )
+  }
+}
 
 // transition modal
 function TransitionsModal(props) {
   const classes = useStyles();
-  return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={props.open}
-        onClose={props.onClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500
-        }}
-      >
-        <Fade in={props.open}>
-          <div className={classes.paper}>{ModalTabSection(props)}</div>
-        </Fade>
-      </Modal>
-    </div>
-  );
+  
+  return(
+    <Modal
+    aria-labelledby="transition-modal-title"
+    aria-describedby="transition-modal-description"
+    className={classes.modal}
+    open={props.open}
+    onClose={props.onClose}
+    closeAfterTransition
+    BackdropComponent={Backdrop}
+    BackdropProps={{
+      timeout: 500
+    }}
+    >
+      <Fade in={props.open}>
+        <div className={classes.paper}>{bodyModal(props)}</div>
+      </Fade>
+    </Modal>
+
+  )
+  
 }
 
 export default TransitionsModal;

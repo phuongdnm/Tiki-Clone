@@ -39,13 +39,19 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Cart from '../UI/Cart'
-import ArrayList from './ArrayList'
+
 
 // list divider
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import ArrayList from '../pages/ArrayList'
+import ToggleButton from '@material-ui/lab/ToggleButton'
+// user avatar
+import Avatar from '@material-ui/core/Avatar'
+import TransitionsModal from '../user/UserModal'
+var isLoggedIn = false
 const product = {
  
   category: [
@@ -57,7 +63,7 @@ const product = {
   "Blacka&Green",
   "Black&Blue"
   ],
-  photo: "no-photo.jpg",
+  photo: ['https://images.unsplash.com/photo-1444065381814-865dc9da92c0', 'https://files.venuu.se/attachments/000/102/330/c481e6f11b4455a556bf118deefadfc896ef58c6.jpg'],
   _id: "5e48f8970bedbc0e99c44f02",
   name: "HyperX Pulsefire Raid - Gaming Mouse",
   price: 59.99,
@@ -78,6 +84,7 @@ const product = {
   hot: 'true',
   timeInMilliSec: 50000
 }
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%", 
@@ -100,7 +107,11 @@ const useStyles = makeStyles(theme => ({
   image:{
     margin: '10% 0',
   },
-  title: {fontSize: '1.5em', color: '#858585', lineHeight: '0.5cm'},
+  title: {
+    fontSize: '1.5em', 
+    color: '#858585', 
+    lineHeight: '0.5cm'
+  },
   figure: {
     width: '100%',
     backgroundRepeat: 'no-repeat',
@@ -148,16 +159,20 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  // selectEmpty: {
-  //   marginTop: theme.spacing(2),
-  // },
-
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }))
-
-const ImageZoom = (props)=>{
+// var selectedImage = 'https://images.unsplash.com/photo-1444065381814-865dc9da92c0'
+const ImageProduct = (props)=>{
   const classes = useStyles()
-  const src = 'https://images.unsplash.com/photo-1444065381814-865dc9da92c0'
-  // const src = `${props.photo}`
+  const [imgAddr, setImgAddr]= React.useState(props.value.photo)
+  // const handleOnClick = (e)=>{
+  //   setImgAddr(e.target.src)
+  //   // selectedImage = e.target.src
+  //   console.log('image addr: ', e.target.src)
+  // }
   const [backgroundPosition, setBackgroundPosition] = React.useState('0% 0%')
   const handleMouseMove = (e)=>{
     const {left, top, width, height} = e.target.getBoundingClientRect()
@@ -165,22 +180,45 @@ const ImageZoom = (props)=>{
     const y = (e.pageY - top) / height * 100
     setBackgroundPosition(`${x}% ${y}%`)
   }
+  // const imageList = props.photo.map(item=>{
+  //   return(
+  //     <ListItem button selected style={{width: 'fit-content', height: 'fit-content'}}>
+  //       <img style={{width: '50px', height: '50px'}} onClick={e=>setImgAddr(e.target.src)} src={item}/>
+  //     </ListItem>
+  //   )
+  // })
+  const imageList = ()=>{
+    return(
+      <ListItem button selected style={{width: 'fit-content', height: 'fit-content'}}>
+         <img style={{width: '50px', height: '50px'}} src={imgAddr}/>
+       </ListItem>
+    )
+  }
   return(
-    <div className={classes.image}> 
-      <figure className={classes.figure} onMouseMove={handleMouseMove} style={{backgroundPosition, backgroundImage:`url(${src})`}}>
-        <img className={classes.presentImage } src={src}/>
-      </figure>
-      
-      <div className='image-description' style={{textAlign: 'center'}}>
-        <span style={{fontSize: '0.75em'}}>
-          <img src={ZoomIcon}/>
-          Drag your mouse to zoom out
-        </span>
-      </div>
- 
-    </div>
-   
+    <Grid item container xs={4} xl={5} md={5} spcaing={0} style={{papdding: '3%'}}>
+      <Grid item xs={4} xl={2} md={3}>
+        <div className={classes.image}>
+          <List component="nav" aria-label="mailbox folders">
+            {imageList}
+          </List>
+        </div>
+      </Grid>
+      <Grid item xs={8} xl={10} md={9}>
+        <div className={classes.image}> 
+          <figure className={classes.figure} onMouseMove={handleMouseMove} style={{backgroundPosition, backgroundImage:`url(${imgAddr})`}}>
+            <img className={classes.presentImage } src={imgAddr}/>
+          </figure>
+          
+          <div className='image-description' style={{textAlign: 'center'}}>
+            <span style={{fontSize: '0.75em'}}>
+              <img src={ZoomIcon}/>
+              Drag your mouse to zoom out
+            </span>
+          </div>
     
+        </div>
+      </Grid>
+    </Grid>
   )
 }
 
@@ -197,36 +235,14 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 }
 
-const ImageList = (props) => {
-  const classes = useStyles()
-  // const imageList = props.photo.map(item=>{
-  //   return(
-      
-  //   )
-  // })
-  const src = 'https://images.unsplash.com/photo-1444065381814-865dc9da92c0'
-  return (
-    <div className={classes.image}>
-      <List component="nav" aria-label="mailbox folders">
-        <ListItem button>
-          <img style={{width: '50px', height: '50px'}} src={src}/>
-        </ListItem>
-        {/* <Divider /> */}
-        {/* <ListItem button divider>
-          <ListItemText primary="Drafts" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Trash" />
-        </ListItem>
-        <Divider light />
-        <ListItem button>
-          <ListItemText primary="Spam" />
-        </ListItem> */}
-      </List>
-    </div>
+// const ImageList = (props) => {
+//   const classes = useStyles()
   
-  )
-}
+//   return (
+    
+  
+//   )
+// }
 
 const dealCounter = (props)=>{
 
@@ -262,36 +278,40 @@ const dealCounter = (props)=>{
 }
 
 const ProductPriceInfo = (props) => {
-  // console.log("data fetched: ", props)
-  const [value, setValue] = React.useState(props.averageRating);
-  const classes = useStyles()
-  const [amount, setAmount] = React.useState(1)
-  const handleDecrease = () => {
-    if(amount-1>=0){
-      setAmount(eval(amount - 1))
-    }
-  }
-  const handleIncrease = () => {
-    setAmount(eval(amount + 1))
-  }
-  const handleChange = (e) => {
-    setAmount(e.target.value)
-  }
-  
-  const discounted_price = props.price - ((parseInt(props.price) * parseInt(props.discount)) / 100);
-  const discount_price = ((parseInt(props.price) * parseInt(props.discount)) / 100)
+ // console.log("data fetched: ", props)
+ const classes = useStyles()
+ const [rate, setRate] = React.useState(props.value.averageRating);
+ const [amount, setAmount] = React.useState(1)
+ const [color, setColor] = React.useState(props.value.colors[0])
+ const handleDecrease = () => {
+   if(amount-1>=0){
+     setAmount(eval(amount - 1))
+     console.log("decrease: ", amount-1)
+   }
+ }
+ const handleIncrease = () => {
+   setAmount(eval(amount - (-1)))
+   console.log("increase: ", amount-(-1))
+ }
+ const handleChange = (e) => {
+   setAmount(e.target.value)
+ }
+ const discounted_price = (props.value.price - ((parseInt(props.value.price) * parseInt(props.value.discount)) / 100)).toFixed(2)
+ const discount_price = ((parseInt(props.value.price) * parseInt(props.value.discount)) / 100).toFixed(2)
 
   // product feature description ul
-  const descArray = props.description.split(',').map(item=>{
+  const descArray = props.value.description.split(',').map(item=>{
     return(
       <li>{item}</li>
     )
   })
   // color options 
-  const colorOption = props.colors.map(item=>{
+ 
+  const colorOption = props.value.colors.map(item=>{
     return(
       <Grid item xs>
-        <Button variant="contained" color="primary">{item}</Button>
+        {/* <Button variant="contained" color="primary">{item}</Button> */}
+        <ToggleButton selected="true" value={item} onClick={()=>{setColor(item)}}>{item}</ToggleButton>
       </Grid>
     )
   })
@@ -302,37 +322,44 @@ const ProductPriceInfo = (props) => {
       )
     }
   }
-
-  const handleAddToCart = (props)=>{
-    // const total_price = amount*discounted_price
-    product["amount"]=amount
-    product["discounted_price"]=discounted_price
-    // product["total_price"]=total_price
-    ArrayList.push(product)
-    console.log('array: ', ArrayList)
+  const [cartItem, setCartItem] = React.useState(props.value)
+  const handleAddToCart = (e)=>{
+    // var objecteFound = ArrayList.filter(item=>item.name==e.target.name)
+    // console.log('name of product: ', e.target.name)
+    // console.log('object found: ', objecteFound, "type: ", typeof(objecteFound))
+    
+    // if(objecteFound[0].length() != null){
+    //   console.log('array length: ',objecteFound[0].length())
+    //   objecteFound[0].amount = objecteFound[0]+amount
+    // } else{
+    // console.log('color chose: ', color)
+    cartItem["amount"]=amount
+    cartItem["discounted_price"]=discounted_price
+    cartItem["choosen_color"]=color
+    ArrayList.push(cartItem)
+    // console.log('array: ', ArrayList)
   }
   
-      
   return (
     <div className={classes.block}>
       <div className="name">
         <img src={TikiNow} alt="an image"/> <span className={classes.divider}>|</span>
-        <span className={classes.title} >{props.name}</span>
+        <span className={classes.title} >{props.value.name}</span>
       </div>
       {/* rating block */}
       <div className={classes.block}>
         <Box component="fieldset" mb={3} borderColor="transparent" style={{marginBottom: '0'}}>
           <Rating
             name="simple-controlled"
-            value={value}
+            value={rate}
             onChange={(event, newValue) => {
-              setValue(newValue);
+              setRate(newValue);
             }}
           />
          
         </Box>
         <span style={{fontSize: '1em'}}>
-            Branch: <a href="#">{props.branch}</a>
+            Branch: <a href="#">{props.value.branch}</a>
           </span>
       </div>
       {/* price and warranty block */}
@@ -341,10 +368,10 @@ const ProductPriceInfo = (props) => {
           <Grid item className="price-block" xl={7} xs={7}>
             <div className="item-price" className={classes.block}>
               <p style={{color: 'red', fontSize: '1.5em', padding: 0, margin: 0}}>{discounted_price}$</p>
-              <p style={{color: 'lightgrey', padding: 0, margin: 0}}>Save: <span style={{color: 'red'}}>{props.discount}%</span> ({discount_price}$)</p>
-              <p style={{color: 'lightgrey'}}>Original price: {props.price}$</p>
+              <p style={{color: 'lightgrey', padding: 0, margin: 0}}>Save: <span style={{color: 'red'}}>{props.value.discount}%</span> ({discount_price}$)</p>
+              <p style={{color: 'lightgrey'}}>Original price: {props.value.price}$</p>
             </div>
-            {dealCounter(props)}
+            {dealCounter(props.value)}
             <div className="product-description">
               <ul>
                 {descArray}
@@ -354,9 +381,10 @@ const ProductPriceInfo = (props) => {
             <div className="item-product-options" className={classes.block} >
             <div className="color-options" style={{marginBottom: '10%', width: '100%'}}>
               <div style={{fontWeight: 600}}>Color options</div>
-              <Grid container spacing={1}>
+              <Grid container spacing={2} style={{width: 'fit-content'}}>
                 {colorOption}
               </Grid>
+              
             </div>
               <Grid item container className='add-to-cart-options' spacing={2}>
                   <Grid item className='product-amount' xl="4" xs md>
@@ -368,7 +396,7 @@ const ProductPriceInfo = (props) => {
                   </Grid>
                   <Grid item className='product-add-to-cart' xl="6" xs md>
                     <ButtonGroup orientation="vertical">
-                      <Button onClick={handleAddToCart} variant="contained" color='secondary' style={{marginBottom: '16px'}}><img src={CartIcon} style={{width: "20px", height: "20px", marginRight: "10px", fontSize:'0.75em'}}/> 
+                      <Button onClick={handleAddToCart} value={props.value.name} variant="contained" color='secondary' style={{marginBottom: '16px'}}><img src={CartIcon} style={{width: "20px", height: "20px", marginRight: "10px", fontSize:'0.75em'}}/> 
                         Add to cart
                       </Button>
                       {groupButton(discounted_price)}
@@ -448,25 +476,13 @@ const ProductPriceInfo = (props) => {
   )
 }
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 const InfoTable = (props)=>{
   const classes= useStyles()
   const specsArray = props.specs.split(',').map(item=>{
     item=item.split(':')
     return(
       <TableRow>
-        <TableCell align="left">{item[0]}</TableCell>
+        <TableCell align="left" style={{backgroundColor: '#F4F4F4', fontWeight: 600}}>{item[0]}</TableCell>
         <TableCell align="left">{item[1]}</TableCell>
       </TableRow>
     )
@@ -479,8 +495,6 @@ const InfoTable = (props)=>{
           </TableHead>
         </Table>
       </TableContainer>
-
-    
   )
 }
 
@@ -495,16 +509,14 @@ const ProductDetailInfo = (props)=>{
       {/* info table block */}
       <div className="info-table"style={{marginLeft: '2em', marginRight: '2em', marginTop: '2em', width: '75%'}}>
         <div style={{fontSize: '1.1em', fontWeight: 400, marginBottom: '0.3em', marginLeft: '2.5em'}}>PRODUCT DETAIL INFO</div>
-        {InfoTable(props)}
+        {InfoTable(props.value)}
       </div>
       <div className="info-table"style={{marginLeft: '2em', marginRight: '2em', marginTop: '2em'}}>
         <div style={{fontSize: '1.1em', fontWeight: 400, marginBottom: '0.3em', marginLeft: '2.5em'}}>PRODUCT DESCRIPTION</div>
-        <div style={{backgroundColor: 'white', padding: '2%'}}>{props.description}</div>
+        <div style={{backgroundColor: 'white', padding: '2%'}}>{props.value.description}</div>
       </div>
-    </div>
-    
+    </div> 
   )
-
 }
 
 const ProductQA = (props)=>{
@@ -541,44 +553,99 @@ const theme = createMuiTheme({
   }
 });
 
-const ReviewCard = (props)=>{
-  const classes = useStyles()
-  return(
-    <Card>
-      <Grid container>
-        <Grid item xs xl={1} style={{textAlign:'center', margin: '0 3%'}}>
-          <span style={{borderRadius: '50%', backgroundColor: '#d3d2d3', color: '#919090', fontWeight: 500, textAlign: 'center', width: '65px', height: '65px', display: 'inline-block', lineHeight: '65px'}}>{props.nameShort}</span>
-          <p>{props.nameFull}</p>
-        </Grid>
-        <Grid item xs xl={9} style={{textAlign: 'left'}}>
-          <span>
-            <Box component="fieldset" mb={3} borderColor="transparent" style={{marginBottom: '0'}}>
-              <Rating
-                name="read-only"
-                value={props.value}
-                readOnly
-              />
-            </Box>
-            
-          </span>
-          <p style={{color: '#22B345', fontSize: '0.75em'}}>
-            Bought from Tiki
-          </p>
-          <p>{props.review}</p>
-        </Grid>
 
-      </Grid>
-    </Card>
-  )
-}
 const ProductReview=(props)=>{
   const classes = useStyles()
-  const [value, setValue]=React.useState(props.averageRating)
+  const [rating, setRating]=React.useState(props.value2.averageRating)
   const [age, setAge] = React.useState(10);
+  const [open, setOpen] = React.useState(false)
+  const [index, setIndex] = React.useState(0)
+  
   const handleChange = event => {
     setAge(event.target.value);
   };
 
+  // create reivew system
+  const ratingList = []
+  const countRating = (element)=>{
+    ratingList.push(element)
+    var count = {}
+    if(ratingList.length!=0){
+      ratingList.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+    }
+    console.log('count:',count)
+    console.log('array: ', ratingList)
+  }
+  
+  const handleOpenModal=()=>{
+    setOpen(true)
+  }
+  const handleCloseModal = ()=>{
+      setOpen(false)
+  }
+  const handleOnClick=(event)=>{
+      setIndex(event.currentTarget.name)
+  }
+  const handleShareComments=()=>{
+    if(isLoggedIn){
+      return(
+        <div>Write your comments here</div>
+      )
+    } else{
+      window.alert('You neet to log in!')
+      handleOpenModal()
+    }
+   
+  }
+
+  const reviewList = props.value.map(item=>{
+    // const formattedDate = item.createdAt.getDate()
+    const convertedDate = new Date(Date.parse(item.createdAt))
+    const formattedDate = convertedDate.getDate() + "/" + convertedDate.getMonth() + "/" + convertedDate.getFullYear()
+    {countRating(item.rating)}
+    
+    
+    return(
+      <Card style={{padding: '2% 3%'}}>
+        <Grid container>
+          <Grid item xs xl={1} style={{textAlign:'center', marginRight: '3%'}}>
+            <Avatar className={classes.large} style={{margin: 'auto'}}>TT</Avatar>
+            <p style={{fontWeight: 600}}>{item.user.name}</p>
+            <p>Created: {formattedDate}</p>
+          </Grid>
+          <Grid item xs xl={9} style={{textAlign: 'left'}}>
+            <span>
+              <Grid item container spacing={1}>
+                <Grid item xl={2}>
+                  <Box component="fieldset" mb={3} borderColor="transparent" style={{marginBottom: '0'}}>
+                    <Rating
+                      name="read-only"
+                      value={item.rating}
+                      readOnly
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xl={10} style={{textAlign: 'left'}}>
+                  <div className="review-title" style={{fontWeight: 600}}>
+                    {item.title}
+                  </div>
+                </Grid>
+              </Grid>
+              
+              
+            </span>
+            <p style={{color: '#22B345', fontSize: '0.75em'}}>
+              Bought from Tiki
+            </p>
+            <p>{item.text}</p>
+          </Grid>
+
+        </Grid>
+      </Card>
+    )
+  })
+
+  console.log('rating list: ', ratingList)
   return(
     <div style={{marginLeft: '2em', marginRight: '2em', marginTop: '2em'}}>
       <div style={{fontSize: '1.1em', fontWeight: 400, marginBottom: '0.3em', marginLeft: '2.5em'}}>
@@ -588,11 +655,12 @@ const ProductReview=(props)=>{
         <Grid container xs wrap="nowrap" style={{textAlign: 'center'}}>
           <Grid item xs={3}>
             <div style={{fontSize: '1em'}}>Average rating</div>
-            <div className="average-number" style={{fontSize: '2.5em', fontWeight: 600, color: 'red'}}>{props.averageRating}/5</div>
-            <Box component="fieldset" mb={3} borderColor="transparent" style={{marginBottom: '0'}}>
+            <div className="average-number" style={{fontSize: '2.5em', fontWeight: 600, color: 'red'}}>{rating}/5</div>
+            <Box component="fieldset" mb={3} borderColor="transparent" style={{marginBottom: '0'}} className={classes.rating}>
               <Rating
-                name="read-only"
-                value={value}
+                name="half-rating-read"
+                defaultValue={3.6}
+                precision={0.1}
                 readOnly
               />
             </Box>
@@ -637,9 +705,9 @@ const ProductReview=(props)=>{
           <Grid item xs={3}>
             Share your comment about the product
             <ThemeProvider theme={theme}>
-              <Button size='small' variant='contained'>Write your comment</Button>
+              <Button size='small' variant='contained' onClick={handleShareComments}>Write your comment</Button>
             </ThemeProvider>
-            
+            <TransitionsModal open={open} onClose={handleCloseModal} piority={index}></TransitionsModal>
           </Grid>
         </Grid>
       </div>
@@ -701,55 +769,71 @@ const ProductReview=(props)=>{
           </span>
         </div>
         <div className="review">
-          <ReviewCard nameShort={"TT"} nameFull={'Thanh Thi'} value={4} review={"I really love Tiki product"}/>
-          <ReviewCard nameShort={"HC"} nameFull={'Hoang Chau'} value={2} review={"I don't like Tiki product"}/>
-          <ReviewCard nameShort={"QK"} nameFull={'Quynh Khang'} value={5} review={"I really love Tiki"}/>
-
-
+          {reviewList}
         </div>
       </div>
     </div>
   )
 }
-const ProductDetailPage = (props) => {
-  // const { productName, productId } = props.match.params;
-  const classes = useStyles()
-  // console.log('params: ',props.match.params);
-  const [data, setData]=React.useState('')
-  // React.useEffect(()=>{
-  //   fetch('http://34.87.170.252/api/v1/shops')
-  //   .then(res=>res.json())
-  //   .then((fetchData)=>{
-  //     setData(fetchData)
-  //     console.log(fetchData)
-  //   })
-  //   .catch(console.log)
-  // })
 
+const ProductDetailPage = (props) => {
+  const classes = useStyles()
+  // console.log("data from app: ", props.data.colors, ' typeof: ', typeof(props.data.colors))
+  const { productName, productId } = props.match.params;
+  const [productData, setProductData]=React.useState([])
+  const [productReview, setProductReview]=React.useState([])
+
+  const fetchProductData = async (name, id)=>{
+    await fetch('http://34.87.156.245/api/v1/'+name+'/'+id) 
+    .then(res=>{
+      return res.json()
+    })
+    .then(data=>{
+      setProductData(data.data)
+    })
+  }
+
+  const fetchProductReview = async (name, id)=>{
+    await fetch('http://34.87.156.245/api/v1/'+name+'/'+id+'/reviews') 
+    .then(res=>{
+      return res.json()
+    })
+    .then(data=>{
+      setProductReview(data.data)
+    })
+  }
+  
+  React.useEffect(()=>{
+      fetchProductData(productName, productId)
+      fetchProductReview(productName, productId)
+  }, [])
+
+  console.log('product data after fetching: ', productData, ' , product review after fetching: ', productReview)
+  const isObj = (object)=>{
+    for(var key in object){
+      if(object.hasOwnProperty(key)){
+        return true
+      }
+    }
+  }
+  const bodyData = isObj(productData) && productReview.length?(
+    <div className={classes.root}>
+      <Grid container spacing={3} className={classes.block} >
+        <ImageProduct value={productData}/>
+        <Grid item xs={8} xl={7} md={7} style={{borderLeft: "1px solid lightgrey", padding: '3%'}}>
+          <ProductPriceInfo value={productData}/>
+        </Grid>
+      </Grid>
+      <ProductDetailInfo value={productData}/>
+      <ProductQA/>
+      <ProductReview value={productReview} value2={productData}/>
+    </div>
+    
+  ):(null)
   return (
     <div>
-      <NavBar />
-      <div className={classes.root}>
-        <Grid container spacing={3} className={classes.block}>
-          <Grid item container xs={4} xl={5} md={5} spcaing={0}>
-            <Grid item xs={4} xl={3} md={4}>
-              {ImageList(product)}
-            </Grid>
-            <Grid item xs={8} xl={9} md={8}>
-              {ImageZoom(product)}
-            </Grid>
-
-          </Grid>
-          <Grid item xs={8} xl={7} md={7} style={{borderLeft: "1px solid lightgrey", padding: '3%'}}>
-            {ProductPriceInfo(product)}
-          </Grid>
-
-        </Grid>
-        {ProductDetailInfo(product)}
-        {ProductQA()}
-        {ProductReview(product)}
-      </div>
-
+      <NavBar/>
+      {bodyData}
       <Footer />
     </div>
   )

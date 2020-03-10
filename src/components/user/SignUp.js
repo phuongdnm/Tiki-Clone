@@ -116,12 +116,30 @@ const SignUp = () => {
   const handleDateChange = date => {
     setSelectedDate(date);
   };
-
+  
   // handle change submit
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     const text = {name, phone, address, email, password, gender, selectedDate}
     const textJson = JSON.stringify(text)
     console.log("text json: ", textJson)
+    fetch('http://34.87.156.245/api/v1/auth/register',{
+      method: 'POST',
+      headers:{
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body:textJson
+    }).then(res=>{
+      if(res.ok){
+        window.alert("Register successfully!")
+      } else{
+        window.alert("Register failed due to: ", res.statusText)
+      }
+      console.log("result return: ", res, " type: ", typeof(res))
+    }
+      
+    )
   };
   return (
     <div>

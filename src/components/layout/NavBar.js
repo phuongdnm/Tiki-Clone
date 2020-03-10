@@ -38,11 +38,14 @@ import ProductNavigation from "../UI/ProductNavigation";
 import ModalStyles from '../../styles/ModalStyles'
 import TransitionsModal from '../user/UserModal'
 
+import ArrayList from '../pages/ArrayList'
+export const isLoggedIn = false;
 const NavBar = (props) => {
     const classes = userStyles();
      // function to open and close modal
      const [open, setOpen] = React.useState(false)
      const [index, setIndex] = React.useState(0)
+     const [arrayLength, setArrayLength] = React.useState(ArrayList.length)
      const handleOpenModal=()=>{
          setOpen(true)
      }
@@ -63,7 +66,7 @@ const NavBar = (props) => {
     const [productModal, setProductModal] = useState(false);
     const [isLoginTip, setIsLoginTip] = useState(false);
     const [productNavigation, setProductNavigation] = useState(false);
-    const isLoggedIn = false;
+    
 
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -228,7 +231,7 @@ const NavBar = (props) => {
             >
                 Login with Zalo
             </Button>
-            <TransitionsModal open={open} onClose={handleCloseModal} piority={index}></TransitionsModal>
+            <TransitionsModal open={open} onClose={handleCloseModal} piority={index} isLoggedIn={isLoggedIn}></TransitionsModal>
         </section>
     );
 
@@ -424,7 +427,7 @@ const NavBar = (props) => {
             <Link to={"/cart"} onClick={e => e.stopPropagation()} className={classes.removeDefaultLink}>
 
                 <Typography className={classes.navText2}>
-                    <Badge badgeContent={props.amount} color="error" className={classes.iconNav2}>
+                    <Badge badgeContent={arrayLength} color="error" className={classes.iconNav2}>
                         <ShoppingCartIcon style={{paddingLeft: "20%"}}/>
                     </Badge>
                     Cart
