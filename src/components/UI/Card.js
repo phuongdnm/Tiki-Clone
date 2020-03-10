@@ -59,36 +59,7 @@ const Card = (props) => {
   if (props.time !== undefined) {
     // startTimer()
   }
-
-  const type1 =
-    <div className={classes.container}>
-      <img src={props.image} alt="an image" width={"100%"} style={{ borderRadius: '3px' }} /> <br />
-      <img src={TikiNow} alt="an image" width={"25%"} /> <span className={classes.divider}>|</span>
-      <span className={classes.title}>{props.title}</span>
-      <p style={{ marginBottom: 0 }}><span style={{ fontWeight: 500 }}>{numberWithCommas(discounted_price)}</span>
-        <span className={classes.discount}> VND-{props.discount}%</span></p>
-      <p className={classes.price}><s>{numberWithCommas(props.price)} </s>VND</p>
-    </div>;
-
-  const type2 =
-    <div className={classes.container}>
-      <img src={DealTag} alt="an image" width={"38vw"} style={{ position: 'absolute', marginTop: '1.5em' }} />
-      <span style={{
-        fontWeight: 'bold',
-        position: 'absolute',
-        marginTop: '3.3vh',
-        marginLeft: '0.28vw',
-        fontSize: '0.85em',
-        color: 'white'
-      }}>-{props.discount}%</span><br />
-      <img src={props.image} alt="an image" width={"100%"} style={{ borderRadius: '3px' }} /> <br />
-      <img src={TikiNow} alt="an image" width={"25%"} /> <span className={classes.divider}>|</span>
-      <span className={classes.title} >{props.title}</span>
-      <p style={{ marginBottom: 0 }}>
-        <span style={{ fontWeight: 500 }}>VND {numberWithCommas(discounted_price)}</span>
-        <span className={classes.discount}>VND <s>{numberWithCommas(props.price)} </s></span>
-      </p>
-  }
+  
   const handleIncrease = () => {
     setAmount(amount + 1)
     props.update(name, discounted_price, amount + 1)
