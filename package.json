@@ -24,6 +24,7 @@
     "react-dom": "^16.12.0",
     "react-material-ui-carousel": "^1.1.1",
     "react-material-ui-form-validator": "^2.0.10",
+    "react-responsive-carousel": "^3.1.51",
     "react-ripples": "^2.2.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",

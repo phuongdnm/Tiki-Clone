@@ -465,6 +465,7 @@ const NavBar = (props) => {
         >
             <MenuIcon/>
         </IconButton>
+
         <Typography className={classes.title2} variant="h11" noWrap>
             PRODUCT CATEGORY
         </Typography>
