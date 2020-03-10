@@ -59,10 +59,10 @@ const Card = (props) => {
   if (props.time !== undefined) {
     // startTimer()
   }
-  
+
   const handleIncrease = () => {
     setAmount(amount + 1)
-    props.update(name, discounted_price, amount + 1)
+
   }
   const handleChange = (e) => {
     setAmount(e.target.value)
