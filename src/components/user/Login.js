@@ -9,7 +9,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import zaloLogo from "../../image/Logo_Zalo.png";
 import { makeStyles } from "@material-ui/core/styles";
-
+import axios from 'axios'
+import {isLoggedIn} from '../layout/NavBar'
 const userStyles = makeStyles(() => ({
   groupButton: {
     display: "flex !important",
@@ -36,11 +37,34 @@ const Login = () => {
     setPasswordState(e.target.value)
     console.log("password: ", e.target.value)
   }
+  
+  // const response =(textJson)=>{
+  //   await fetch('http://34.87.156.245/api/v1/auth/login',{
+  //     method: 'POST',
+  //     headers:{'Content-Type': 'application/json'},
+  //     body: JSON.stringify(textJson)
+  //   })
+  //   console.log(await response.json())
+  // } 
+  
 
   const handleSubmit = (e)=>{
     const text = {email, password}
     const textJson = JSON.stringify(text)
     console.log("text json: ", textJson)
+    fetch('http://34.87.156.245/api/v1/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: textJson
+    }).then(res=>{
+      if(res.ok){
+        window.alert("Log in successfully!")
+      } else{
+        window.alert("Log in failed")
+      }
+    })
   }
 
   return (

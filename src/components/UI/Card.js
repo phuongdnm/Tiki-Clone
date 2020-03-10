@@ -55,59 +55,65 @@ const Card = (props) => {
         }
 
     }
-    const handleIncrease = () => {
-        setAmount(amount + 1)
-        props.update(name, discounted_price, amount + 1)
-    }
-    const handleChange = (e) => {
-        setAmount(e.target.value)
-    }
-    const handleRemove = () => {
-        props.removeItem(name)
-    }
 
-    if (props.time !== undefined) {
-        // startTimer()
-    }
 
-    const type1 =
-        <div className={classes.container}>
-            <img src={props.image} alt="an image" width={"100%"} style={{ borderRadius: '3px' }} /> <br />
-            <img src={TikiNow} alt="an image" width={"25%"} /> <span className={classes.divider}>|</span>
-            <span className={classes.title}>{props.title}</span>
-            <p style={{ marginBottom: 0 }}><span style={{ fontWeight: 500 }}>{numberWithCommas(discounted_price)}</span>
-                <span className={classes.discount}> VND-{props.discount}%</span></p>
-            <p className={classes.price}><s>{numberWithCommas(props.price)} </s>VND</p>
-        </div>;
+  if (props.time !== undefined) {
+    // startTimer()
+  }
 
-    const type2 =
-        <div className={classes.container}>
-            <img src={DealTag} alt="an image" width={"38vw"} style={{ position: 'absolute', marginTop: '1.5em' }} />
-            <span style={{
-                fontWeight: 'bold',
-                position: 'absolute',
-                marginTop: '3.3vh',
-                marginLeft: '0.28vw',
-                fontSize: '0.85em',
-                color: 'white'
-            }}>-{props.discount}%</span><br />
-            <img src={props.image} alt="an image" width={"100%"} style={{ borderRadius: '3px' }} /> <br />
-            <img src={TikiNow} alt="an image" width={"25%"} /> <span className={classes.divider}>|</span>
-            <span className={classes.title} >{props.title}</span>
-            <p style={{ marginBottom: 0 }}>
-                <span style={{ fontWeight: 500 }}>VND {numberWithCommas(discounted_price)}</span>
-                <span className={classes.discount}>VND <s>{numberWithCommas(props.price)} </s></span>
-            </p>
+  const handleIncrease = () => {
+    setAmount(amount + 1)
 
-            <Progress value={!isNaN(props.sold) ? props.sold : 50} color={"#FD752E"} className={classes.progress}>
-                {!isNaN(props.sold) &&
-                <span> {!!props.hot &&
-                <WhatshotIcon style={{ color: "white", fontSize: '1.3em', paddingBottom: '0.2em' }} />}
-                    Sold {props.sold}</span>
-                }
-            </Progress>
-            {props.timeInMilliSec &&
-            <span className={classes.timer}>
+  }
+  const handleChange = (e) => {
+    setAmount(e.target.value)
+  }
+  const handleRemove = () => {
+    props.removeItem(name)
+  }
+
+  if (props.time !== undefined) {
+    // startTimer()
+  }
+
+  const type1 =
+    <div className={classes.container}>
+      <img src={props.image} alt="an image" width={"100%"} style={{ borderRadius: '3px' }} /> <br />
+      <img src={TikiNow} alt="an image" width={"25%"} /> <span className={classes.divider}>|</span>
+      <span className={classes.title}>{props.title}</span>
+      <p style={{ marginBottom: 0 }}><span style={{ fontWeight: 500 }}>{numberWithCommas(discounted_price)}</span>
+        <span className={classes.discount}> VND-{props.discount}%</span></p>
+      <p className={classes.price}><s>{numberWithCommas(props.price)} </s>VND</p>
+    </div>;
+
+  const type2 =
+    <div className={classes.container}>
+      <img src={DealTag} alt="an image" width={"38vw"} style={{ position: 'absolute', marginTop: '1.5em' }} />
+      <span style={{
+        fontWeight: 'bold',
+        position: 'absolute',
+        marginTop: '3.3vh',
+        marginLeft: '0.28vw',
+        fontSize: '0.85em',
+        color: 'white'
+      }}>-{props.discount}%</span><br />
+      <img src={props.image} alt="an image" width={"100%"} style={{ borderRadius: '3px' }} /> <br />
+      <img src={TikiNow} alt="an image" width={"25%"} /> <span className={classes.divider}>|</span>
+      <span className={classes.title} >{props.title}</span>
+      <p style={{ marginBottom: 0 }}>
+        <span style={{ fontWeight: 500 }}>VND {numberWithCommas(discounted_price)}</span>
+        <span className={classes.discount}>VND <s>{numberWithCommas(props.price)} </s></span>
+      </p>
+
+      <Progress value={!isNaN(props.sold) ? props.sold : 50} color={"#FD752E"} className={classes.progress}>
+        {!isNaN(props.sold) &&
+          <span> {!!props.hot &&
+            <WhatshotIcon style={{ color: "white", fontSize: '1.3em', paddingBottom: '0.2em' }} />}
+            Sold {props.sold}</span>
+        }
+      </Progress>
+      {props.timeInMilliSec &&
+        <span className={classes.timer}>
           <Countdown
               date={Date.now() + props.timeInMilliSec}
               renderer={renderer}
