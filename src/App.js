@@ -9,6 +9,7 @@ import OrdersPage from "./components/pages/OrdersPage";
 // import Login from "./components/user/Login";
 
 function App() {
+  
   return (
     <Switch>
       <Route exact path={"/"} render={() => <HomePage />} />
@@ -20,7 +21,7 @@ function App() {
       <Route
         exact
         path={"/:productName/:productId"}
-        render={routeProps => <ProductDetailPage {...routeProps} />}
+        render={routeProps => <ProductDetailPage {...routeProps}/>}
       />
       <Route
         exact

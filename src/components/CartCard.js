@@ -63,11 +63,12 @@ const CartCard = (props) => {
     
   }
   const handleIncrease = () => {
-    setAmount(amount + 1)
-    props.update(name, discounted_price, amount+1)
+    setAmount(amount -(-1))
+    props.update(name, discounted_price, amount-(-1))
   }
   const handleChange = (e) => {
     setAmount(e.target.value)
+    props.update(name, discounted_price, parseInt(e.target.value))
   }
   const handleRemove = () => {
     props.removeItem(name)
@@ -80,14 +81,14 @@ const CartCard = (props) => {
         <Grid container spacing={2} xs={12}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={props.image} />
+              <img className={classes.img} alt="complex" src={props.photo} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container spacing={2}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  <img src={TikiNow} /> | {props.name}
+                  <img src={TikiNow} /> | {props.name} - {props.color}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
                   <img src={TikiArrow} className={classes.tikiArrow} /> Ship in 2h
@@ -105,10 +106,10 @@ const CartCard = (props) => {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1" style={{ textAlign: "right" }}><strong>{numberWithCommas(discounted_price)}đ</strong></Typography>
+              <Typography variant="subtitle1" style={{ textAlign: "right" }}><strong>{numberWithCommas(discounted_price)}$</strong></Typography>
               <Typography variant="subtitle2">
                 <span className={classes.priceOrigin}>
-                  {numberWithCommas(props.price)}đ
+                  {numberWithCommas(props.price)}$
               </span>
                 | -{props.discount}%
             </Typography>
