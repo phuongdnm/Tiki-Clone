@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -35,38 +35,48 @@ import zaloLogo from '../../image/Logo_Zalo.png'
 import userStyles from '../../styles/NavbarStyles'
 import {loadCSS} from 'fg-loadcss';
 import ProductNavigation from "../UI/ProductNavigation";
-import ModalStyles from '../../styles/ModalStyles'
 import TransitionsModal from '../user/UserModal'
+import {useDispatch, useSelector} from "react-redux";
+import * as authActions from '../../store/actions/authActions'
+import {message} from "antd";
 
-import ArrayList from '../pages/ArrayList'
-export const isLoggedIn = false;
+
 const NavBar = (props) => {
     const classes = userStyles();
-     // function to open and close modal
-     const [open, setOpen] = React.useState(false)
-     const [index, setIndex] = React.useState(0)
-     const [arrayLength, setArrayLength] = React.useState(ArrayList.length)
+    const dispatch = useDispatch();
+
+    // function to open and close modal
+     const [open, setOpen] = useState(false);
+     const [index, setIndex] = useState(0);
+
      const handleOpenModal=()=>{
          setOpen(true)
-     }
+     };
      const handleCloseModal = ()=>{
          setOpen(false)
-     }
+     };
      const handleOnClick=(event)=>{
          setIndex(event.currentTarget.name)
-     }
+     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         loadCSS(
             'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
             document.querySelector('#font-awesome-css'),
         );
+        // console.log(props.location);
+        setOpen(props.showForm !== undefined ? props.showForm : false);
+        props.showForm !== undefined && props.showForm && message.info("You need to be logged in!")
     }, []);
+
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const [productModal, setProductModal] = useState(false);
     const [isLoginTip, setIsLoginTip] = useState(false);
     const [productNavigation, setProductNavigation] = useState(false);
-    
+
+    const cartQuantity = useSelector(state => Object.keys(state.cart.items).length);
+    const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
+
 
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -89,7 +99,10 @@ const NavBar = (props) => {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <Link to={"/orders"} onClick={e => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Link to={"/orders"} onClick={e => {
+                    e.stopPropagation();
+                    setOpen(props.showForm !== undefined ? props.showForm : false);
+                }} className={classes.removeDefaultLink}>
                     <IconButton aria-label="track orders" color="inherit" className={classes.iconNav}>
                         <Icon className={"fas fa-shipping-fast"}
                               style={{fontSize: 20, paddingTop: "0.05em", width: "1.5em"}}/>
@@ -123,7 +136,7 @@ const NavBar = (props) => {
                  }}
                  style={{
                      width: "18em",
-                     height: "17em",
+                     height: "30em",
                      textAlign: "center",
                      padding: "1.2em",
                      backgroundColor: "rgba(255,255,255,0.8)",
@@ -135,48 +148,92 @@ const NavBar = (props) => {
                 size={"small"}
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonAddDisabledIcon/>}
+                onClick={() => dispatch(authActions.logoutUser())}
             >
                 Logout
             </Button>
-            <Button
-                size={"small"}
-                variant="contained"
-                style={{backgroundColor: "#FDDE54"}}
-                startIcon={<PersonIcon/>}
-            >
-                My account
-            </Button>
-            <Button
-                size={"small"}
-                variant="contained"
-                className={classes.button}
-                style={{color: "black"}}
-            >
-                Product to buy later
-            </Button>
-            <Button
-                size={"small"}
-                variant="contained"
-                className={classes.button}
-                style={{color: "black"}}
-            >
-                Review product purchased
-            </Button>
-            <Button
-                size={"small"}
+            <Link to={'/dashboard/0'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{backgroundColor: "#FDDE54",  width: "100%"}}
+                    startIcon={<PersonIcon/>}
+                >
+                    My account
+                </Button>
+            </Link>
 
-                variant="contained"
-                style={{color: "black"}}
-            >
-                My comment
-            </Button>
-            <Button
-                size={"small"}
-                variant="contained"
-                style={{color: "black"}}
-            >
-                Easy exchange an returns
-            </Button>
+            <Link to={'/dashboard/5'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    className={classes.button}
+                    style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5" }}
+                >
+                    Review product purchased
+                </Button>
+            </Link>
+
+            <Link to={'/dashboard/7'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5"}}
+                >
+                    Favorite Products
+                </Button>
+            </Link>
+
+            <Link to={'/dashboard/8'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5"}}
+                >
+                    Product to buy later
+                </Button>
+            </Link>
+
+            <Link to={'/dashboard/9'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+
+                <Button
+                    size={"small"}
+
+                    variant="contained"
+                    style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5"}}
+                >
+                    My comment
+                </Button>
+            </Link>
+            <Link to={'/dashboard/11'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{color: "black",  width: "100%",backgroundColor: "#D5D5D5"}}
+                >
+                    Tiki Now
+                </Button>
+            </Link>
+
+            <Link to={'/dashboard/12'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{color: "black", width: "100%", backgroundColor: "#D5D5D5"}}
+                >
+                    Tiki Xu
+                </Button>
+            </Link>
+
+            <Link to={'/dashboard/13'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5"}}
+                >
+                    Bookcare
+                </Button>
+            </Link>
         </section>
 
     ):(
@@ -231,13 +288,14 @@ const NavBar = (props) => {
             >
                 Login with Zalo
             </Button>
-            <TransitionsModal open={open} onClose={handleCloseModal} piority={index} isLoggedIn={isLoggedIn}></TransitionsModal>
+            <TransitionsModal open={open} onClose={handleCloseModal} piority={index}
+                              closeModal={handleCloseModal} {...props} type={'authModal'}/>
         </section>
     );
 
     const NavSection1 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
                                  style={{paddingLeft: 0, paddingRight: 0, marginTop: "-0.1em", height: "1.8em"}}>
-        <img src={navImage} alt="image" style={{height: "100%", width: "100%"}}/>
+        <img src={navImage} alt="navbar promo" style={{height: "100%", width: "100%"}}/>
     </Toolbar>;
     const NavSection2 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
                                  style={{
@@ -373,13 +431,18 @@ const NavBar = (props) => {
                 <Icon className={"fas fa-shipping-fast"}
                       style={{fontSize: 20, paddingTop: "0.05em", width: "1.5em"}}/>
             </IconButton>
-            <Typography>
-                <Link to={"/orders"} onClick={e => e.stopPropagation()}
+            <Typography component={'div'}>
+                <Link to={"/orders"} onClick={
+                    e => {
+                        e.stopPropagation();
+                        setOpen(props.showForm !== undefined ? props.showForm : false);
+                        props.showForm !== undefined && props.showForm && message.info("You need to be logged in!")
+                    }}
                       className={classes.removeDefaultLink}>
 
                     <span style={{width: "0.2em"}} className={classes.navText}>Track </span>
 
-                    <Typography className={classes.navTypo}>
+                    <Typography className={classes.navTypo} component={'div'}>
                         <span className={classes.navText}> orders</span>
 
                     </Typography>
@@ -392,10 +455,10 @@ const NavBar = (props) => {
             </IconButton>
             <Typography onMouseEnter={() => {
                 setIsLoginTip(false)
-            }}>
+            }} component={'div'}>
                 <span className={classes.navText}>Your </span>
 
-                <Typography className={classes.navTypo}>
+                <Typography className={classes.navTypo} component={'div'}>
                     <span className={classes.navText}> notification</span>
 
                 </Typography>
@@ -408,14 +471,18 @@ const NavBar = (props) => {
                       style={{paddingTop: "0.05em"}}/>
             </IconButton>
 
-            <Typography>
+            <Typography component={'div'}>
                 <Link to={"#"} onMouseEnter={() => {
                     setIsLoginTip(true)
                 }} className={classes.removeDefaultLink}>
+                    {isLoggedIn ?
+                        <span className={classes.navText}>Logout </span>
+                        :
+                        <span className={classes.navText}>Login </span>
+                    }
 
-                    <span className={classes.navText}>Login </span>
 
-                    <Typography className={classes.navTypo}>
+                    <Typography className={classes.navTypo} component={'div'}>
                         <span className={classes.navText}> account</span>
 
                     </Typography>
@@ -424,10 +491,14 @@ const NavBar = (props) => {
             </Typography>
             {authLinks}
             {/* number of products */}
-            <Link to={"/cart"} onClick={e => e.stopPropagation()} className={classes.removeDefaultLink}>
+            <Link to={"/cart"} onClick={e => {
+                e.stopPropagation();
+                setOpen(props.showForm !== undefined ? props.showForm : false);
+                props.showForm !== undefined && props.showForm && message.info("You need to be logged in!")
+            }} className={classes.removeDefaultLink}>
 
                 <Typography className={classes.navText2}>
-                    <Badge badgeContent={arrayLength} color="error" className={classes.iconNav2}>
+                    <Badge badgeContent={cartQuantity} color="error" className={classes.iconNav2}>
                         <ShoppingCartIcon style={{paddingLeft: "20%"}}/>
                     </Badge>
                     Cart
@@ -466,7 +537,7 @@ const NavBar = (props) => {
             <MenuIcon/>
         </IconButton>
 
-        <Typography className={classes.title2} variant="h11" noWrap>
+        <Typography className={classes.title2} noWrap>
             PRODUCT CATEGORY
         </Typography>
         <section style={{
@@ -476,7 +547,7 @@ const NavBar = (props) => {
             width: "80%",
             alignItems: "center"
         }}>
-            <Typography className={classes.title2} variant="h11" noWrap>
+            <Typography className={classes.title2} noWrap>
                 <IconButton aria-label="where do you want to shop to?" color="inherit"
                             style={{paddingRight: 0}}>
                     <Icon className={"fas fa-map-marker-alt"}
@@ -484,7 +555,7 @@ const NavBar = (props) => {
                 </IconButton>
                 Where do you want to shop to?
             </Typography>
-            <Typography className={classes.title2} variant="h11" noWrap onMouseEnter={() => {
+            <Typography className={classes.title2} component={'span'} noWrap onMouseEnter={() => {
                 setProductModal(true)
             }}>
                 <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
@@ -513,7 +584,7 @@ const NavBar = (props) => {
                         borderRadius: "30%",
                     }}/>
                 </IconButton>
-                <Typography className={classes.title2} variant="h11" noWrap>
+                <Typography className={classes.title2} noWrap>
 
                     TIKInow fast delivery Hundreds <br/>of thousands of products
                 </Typography>
@@ -525,7 +596,7 @@ const NavBar = (props) => {
                     <Icon className={"fas fa-medal"}
                           style={{fontSize: 20, width: "1.5em", color: "#F2D33B"}}/>
                 </IconButton>
-                <Typography className={classes.title2} variant="h11" noWrap>
+                <Typography className={classes.title2} noWrap>
 
                     All products are <br/>100% genuine
                 </Typography>
@@ -537,7 +608,7 @@ const NavBar = (props) => {
                     <Icon className={"fas fa-box-open"}
                           style={{fontSize: 20, width: "1.5em", color: "#F2D33B"}}/>
                 </IconButton>
-                <Typography className={classes.title2} variant="h11" noWrap>
+                <Typography className={classes.title2} noWrap>
                     30 days exchange<br/> easily
                 </Typography>
             </section>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 
@@ -7,15 +7,8 @@ import {makeStyles} from "@material-ui/core/styles";
 
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 
-
-import tikiNotFound from '../../../image/tiki-not-found-pgae.png'
 import tikiXu from '../../../image/tiki-xu.svg'
 import MenuItem from "@material-ui/core/MenuItem";
-import FormLabel from "@material-ui/core/FormLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import tikiLogo from '../../../image/tiki_v3.svg'
 import gotItLogo from '../../../image/gotit_v3.svg'
@@ -103,7 +96,7 @@ const MyTikiXuManager = (props) => {
                     justifyContent: 'center'
                 }}>
                     <img src={tikiXu} alt=""/>
-                    <p style={{color: '#41D67E', fontSize: '3.5em', marginLeft: '0.2em', fontWeight: 'bold'}}>0</p>
+                    <p style={{color: '#41D67E', fontSize: '3.5em', marginLeft: '0.2em', fontWeight: 'bold', marginBottom: 0}}>0</p>
                 </section>
                 <p>You have <span style={{color: '#41D67E', fontWeight: 'bold'}}>0</span> Tiki Xu in your account</p>
             </div>
@@ -140,27 +133,27 @@ const MyTikiXuManager = (props) => {
                             validators={["required"]}
                             errorMessages={["Select the supplier of the gift code"]}
                         >
-                                <MenuItem value={"tiki"}>
-                                    <section style={{display: 'flex', alignItems: 'center'}}>
-                                        <img src={tikiLogo} alt=""/>
-                                        <p style={{marginLeft: '0.3em', marginBottom: 0}}>Tiki</p>
-                                    </section>
+                            <MenuItem value={"tiki"}>
+                                <section style={{display: 'flex', alignItems: 'center'}}>
+                                    <img src={tikiLogo} alt=""/>
+                                    <p style={{marginLeft: '0.3em', marginBottom: 0}}>Tiki</p>
+                                </section>
 
-                                </MenuItem>
+                            </MenuItem>
                             <MenuItem value={"gotIt"}>
-                                    <section style={{display: 'flex', alignItems: 'center'}}>
-                                        <img src={gotItLogo} alt=""/>
-                                        <p style={{marginLeft: '0.3em', marginBottom: 0}}>Got it</p>
-                                    </section>
+                                <section style={{display: 'flex', alignItems: 'center'}}>
+                                    <img src={gotItLogo} alt=""/>
+                                    <p style={{marginLeft: '0.3em', marginBottom: 0}}>Got it</p>
+                                </section>
 
-                                </MenuItem>
+                            </MenuItem>
                             <MenuItem value={"urBox"}>
-                                    <section style={{display: 'flex', alignItems: 'center'}}>
-                                        <img src={urBoxLogo} alt=""/>
-                                        <p style={{marginLeft: '0.3em', marginBottom: 0}}>Ur Box</p>
-                                    </section>
+                                <section style={{display: 'flex', alignItems: 'center'}}>
+                                    <img src={urBoxLogo} alt=""/>
+                                    <p style={{marginLeft: '0.3em', marginBottom: 0}}>Ur Box</p>
+                                </section>
 
-                                </MenuItem>
+                            </MenuItem>
                         </TextValidator>
 
                     </FormControl>

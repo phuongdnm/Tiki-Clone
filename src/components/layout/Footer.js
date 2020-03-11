@@ -35,7 +35,7 @@ function Footer() {
           <Typography variant="h6" className={classes.newsTypo} noWrap>
             Subscribed to receive letter from Tiki
           </Typography>
-          <Typography variant="h7" className={classes.newsTypo} noWrap>
+          <Typography variant="inherit" className={classes.newsTypo} noWrap>
             Dont slip your chance to collect thousand of deals everyday
           </Typography>
         </Grid>
@@ -102,7 +102,7 @@ function Footer() {
       </Grid>
     </Grid>
     <Grid container item xs={6} sm={6} md={2} spacing={0} style={{paddingLeft:"1em"}} >
-      <Typography style={{fontWeight:'bold',lineHeight:3,paddingBottom:"1.3em"}}>Payment Method
+      <Typography style={{fontWeight:'bold',lineHeight:3,paddingBottom:"1.3em"}} component={'span'}>Payment Method
       <Grid style={{paddingTop:"1.3em",lineHeight:1}}>
         <Icon className={classes.iconRoot}>
           <img alt="visa" className={classes.icon} src={visaIcon} />
@@ -129,7 +129,7 @@ function Footer() {
 
     </Grid>
     <Grid container item xs={6} sm={6} md={3} spacing={0} style={{paddingLeft:"3em"}}>
-      <Typography style={{fontWeight:'bold',lineHeight:3}}>Connect with Us
+      <Typography style={{fontWeight:'bold',lineHeight:3}} component={'span'}>Connect with Us
         <Grid style={{paddingTop:"1.2em",lineHeight:1}}>
           <Link href="https://www.facebook.com/praise.oketola" >
             <Icon className={classes.iconRoot}>
@@ -144,7 +144,7 @@ function Footer() {
           </Icon>
         </Grid>
         <Grid>
-          <Typography style={{fontWeight:'bold',lineHeight:3}}>Install App On Your Mobile
+          <Typography style={{fontWeight:'bold',lineHeight:3}} component={'span'}>Install App On Your Mobile
             <Grid>
               <img alt="appstore" className={classes.apprefer} src={appstore} />
               <img alt="playstore" className={classes.apprefer} src={playstore} />

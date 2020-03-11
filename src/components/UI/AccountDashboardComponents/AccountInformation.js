@@ -5,7 +5,6 @@ import FormGroup from "@material-ui/core/FormGroup";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {makeStyles} from "@material-ui/core/styles";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -23,6 +22,7 @@ import Icon from "@material-ui/core/Icon";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 const userStyles = makeStyles(() => ({
@@ -48,7 +48,7 @@ const userStyles = makeStyles(() => ({
         boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
     },
     removeLinkStyles:{
-      textDecoration: 'none !important'
+        textDecoration: 'none !important'
     },
     "@global .MuiButton-outlinedSecondary:hover": {
         border: "1px solid #ff9100",
@@ -93,27 +93,22 @@ const userStyles = makeStyles(() => ({
 
 }));
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#29b6f6',
-        },
-    },
-});
-
 const AccountInformation = (props) => {
     const classes = userStyles();
-    const [name, setName] = useState("");
+    const user = useSelector(state => state.auth.userData);
+
+    const [name, setName] = useState(user.name);
     const [phoneNo, setPhoneNo] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState(user.email);
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [retypePassword, setRetypePassword] = useState("");
-    const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = useState(user.dob);
+    // const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
 
 
-    const [radio, setRadio] = useState('male');
+    const [radio, setRadio] = useState(user.gender);
     const [checked, setChecked] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
@@ -138,7 +133,6 @@ const AccountInformation = (props) => {
                         <FormControl>
 
                             <TextValidator
-                                id="outlined-full-width"
                                 size="small"
                                 label="Full Name"
                                 style={{margin: 8}}
@@ -191,8 +185,6 @@ const AccountInformation = (props) => {
                         <FormControl>
                             <TextValidator
                                 size="small"
-
-                                id="outlined-full-width"
                                 label="Verification code"
                                 style={{margin: 8}}
                                 placeholder="Enter the verification code sent to the number above"
@@ -212,7 +204,6 @@ const AccountInformation = (props) => {
                             <TextValidator
                                 size="small"
 
-                                id="outlined-full-width"
                                 label="Email"
                                 style={{margin: 8}}
                                 placeholder="Email"

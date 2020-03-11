@@ -1,30 +1,18 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 
 import Button from "@material-ui/core/Button";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import {makeStyles} from "@material-ui/core/styles";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import 'date-fns';
-import DateFnsUtils from "@date-io/date-fns";
-import {MuiPickersUtilsProvider} from '@material-ui/pickers';
-import {KeyboardDatePicker} from "@material-ui/pickers";
 import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
-import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import AddIcon from '@material-ui/icons/Add';
 
-import zaloLogo from '../../../image/Logo_Zalo.png'
-import Icon from "@material-ui/core/Icon";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import {Link} from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 
 
@@ -125,24 +113,6 @@ const Address = (props) => {
     const handleSubmit = () => {
 
     };
-    const currencies = [
-        {
-            value: 'USD',
-            label: '$',
-        },
-        {
-            value: 'EUR',
-            label: '€',
-        },
-        {
-            value: 'BTC',
-            label: '฿',
-        },
-        {
-            value: 'JPY',
-            label: '¥',
-        },
-    ];
 
     const city_ = ['Ho Chi Minh', 'Hanoi', 'Danang','An Giang', 'BA Ria Vung Tau', 'Bac Giang','Bac Kan', 'Bac Lieu', 'Bac Ninh', 'Ben tre', 'Binh Duong', 'Binh Phuoc', 'Binh Thuan', 'Pacify', 'Ca Mau', 'Can Tho', 'As tall as', 'Gia Lai', 'Ha Giang', 'Henan', 'Ha Tinh', 'Hai Duong', 'Hai Phong', 'Hau Giang', 'Hòa Bình', 'hung Yen', 'Khánh Hòa', 'Kien Giang', 'Kon Tum', 'Lai Chau', 'Lam Dong', 'Lang Son', 'Lao Cai', 'Long An', 'Nam Dinh', 'Nghe An', 'Ninh Binh', 'Ninh Thuận', 'Phu-Tho', 'Phu Yen', 'Quang Binh', 'Quang Nam', 'Quang Ngai', 'Quang Ninh', 'Quang Tri', 'Soc Trang', 'Son La', 'Xining', 'peaceful', 'Thai Nguyen', 'Thanh Hoa', 'Hue', 'Tien Giang', 'Tra Vinh', 'Tuyen Quang', 'Vinh Long', 'Vinh Phuc', 'Yen Bai', 'Dak Lak', 'Dak Nong', 'Dien Bien', 'Dong Nai', 'Dong Thap'];
     const district_ = ['Quận Ba Đình', 'Quận Hoàn Kiếm', 'Quận Hai Bà Trưng' ,'Quận Đống Đa', 'Quận Cầu Giấy', 'Quận Long Biên', 'Quận Hoàng Mai', 'Huyện Sóc Sơn', 'Quận Bắc Từ Liêm', 'Huyện Thanh Trì', 'Huyện Gia Lâm', 'Huyện Ba Vì', 'Huyện Chương Mỹ', 'Huyện Đan Phượng', 'Huyện Hoài Đức', 'Huyện Mỹ Đức', 'Huyện Phú Xuyên', 'Huyện Phúc Thọ', 'Huyện Quốc Oai', 'Huyện Thạch Thất', 'Huyện Thanh Oai', 'Huyện Thường Tín', 'Huyện Ứng Hòa', 'Huyện Mê Linh', 'Quận Hà Đông', 'Thị xã Sơn Tây', 'Huyện Đông Anh', 'Quận Nam Từ Liêm', 'Quận Thanh Xuân', 'Quận Tây Hồ'];
@@ -338,10 +308,10 @@ const Address = (props) => {
                 </>
                 }
                 {form &&
-                    <>
-                        <div className={classes.title}>Create an address book</div>
-                        {Form}
-                    </>
+                <>
+                    <div className={classes.title}>Create an address book</div>
+                    {Form}
+                </>
                 }
             </div>
         </div>

@@ -1,4 +1,4 @@
-import {fade, makeStyles} from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,10 +43,10 @@ const useStyles = makeStyles(theme => ({
         color: "inherit !important" ,
     },
     leftDrawer:{
+        height: '73vh !important',
         marginTop: "1em",
         paddingTop: "2em",
         paddingLeft: "3em",
-        borderLeft: "0.1em solid gray",
         boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19)",
         display: "none"
     },
