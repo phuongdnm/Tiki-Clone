@@ -1,40 +1,88 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import jwt_decode from 'jwt-decode';
 
+
+import DashboardPage from "./components/pages/DashboardPage";
 import HomePage from "./components/pages/HomePage";
 import ProductCategoryPage from "./components/pages/ProductCategoryPage";
 import ProductDetailPage from "./components/pages/ProductDetailPage";
-import Cart from "./components/UI/Cart";
+import CartPage from "./components/pages/CartPage";
 import OrdersPage from "./components/pages/OrdersPage";
-// import Login from "./components/user/Login";
+import PrivateRoute from "./components/common/PrivateRoute";
+
+import {Provider} from 'react-redux';
+import store from './store';
+import setAuthToken from "./utils/setAuthToken";
+import {logoutUser, setCurrentUser} from "./store/actions/authActions";
+import {getAllProducts} from "./store/actions/productActions";
+import {getCart} from "./store/actions/cartActions";
+import {getAllShops} from "./store/actions/shopActions";
+import {getAllReviews} from "./store/actions/reviewActions";
+
+
+const actionsOnPageLoad = ()=> {
+    store.dispatch(getAllProducts());
+    store.dispatch(getCart());
+    store.dispatch(getAllShops());
+    store.dispatch(getAllReviews());
+// Check for token
+    if (localStorage.jwtToken) {
+        // Set auth token header auth
+        setAuthToken(localStorage.jwtToken);
+        // Decode token and get user info and expiration
+        const decoded = jwt_decode(localStorage.jwtToken);
+        // Set user and isAuthenticated
+        store.dispatch(setCurrentUser(decoded));
+        // Check for expired token
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) {
+            // Logout user
+            store.dispatch(logoutUser());
+            window.location.href = '/login'
+        }
+    }
+};
+actionsOnPageLoad();
+
+
 
 function App() {
-  
-  return (
-    <Switch>
-      <Route exact path={"/"} render={() => <HomePage />} />
-      <Route
-        exact
-        path={"/product/:type"}
-        render={routeProps => <ProductCategoryPage {...routeProps} />}
-      />
-      <Route
-        exact
-        path={"/:productName/:productId"}
-        render={routeProps => <ProductDetailPage {...routeProps}/>}
-      />
-      <Route
-        exact
-        path={"/cart"}
-        render={routeProps => <Cart {...routeProps} />}
-      />
-      <Route
-        exact
-        path={"/orders"}
-        render={routeProps => <OrdersPage {...routeProps} />}
-      />
-    </Switch>
-  );
+
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path={"/"} render={(routeProps) => <HomePage {...routeProps} showForm={false} />}/>
+                    <Route
+                        exact
+                        path={"/product/:type"}
+                        render={routeProps => <ProductCategoryPage {...routeProps} />}
+                    />
+                    <PrivateRoute
+                        exact
+                        path={"/dashboard/:type"}
+                        component={DashboardPage}
+                    />
+                    <Route
+                        exact
+                        path={"/:productName/:productId"}
+                        render={routeProps => <ProductDetailPage {...routeProps} />}
+                    />
+                    <PrivateRoute
+                        exact
+                        path={"/cart"}
+                        component={CartPage}
+                    />
+                    <PrivateRoute
+                        exact
+                        path={"/orders"}
+                        component={OrdersPage}
+                    />
+                </Switch>
+            </BrowserRouter>
+        </Provider>
+    );
 }
 
 export default App;

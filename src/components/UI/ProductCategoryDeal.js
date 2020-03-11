@@ -22,53 +22,53 @@ const ProductCategoryDeal = props => {
     const classes = userStyles();
 
     return (
-            <Grid container className={classes.container}>
-                <Grid item xs={8}>
-                    <Grid item xs={12}>
-                        <Carousel interval={3000} >
-                            <Link to={"#"}><img src={ProductDeal1} alt="" className={classes.largeProduct}/></Link>
-                            <Link to={"#"}><img src={ProductDeal11} alt="" className={classes.largeProduct}/></Link>
-                            <Link to={"#"}><img src={ProductDeal12} alt="" className={classes.largeProduct}/></Link>
+        <Grid container className={classes.container}>
+            <Grid item xs={8}>
+                <Grid item xs={12}>
+                    <Carousel interval={3000} >
+                        <Link to={"#"}><img src={ProductDeal1} alt="" className={classes.largeProduct}/></Link>
+                        <Link to={"#"}><img src={ProductDeal11} alt="" className={classes.largeProduct}/></Link>
+                        <Link to={"#"}><img src={ProductDeal12} alt="" className={classes.largeProduct}/></Link>
 
-                        </Carousel>
-                    </Grid>
-                    <Grid container  xs={12}>
-                        <Grid item xs={6}>
-                            <Link to={"#"}><img src={ProductDeal7} alt="" className={classes.mediumProduct}/></Link>
-
-                        </Grid>
-                        <Grid  item xs={6}>
-                            <Link to={"#"}><img src={ProductDeal10} alt=""  className={classes.mediumProduct}/></Link>
-
-                        </Grid>
-
-                    </Grid>
+                    </Carousel>
                 </Grid>
-                <Grid container xs={4}>
+                <Grid container>
                     <Grid item xs={6}>
-                        <Link to={"#"}><img src={ProductDeal4} alt=""  className={classes.smallProduct}/></Link>
+                        <Link to={"#"}><img src={ProductDeal7} alt="" className={classes.mediumProduct}/></Link>
 
                     </Grid>
-                    <Grid item xs={6}>
-                        <Link to={"#"}><img src={ProductDeal5} alt="" className={classes.smallProduct}/></Link>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Link to={"#"}><img src={ProductDeal2} alt="" className={classes.smallProduct}/></Link>
+                    <Grid  item xs={6}>
+                        <Link to={"#"}><img src={ProductDeal10} alt=""  className={classes.mediumProduct}/></Link>
 
                     </Grid>
-                    <Grid item xs={6}>
-                        <Link to={"#"}><img src={ProductDeal3} alt="" className={classes.smallProduct}/></Link>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Link to={"#"}><img src={ProductDeal8} alt="" className={classes.smallProduct}/></Link>
 
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Link to={"#"}><img src={ProductDeal9} alt="" className={classes.smallProduct}/></Link>
-                    </Grid>
                 </Grid>
-
             </Grid>
+            <Grid container item xs={4}>
+                <Grid item xs={6}>
+                    <Link to={"#"}><img src={ProductDeal4} alt=""  className={classes.smallProduct}/></Link>
+
+                </Grid>
+                <Grid item xs={6}>
+                    <Link to={"#"}><img src={ProductDeal5} alt="" className={classes.smallProduct}/></Link>
+                </Grid>
+                <Grid item xs={6}>
+                    <Link to={"#"}><img src={ProductDeal2} alt="" className={classes.smallProduct}/></Link>
+
+                </Grid>
+                <Grid item xs={6}>
+                    <Link to={"#"}><img src={ProductDeal3} alt="" className={classes.smallProduct}/></Link>
+                </Grid>
+                <Grid item xs={6}>
+                    <Link to={"#"}><img src={ProductDeal8} alt="" className={classes.smallProduct}/></Link>
+
+                </Grid>
+                <Grid item xs={6}>
+                    <Link to={"#"}><img src={ProductDeal9} alt="" className={classes.smallProduct}/></Link>
+                </Grid>
+            </Grid>
+
+        </Grid>
     )
 };
 

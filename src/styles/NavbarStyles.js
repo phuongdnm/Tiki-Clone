@@ -13,13 +13,15 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
+        color: 'white'
     },
     title3: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
             minWidth:"2em",
-        }
+        },
+        color: 'white'
     },
     // toolbar: {
     //   width: "100%"
@@ -30,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
-        },  
+        },
         marginRight: theme.spacing(2),
         marginLeft: 0,
         width: '100%',
@@ -119,7 +121,7 @@ const useStyles = makeStyles(theme => ({
         // marginRight: "3em"
     },
     removeDefaultLink:{
-        textDecoration: "none",
+        textDecoration: "none !important",
         color: "inherit !important" ,
     },
     productModal:{
@@ -130,7 +132,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: "space-between",
         position: "absolute",
-        zIndex: 10,
+        zIndex: "999999 !important",
         top: "4.4em",
         right: 0,
         bottom: 0,
@@ -171,3 +173,4 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default useStyles;
+

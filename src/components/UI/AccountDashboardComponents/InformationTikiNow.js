@@ -1,33 +1,15 @@
-import React, {useEffect, useState} from 'react'
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
+import React, { useState} from 'react'
 
 import Button from "@material-ui/core/Button";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import {makeStyles} from "@material-ui/core/styles";
-import HomeIcon from '@material-ui/icons/Home';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import HistoryIcon from '@material-ui/icons/History';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 
 
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Badge from "@material-ui/core/Badge";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-
-import tikiNotFound from '../../../image/tiki-not-found-pgae.png'
 import tikiNow from '../../../image/tiki-now.png'
 import exclusive1 from '../../../image/exclusiveDeal1.png'
 import exclusive2 from '../../../image/exclusiveDeal2.png'
-import Tooltip from "@material-ui/core/Tooltip";
 
 
 const userStyles = makeStyles(() => ({
@@ -179,7 +161,6 @@ function a11yProps(index) {
 const InformationTikiNow = (props) => {
     const classes = userStyles();
     const [tabValue, setTabValue] = useState('one');
-    const [menu, setMenu] = useState(false);
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
@@ -207,37 +188,37 @@ const InformationTikiNow = (props) => {
                 </Tabs>
 
                 <TabPanel value={tabValue} index="one">
-                        <div className={classes.grid} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1em'}}>
-                            <img src={tikiNow} alt=""/>
-                            <p  style={{marginTop: "1em"}}>Your account has not been activated</p>
-                            <Button
-                                variant="contained"
-                                type={'submit'}
-                                color="secondary"
-                                className={classes.button}
+                    <div className={classes.grid} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1em'}}>
+                        <img src={tikiNow} alt=""/>
+                        <p  style={{marginTop: "1em"}}>Your account has not been activated</p>
+                        <Button
+                            variant="contained"
+                            type={'submit'}
+                            color="secondary"
+                            className={classes.button}
 
-                            >
-                               Register only 499,000 VND / 1 year
-                            </Button>
-                        </div>
+                        >
+                            Register only 499,000 VND / 1 year
+                        </Button>
+                    </div>
                     <div className={classes.title}>Exclusive TikiNOW deals</div>
                     <div className={classes.grid} style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '2em'}}>
-                           <section >
-                               <img src={exclusive1} alt="exclusive1" width={"50%"}/>
-                               <p style={{fontSize: '0.8em'}}><b>Free shipping<br/>
-                                   Delivery in just a few hours <br/></b>
-                                   Shopping on the same time with delivery <br/>within a few hours at: <b>HCMC - Hanoi - Can <br/> Tho - Da Nang - Nha Trang - Hai Phong</b> <br/>with hundreds of thousands of symbols products
-                                   <br/><img src={tikiNow} alt="" style={{display: 'inline-block'}}/>
-                               </p>
+                        <section >
+                            <img src={exclusive1} alt="exclusive1" width={"50%"}/>
+                            <p style={{fontSize: '0.8em'}}><b>Free shipping<br/>
+                                Delivery in just a few hours <br/></b>
+                                Shopping on the same time with delivery <br/>within a few hours at: <b>HCMC - Hanoi - Can <br/> Tho - Da Nang - Nha Trang - Hai Phong</b> <br/>with hundreds of thousands of symbols products
+                                <br/><img src={tikiNow} alt="" style={{display: 'inline-block'}}/>
+                            </p>
 
-                           </section>
+                        </section>
                         <section>
                             <img src={exclusive2} alt="exclusive2" width={"50%"}/>
                             <p style={{fontSize: '0.8em'}}> <b>30 days exchange free return</b> <br/>
                                 As a TikiNOW member, you will receive <br/> special policies of up to 30 days free <br/> exchange for Tiki Trading products.
                             </p>
                         </section>
-                        </div>
+                    </div>
                 </TabPanel>
                 <TabPanel value={tabValue} index="two" empty={true}>
                     Item Two

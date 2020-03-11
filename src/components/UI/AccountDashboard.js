@@ -1,13 +1,9 @@
-import React, {useState} from 'react'
-import NavBar from "../layout/NavBar";
+import React, {useEffect, useState} from 'react'
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import classNames from "classnames";
-import {Link} from "react-router-dom";
-import cooker from "../../image/cooker.png";
 import userStyles from "../../styles/AccountDashboardStyles";
 
 
@@ -25,21 +21,6 @@ import tikixu from '../../image/tikixu.svg';
 import bookcare from '../../image/bookcare.svg'
 import avatar from '../../image/avatar.png'
 
-import PhoneAndroidIcon from "@material-ui/icons/PhoneAndroid";
-import TvIcon from "@material-ui/icons/Tv";
-import HeadsetIcon from "@material-ui/icons/Headset";
-import Badge from "@material-ui/core/Badge";
-import LaptopIcon from "@material-ui/icons/Laptop";
-import CameraAltIcon from "@material-ui/icons/CameraAlt";
-import OvenIcon from "../../image/oven.png";
-import FryingPanIcon from "../../image/fryingPan.png";
-import CleanerIcon from "../../image/cleaner.png";
-import Icon from "@material-ui/core/Icon";
-import LipStickIcon from "../../image/lipstick.png";
-import SportsSoccerIcon from "@material-ui/icons/SportsSoccer";
-import WhatshotIcon from "@material-ui/icons/Whatshot";
-import MotorcycleIcon from "@material-ui/icons/Motorcycle";
-import LanguageIcon from "@material-ui/icons/Language";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import AccountInformation from "./AccountDashboardComponents/AccountInformation";
@@ -56,12 +37,20 @@ import QuestionAndAnswer from "./AccountDashboardComponents/QuestionAndAnswer";
 import InformationTikiNow from "./AccountDashboardComponents/InformationTikiNow";
 import MyTikiXuManager from "./AccountDashboardComponents/MyTikiXuManager";
 import MyBookCare from "./AccountDashboardComponents/MyBookCare";
+import {useSelector} from "react-redux";
 
 
 const AccountDashBoard = (props)=> {
     const classes = userStyles();
     const [selectedIndex, setSelectedIndex] = useState(props.index ? props.index : 0);
-    const [toggleDrawer, setToggleDrawer] = useState(false);
+
+    const user = useSelector(state => state.auth.userData);
+
+
+
+    useEffect(()=>{
+        setSelectedIndex(props.index)
+    }, [props.index]);
     const options = [
         'Account Information',
         'My notice',
@@ -100,45 +89,45 @@ const AccountDashBoard = (props)=> {
         // setToggleDrawer(true)
     };
     const renderMenuItemComponent = ()=>{
-      switch (selectedIndex) {
-          case 0:
-              return <AccountInformation/>;
-          case 1:
-              return <MyNotice/>;
-          case 2:
-              return <OrderManagement/>;
-          case 3:
-              return <Address/>;
-          case 4:
-              return <BillingInformation/>;
-          case 5:
-              return <ReviewProductPurchased/>;
-          case 6:
-              return <ProductsViewed/>;
-          case 7:
-              return <FavoriteProducts/>;
-          case 8:
-              return <ProductsToBuyLater/>;
-          case 9:
-              return <MyComment/>;
-          case 10:
-              return <QuestionAndAnswer/>;
-          case 11:
-              return <InformationTikiNow/>;
-          case 12:
-              return <MyTikiXuManager/>;
-          case 13:
-              return <MyBookCare/>;
-          default: return <p>default</p>
-      }
+        switch (selectedIndex) {
+            case 0:
+                return <AccountInformation/>;
+            case 1:
+                return <MyNotice/>;
+            case 2:
+                return <OrderManagement/>;
+            case 3:
+                return <Address/>;
+            case 4:
+                return <BillingInformation/>;
+            case 5:
+                return <ReviewProductPurchased/>;
+            case 6:
+                return <ProductsViewed/>;
+            case 7:
+                return <FavoriteProducts/>;
+            case 8:
+                return <ProductsToBuyLater/>;
+            case 9:
+                return <MyComment/>;
+            case 10:
+                return <QuestionAndAnswer/>;
+            case 11:
+                return <InformationTikiNow/>;
+            case 12:
+                return <MyTikiXuManager/>;
+            case 13:
+                return <MyBookCare/>;
+            default: return <p>default</p>
+        }
     };
     return (
-        <div style={{width: '80%', marginBottom: '2em'}}>
+        <div style={{width: '80%', marginBottom: '2em', zIndex: '0'}}>
             <Grid container style={{marginTop: '0.7em', marginLeft: '6em'}} spacing={5}>
                 <Grid item xs={3} style={{margin: 0}}>
                     <section style={{display: 'flex', justifyContent: 'start', marginLeft: '0.5em'}} >
                         <img src={avatar} style={{width: "3em", display: "inline-block", marginRight: "1em", borderRadius: "50%"}} alt={"oven"}/>
-                        <p style={{display: 'inline-block', fontSize: '0.8em', marginBottom: 0, paddingTop: '1em'}}><span>Account of</span> <br/> <span style={{fontWeight: 600, fontSize: '1.2em'}}>John Wick</span> </p>
+                        <p style={{display: 'inline-block', fontSize: '0.8em', marginBottom: 0, paddingTop: '1em'}}><span>Account of</span> <br/> <span style={{fontWeight: 600, fontSize: '1.2em'}}>{user.name}</span> </p>
                     </section>
 
                     <List component="nav" aria-label="main mailbox folders" style={{margin: 0}}>
@@ -149,7 +138,7 @@ const AccountDashBoard = (props)=> {
                                 button
                                 selected={index === selectedIndex}
                                 onClick={event => handleMenuItemClick(event, index)
-                                // onMouseEnter={event => handleMenuItemClick(event, index)
+                                    // onMouseEnter={event => handleMenuItemClick(event, index)
                                 }
                             >
                                 <ListItemIcon style={{marginTop: 0, marginBottom: 0, paddingTop:0, paddingBottom: 0}} >

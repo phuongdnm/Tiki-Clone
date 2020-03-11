@@ -1,15 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-
-import Button from "@material-ui/core/Button";
+import React from 'react'
 import {makeStyles} from "@material-ui/core/styles";
 
-import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
-
-
-import tikiNotFound from '../../../image/tiki-not-found-pgae.png'
-import tikiXu from '../../../image/tiki-xu.svg'
 import bookCare from '../../../image/bookcare2.png'
 import Grid from "@material-ui/core/Grid";
 
@@ -89,7 +80,7 @@ const MyBookCare = (props) => {
                     justifyContent: 'center'
                 }}>
                     <img src={bookCare} alt=""/>
-                    <p style={{color: '#41D67E', fontSize: '3.5em', marginLeft: '0.2em', fontWeight: 'bold'}}>0</p>
+                    <p style={{color: '#41D67E', fontSize: '3.5em', marginLeft: '0.2em', fontWeight: 'bold',  marginBottom: 0}}>0</p>
                 </section>
                 <p>You have <span style={{color: '#41D67E', fontWeight: 'bold'}}>0</span> BookCare in your account</p>
             </div>

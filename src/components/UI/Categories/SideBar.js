@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
-function SidebarItem({ label, items,item, depthStep = 10, depth = 0, ...rest }) {
+const SidebarItem = ({ label, items,item, depthStep = 10, depth = 0, ...rest })=> {
     return (
       <>
         <ListItem  button dense {...rest}>
@@ -39,8 +39,8 @@ function SidebarItem({ label, items,item, depthStep = 10, depth = 0, ...rest }) 
       },
     },
   }));
-  
-  function Sidebar({ items,item, depthStep, depth }) {
+
+  const Sidebar = ({ items,item, depthStep, depth })=>{
     const classes = useStyles();
     return (
     <div>
@@ -69,7 +69,7 @@ function SidebarItem({ label, items,item, depthStep = 10, depth = 0, ...rest }) 
                 </ListItemIcon>
                 <ListItemText primary="(From 5 Stars)" />
             </ListItem>
-            
+
             <ListItem button>
                 <ListItemIcon>
                     <StarRateIcon style={{color:'orange'}} />
@@ -80,8 +80,8 @@ function SidebarItem({ label, items,item, depthStep = 10, depth = 0, ...rest }) 
                 </ListItemIcon>
                 <ListItemText primary="(From 4 Stars)" />
             </ListItem>
-                        
-            
+
+
             <ListItem button>
                 <ListItemIcon>
                     <StarRateIcon style={{color:'orange'}} />
@@ -99,10 +99,10 @@ function SidebarItem({ label, items,item, depthStep = 10, depth = 0, ...rest }) 
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField id="price" variant="outlined" type='number'  size="small"  /> _
                 <TextField id="price" variant="outlined" type='number'  size="small" />
-                
+
                 <button style={{marginTop:'20px'}} type="submit" >OK</button>
             </form>
-         </div> 
+         </div>
          <hr></hr>
          <p style={{paddingLeft:"15px"}}>BRAND</p>
         <List style={{size:'small',color:'grey'}}>

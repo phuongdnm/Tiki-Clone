@@ -1,4 +1,4 @@
-import {fade, makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles(theme => ({
@@ -7,7 +7,8 @@ const useStyles = makeStyles(theme => ({
         padding: "1em",
         margin: '1em',
         "&:hover": {
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
+
             cursor: 'pointer'
         },
         display: 'inline-block',
@@ -49,20 +50,15 @@ const useStyles = makeStyles(theme => ({
     "@global .react-ripples": {
         display: 'inline-block !important'
     },
-    // style for card in cart page:
-    root: {
-        flexGrow: 1,
-      },
-      paper: {
-        padding: theme.spacing(2),
+    paper: {
         margin: 'auto',
         maxWidth: "100%"
-      },
-      image: {
+    },
+    image: {
         width: 128,
         height: 128,
-      },
-      img: {
+    },
+    img: {
         margin: 'auto',
         display: 'block',
         maxWidth: '100%',
@@ -70,15 +66,18 @@ const useStyles = makeStyles(theme => ({
         overflow: 'hidden',
         position: 'relative',
         zIndex: 0
-      },
-      tikiArrow: {
+    },
+    tikiArrow: {
         maxHeight: "20px"
-      },
-      priceOrigin: {
+    },
+    priceOrigin: {
         color: "lightgrey",
         textDecoration: "line-through"
-      },
-
+    },
+    removeLinkStyle:{
+        textDecoration: "none",
+        color: "inherit !important" ,
+    },
 }));
 
 export default useStyles;
