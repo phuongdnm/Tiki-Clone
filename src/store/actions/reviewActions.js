@@ -131,6 +131,7 @@ export const updateReviewById = (review, reviewId, productId, userId) => async (
     console.log(url);
     await axios.put(url, review)
         .then(res => {
+            console.log( axios.defaults.headers.common['Authorization'])
             axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
             console.log(res);
             dispatch(getProductReviews(productId));
