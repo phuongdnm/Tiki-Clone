@@ -45,7 +45,7 @@ const HotKeyword = (props) => {
                 slidesPerScroll={8}
                 arrows
                 infinite
-
+                offset={1}
             >
                 <div className={classes.image} style={{backgroundColor: pickRandColor()}}>
                     <Link to={"#"} className={classes.removeLinkStyle}>

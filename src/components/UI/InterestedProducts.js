@@ -48,7 +48,7 @@ const InterestedProducts = (props) => {
                 slidesPerScroll={6}
                 arrows
                 infinite
-
+                
             >
                 <div className={classes.image}>
                     <Link to={"#"} className={classes.removeLinkStyle}>

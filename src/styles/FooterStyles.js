@@ -4,6 +4,7 @@ const fterStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         fontFamily:"Roboto",
+        margin:"5% 2% 0 2%"
     },
     form: {
         alignItems:"center",
@@ -24,6 +25,7 @@ const fterStyles = makeStyles(theme => ({
     },
     news: {
         backgroundColor: "#F7F7F7",
+        
     },
     subscribeText: {
         width: "50%",

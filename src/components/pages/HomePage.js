@@ -134,7 +134,7 @@ const HomePage = (props) => {
                             image={prod.photo === "no-photo.jpg" ? BottleWarmer : `http://34.87.156.245/uploads/${prod.photo}`}
                             rating={prod.averageRating}
                         />
-                        <div onClick={()=>dispatch(cartActions.removeFromCart(prod.id))}>ds</div>
+                        <div onClick={()=>dispatch(cartActions.removeFromCart(prod.id))}></div>
 
                     </>
 
@@ -142,6 +142,7 @@ const HomePage = (props) => {
             </ItemContainer>
             <ItemContainer
                 title={"ALL PRODUCTS FROM DB"}
+                
             >
                 {products !== null && products.map((prod, index) => (
                     <Card

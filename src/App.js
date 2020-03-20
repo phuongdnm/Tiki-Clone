@@ -10,6 +10,7 @@ import ProductDetailPage from "./components/pages/ProductDetailPage";
 import CartPage from "./components/pages/CartPage";
 import OrdersPage from "./components/pages/OrdersPage";
 import PrivateRoute from "./components/common/PrivateRoute";
+import Checkout from "./components/pages/Checkout"
 
 import {Provider} from 'react-redux';
 import store from './store';
@@ -78,6 +79,11 @@ function App() {
                         exact
                         path={"/orders"}
                         component={OrdersPage}
+                    />
+                    <Route
+                        exact
+                        path={"/checkout"}
+                        component={Checkout}
                     />
                 </Switch>
             </BrowserRouter>
