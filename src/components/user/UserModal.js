@@ -198,7 +198,7 @@ const ModalTabSection = props => {
                   </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0} className={classes.formStyle}>
-                  <Login {...props} />
+                  <Login {...props} type="default" />
                 </TabPanel>
                 <TabPanel value={value} index={1} className={classes.formStyle2}>
                   <SignUp {...props} />

@@ -240,7 +240,7 @@ const CartPage = (props) => {
                             {total()}
                         </div>
                     </Paper>
-                    <Button fullWidth variant="contained" color="secondary"
+                    <Button fullWidth variant="contained" color="secondary" 
                             style={{marginTop: 10}}>Order</Button>
                 </Grid>
             </Grid>
@@ -250,7 +250,9 @@ const CartPage = (props) => {
     return (
         <div>
             <NavBar/>
-            {CartSection()}
+            <div className="body" style={{marginBottom: "20%"}}>
+                {CartSection()}
+            </div>
             <Footer/>
         </div>
     )

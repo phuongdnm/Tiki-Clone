@@ -409,29 +409,34 @@ const ProductPriceInfo = ({product}) => {
                     {colorOption}
                   </Grid>
                 </div>
-                <Grid item container className='add-to-cart-options' spacing={2}>
-                  <Grid item className='product-amount' xl={4} xs md>
-                    <p style={{padding: 0, margin: 0, marginTop: '1em', fontWeight: 600}}>Amount:</p>
-                    <ButtonGroup size="small" style={{height: '2em'}} color={'primary'}>
-                      <Button onClick={handleDecrease} style={{padding: 0, margin: 0}}>-</Button>
-                      <TextField variant="outlined" style={{borderRadius: 0, padding: 0, margin: 0}}
-                                 value={amount} onChange={handleChange}/>
-                      <Button onClick={handleIncrease}>+</Button>
-                    </ButtonGroup>
-                    <Button onClick={handleAddToCart} variant="contained" color='secondary'
-                            style={{fontSize: '0.7em', marginLeft: '2em'}}>
-                      <img src={CartIcon} style={{
-                        width: "15px",
-                        height: "15px",
-                        marginRight: "10px",
-                        fontSize: '0.75em'
-                      }}
-                           alt={"a cart icon"}
-                      />
-                      Add to cart
-                    </Button>
+                <div className="add-to-cart">
+                  <p style={{padding: 0, margin: 0, marginTop: '1em', fontWeight: 600}}>Amount:</p>
+                  <Grid container xl spacing={2}>
+                    <Grid item>
+                      <ButtonGroup size="small" style={{height: '2em'}} color={'primary'}>
+                        <Button onClick={handleDecrease} style={{padding: 0, margin: 0}}>-</Button>
+                        <TextField variant="outlined" style={{borderRadius: 0, padding: 0, margin: 0}}
+                                    value={amount} onChange={handleChange}/>
+                        <Button onClick={handleIncrease}>+</Button>
+                      </ButtonGroup>  
+                    </Grid>
+
+                    <Grid item>
+                      <Button onClick={handleAddToCart} variant="contained" color='secondary'
+                              style={{fontSize: '0.7em', marginLeft: '2em'}}>
+                        <img src={CartIcon} style={{
+                          width: "15px",
+                          height: "15px",
+                          marginRight: "10px",
+                          fontSize: '0.75em'
+                        }}
+                            alt={"a cart icon"}
+                        />
+                        Add to cart
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
+                </div>
                 <Grid item container className='product-add-to-cart' justify={'center'}>
                   {discount_price !== "NaN" &&
                   <>
