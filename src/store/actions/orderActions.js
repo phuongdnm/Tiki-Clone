@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {message} from 'antd';
+import {getAllProducts} from "./productActions";
 
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 export const GET_MY_ORDERS = 'GET_MY_ORDERS';
@@ -110,6 +111,10 @@ export const addNewOrder = (order) => async (dispatch) => {
     await axios.post(url, order)
         .then(res => {
             console.log(res);
+            if(!res.data.success) {
+                return  message.error("Error making order");
+            }
+            dispatch(getAllOrders());
             message.success("Order added!");
         })
         .catch(err => {
@@ -127,6 +132,10 @@ export const updateOrderById = (order, orderId) => async (dispatch) => {
     await axios.put(url, order)
         .then(res => {
             console.log(res);
+            if(!res.data.success) {
+                return  message.error("Error updating order");
+            }
+            dispatch(getAllOrders());
             message.success("Updated order");
         })
         .catch(err => {
@@ -137,13 +146,17 @@ export const updateOrderById = (order, orderId) => async (dispatch) => {
 };
 
 // 🔒
-export const deleteReviewById = (orderId) => async (dispatch) => {
+export const deleteOrderById = (orderId) => async (dispatch) => {
 
     const url = `${api_url}/api/v1/orders/${orderId}`;
     console.log(url);
     await axios.delete(url)
         .then(res => {
             console.log(res);
+            if(!res.data.success) {
+                return  message.error("Error deleting order");
+            }
+            dispatch(getAllOrders());
             message.success("Deleted order");
         })
         .catch(err => {

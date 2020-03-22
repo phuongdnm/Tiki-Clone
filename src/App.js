@@ -20,12 +20,15 @@ import {getAllProducts} from "./store/actions/productActions";
 import {getCart} from "./store/actions/cartActions";
 import {getAllShops} from "./store/actions/shopActions";
 import {getAllReviews} from "./store/actions/reviewActions";
+import AdminPage from "./components/pages/AdminPage";
+import {getAllOrders} from "./store/actions/orderActions";
 
 
 const actionsOnPageLoad = ()=> {
     store.dispatch(getAllProducts());
     store.dispatch(getCart());
     store.dispatch(getAllShops());
+    store.dispatch(getAllOrders());
     store.dispatch(getAllReviews());
 // Check for token
     if (localStorage.jwtToken) {
@@ -54,7 +57,7 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    <Route exact path={"/"} render={(routeProps) => <HomePage {...routeProps} showForm={false} />}/>
+                    <Route exact path={"/"} render={(routeProps) => <HomePage {...routeProps} showForm={false} checkIsAdmin={false}/>}/>
                     <Route
                         exact
                         path={"/product/:type"}
@@ -65,6 +68,18 @@ function App() {
                         path={"/dashboard/:type"}
                         component={DashboardPage}
                     />
+                    <PrivateRoute
+                        exact
+                        path={"/admin"}
+                        component={AdminPage}
+                        checkIsAdmin
+                    />
+                    {/*<Route*/}
+                    {/*    exact*/}
+                    {/*    path={"/admin/register"}*/}
+                    {/*    render={(routeProps) => <HomePage {...routeProps} showForm={true} adminForm={true} mustBeLoggedOut={true}/>}*/}
+                    {/*/>*/}
+
                     <Route
                         exact
                         path={"/:productName/:productId"}
@@ -80,7 +95,7 @@ function App() {
                         path={"/orders"}
                         component={OrdersPage}
                     />
-                    <Route
+                    <PrivateRoute
                         exact
                         path={"/checkout"}
                         component={Checkout}

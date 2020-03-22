@@ -90,14 +90,21 @@ export const getProductsByShopId = (shopId) => async (dispatch) => {
 };
 
 // 🔒
-export const createProduct = (product, shopId) => async (dispatch) => {
+export const createProduct = (product, shopId, photo) => async (dispatch) => {
     const url = `${api_url}/api/v1/shops/${shopId}/products`;
     console.log(url);
     await axios.post(url, product)
-        .then(res => {
+        .then(async res => {
             console.log(res);
-            dispatch(getAllProducts());
-            message.success("Created product");
+            if(!res.data.success){
+                return  message.error("Error creating product");
+            }
+            if(photo !== null){
+                await dispatch(updateProductPhoto(photo, res.data.data.id));
+            }
+            await dispatch(getAllProducts());
+
+            return message.success("Created product");
 
         })
         .catch(err => {
@@ -108,14 +115,20 @@ export const createProduct = (product, shopId) => async (dispatch) => {
 };
 
 // 🔒
-export const updateProductById = (product, productId) => async (dispatch) => {
+export const updateProductById = (product, productId, photo) => async (dispatch) => {
     const url = `${api_url}/api/v1/products/${productId}`;
     console.log(url);
     await axios.put(url, product)
-        .then(res => {
+        .then(async res => {
             console.log(res);
-            dispatch(getAllProducts());
-            dispatch(getProductById(productId));
+            if(!res.data.success) {
+                return  message.error("Error updating product");
+            }
+            if(photo !== null){
+                await dispatch(updateProductPhoto(photo, res.data.data.id));
+            }
+            await dispatch(getAllProducts());
+
             message.success("Updated product");
 
         })
@@ -147,13 +160,24 @@ export const deleteProductById = (productId) => async (dispatch) => {
 
 // 🔒
 export const updateProductPhoto = (photo, productId) => async (dispatch) => {
+    const formData = new FormData();
+    formData.append('file', photo);
+
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    };
     const url = `${api_url}/api/v1/products/${productId}/photo`;
     console.log(url);
-    await axios.put(url, photo)
+    await axios.put(url, formData, config)
         .then(res => {
             console.log(res);
+            if(!res.data.success) {
+                return  message.error("Error updating product photo");
+            }
             dispatch(getAllProducts());
-            dispatch(getProductById(productId));
+            // dispatch(getProductById(productId));
             message.success("Updated product photo");
 
         })

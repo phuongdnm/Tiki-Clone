@@ -94,7 +94,10 @@ export const loginUser = (userData, history, closeModal) => async (dispatch) => 
                     errors = {"username": "Username or password is not correct"}
                 } else if (res.data.error === "Please provide an email and password") {
                     errors = {"username": "Please provide an email and password!"}
-                } else {
+                } else if(res.data.error === "Password is not correct"){
+                    errors = {"username": "Password is not correct!"}
+                }
+                else {
                     console.log(res);
                     let res_ = res.data.error;
                     let res__ = res_.replace('User validation failed: ', '{"') + '"}';
@@ -121,40 +124,14 @@ export const loginUser = (userData, history, closeModal) => async (dispatch) => 
         );
 };
 
-// login admin
-export const loginAdmin = (userData, history) => async (dispatch) => {
-    const url = `${api_url}/api/users/admin`;
-    console.log(`logging in admin `);
-    await axios.post(url, userData)
-        .then(res => {
-            console.log("res is:" + res);
-            console.log(res);
-            message.success("Login Successful");
 
-            // history.push('/')
-
-        })
-        .catch(err => {
-                console.log(`err is :${err}`);
-                console.log(err);
-                console.log(err.data);
-                console.log(err.response);
-                dispatch({
-                    type: GET_ERRORS,  //this call test dispatch. to dispsatch to our reducer
-                    payload: err.response.data //sets payload to errors coming from server
-                })
-            }
-        );
-};
 
 // 🔒 get user info
 export const setCurrentUserInfo = () => async (dispatch) => {
     let url = `${api_url}/api/v1/auth/me`;
-    axios.defaults.headers.common['Authorization'] = "Bearer "+axios.defaults.headers.common['Authorization'];
 
     axios.get(url)
         .then(res => {
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
             if (res.data.success) {
                 // console.log(`successful`);
                 // console.log(res);
@@ -169,7 +146,6 @@ export const setCurrentUserInfo = () => async (dispatch) => {
         })
         .catch(err => {
             console.log(err);
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
         })
 
 

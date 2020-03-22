@@ -31,6 +31,7 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import * as reviewActions from "../../store/actions/reviewActions";
 import {useDispatch} from "react-redux";
 import {message} from "antd";
+import * as productActions from "../../store/actions/productActions";
 
 
 // style for both modal and tabs
@@ -81,7 +82,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "8px"
   },
   "@global .MuiRating-label ": {
-    display: 'block !important'
+    display: 'block !important',
+    color: 'inherit',
+    fontSize: 'inherit'
   }
 
 }));
@@ -245,6 +248,7 @@ const ModalComment = (props) => {
     const msg = message.loading("Updating review!", 0);
     let review = {title, text, rating};
     await dispatch(reviewActions.addNewReview(review, props.productId));
+    await dispatch(productActions.getProductById(props.productId));
     props.onClose();
     setTimeout(msg, 1);
     setIsLoading(false)

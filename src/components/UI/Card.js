@@ -30,7 +30,7 @@ const Card = (props) => {
     const [amount, setAmount] = useState(props.quantity !== undefined ? props.quantity : null);
 
 
-    const discounted_price = (props.price - (parseFloat(props.price) * ((parseFloat(props.discount)) / 100))).toFixed(2);
+    const discounted_price =  (props.price - (parseFloat(props.price) * ((parseFloat(props.discount)) / 100))).toFixed(2);
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
@@ -67,23 +67,36 @@ const Card = (props) => {
         <Ripples>
             <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
-                <div className={classes.container} onClick={props.onClick !== undefined ? props.onClick : undefined}>
-                    <img src={props.image} alt="product " width={"100%"} style={{borderRadius: '3px'}}/> <br/>
-                    <img src={TikiNow} alt="tiki now " width={"25%"}/> <span className={classes.divider}>|</span>
-                    <span className={classes.title}>{props.title}</span>
-                    {props.discount !== undefined && props.discount > 0 ?
-                        <>
-                            <p style={{marginBottom: 0}}><span
-                                style={{fontWeight: 500}}>{numberWithCommas(discounted_price)}</span>
-                                <span className={classes.discount}> VND-{props.discount}%</span></p>
-                            <p className={classes.price}><s>{numberWithCommas(props.price)} </s>VND</p>
-                        </> :
-                        <>
-                            <p style={{marginBottom: 0}}><span
-                                style={{fontWeight: 500}}>{numberWithCommas(props.price)} VND</span>
-                            </p>
-                        </>
-                    }
+                <div className={classes.container} style={{height: '25em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
+                    <div>
+                        <img src={props.image} alt="product " width={"100%"} style={{borderRadius: '3px', maxHeight: '18em', minHeight: '14em'}}/> <br/>
+
+                    </div>
+                    <div>
+                        <Grid container style={{marginBottom: '0.5em'}}>
+                            <Grid item xs={3} md={4} lg={4} style={{margin: 0, marginTop: '0.1em'}}>
+                                <div>
+                                    <img src={TikiNow} alt="tikinow" width={"70%"}/> <span className={classes.divider}>|</span>
+                                </div>
+                            </Grid>
+                            <Grid item xs={9} md={8} lg={8} style={{margin: 0}}>
+                                <span className={classes.title}>{props.title}</span>
+                            </Grid>
+                        </Grid>
+                        {props.discount !== undefined && props.discount > 0 ?
+                            <>
+                                <p style={{marginBottom: 0}}><span
+                                    style={{fontWeight: 500}}>{numberWithCommas(discounted_price)} VND</span>
+                                    <span className={classes.discount}>-{props.discount}%</span></p>
+                                <p className={classes.price}><s>{numberWithCommas(props.price)} </s>VND</p>
+                            </> :
+                            <>
+                                <p style={{marginBottom: 0}}><span
+                                    style={{fontWeight: 500}}>{numberWithCommas(props.price)} VND</span>
+                                </p>
+                            </>
+                        }
+                    </div>
                 </div>
             </Link>
         </Ripples>;
@@ -93,52 +106,66 @@ const Card = (props) => {
             <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
 
-                <div className={classes.container} onClick={props.onClick !== undefined ? props.onClick : undefined}>
-                    {props.discount !== undefined && props.discount > 0 ?
-                        <>
-                            <img src={DealTag} alt="deal tag " width={"38vw"}
-                                 style={{position: 'absolute', marginTop: '1.5em'}}/>
-                            <span style={{
-                                fontWeight: 'bold',
-                                position: 'absolute',
-                                marginTop: '3.3vh',
-                                marginLeft: '0.28vw',
-                                fontSize: '0.85em',
-                                color: 'white'
-                            }}>-{props.discount}%</span><br/>
-                        </>
-                        : <p style={{marginTop: '1.5em'}}/>
-                    }
-
-                    <img src={props.image} alt="product" width={"100%"} style={{borderRadius: '3px'}}/> <br/>
-                    <img src={TikiNow} alt="tikinow" width={"25%"}/> <span className={classes.divider}>|</span>
-                    <span className={classes.title}>{props.title}</span>
-                    {props.discount !== undefined && props.discount > 0 ?
-                        <p style={{marginBottom: 0}}>
-                            <span style={{fontWeight: 500}}>VND {numberWithCommas(discounted_price)}</span>
-                            <span className={classes.discount}>VND <s>{numberWithCommas(props.price)} </s></span>
-                        </p> :
-                        <p style={{marginBottom: 0}}>
-                            <span style={{fontWeight: 500}}>VND {numberWithCommas(props.price)}</span>
-                        </p>
-                    }
-
-                    <Progress value={!isNaN(props.sold) ? props.sold : 50}
-                              className={classes.progress}>
-                        {!isNaN(props.sold) &&
-                        <span> {!!props.hot &&
-                        <WhatshotIcon style={{color: "white", fontSize: '1.3em', paddingBottom: '0.2em'}}/>}
-                            Sold {props.sold}</span>
+                <div className={classes.container}  style={{height: '26em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
+                    <div>
+                        {props.discount !== undefined && props.discount > 0 ?
+                            <>
+                                <img src={DealTag} alt="deal tag " width={"38vw"}
+                                     style={{position: 'absolute'}}/>
+                                <span style={{
+                                    fontWeight: 'bold',
+                                    position: 'absolute',
+                                    marginTop: '1vh',
+                                    marginLeft: '0.28vw',
+                                    fontSize: '0.85em',
+                                    color: 'white'
+                                }}>-{props.discount}%</span>
+                            </>
+                            : null
                         }
-                    </Progress>
-                    {props.timeInMilliSec &&
-                    <span className={classes.timer}>
-          <Countdown
-              date={Date.now() + props.timeInMilliSec}
-              renderer={renderer}
-          />
-        </span>
-                    }
+
+                        <img src={props.image} alt="product" width={"100%"}
+                             style={{borderRadius: '3px', maxHeight: '18em', minHeight: '14em'}}/> <br/>
+                    </div>
+                    <div>
+                        <Grid container style={{marginBottom: '0.5em'}}>
+                            <Grid item xs={3} md={4} lg={4} style={{margin: 0, marginTop: '0.1em'}}>
+                                <div>
+                                    <img src={TikiNow} alt="tikinow" width={"70%"}/> <span className={classes.divider}>|</span>
+                                </div>
+                            </Grid>
+                            <Grid item xs={9} md={8} lg={8} style={{margin: 0}}>
+                                <span className={classes.title}>{props.title}</span>
+                            </Grid>
+                        </Grid>
+                        {props.discount !== undefined && props.discount > 0 ?
+                            <p style={{marginBottom: 0}}>
+                                <span style={{fontWeight: 500}}>VND {numberWithCommas(discounted_price)}</span>
+                                <span className={classes.discount}>VND <s>{numberWithCommas(props.price)} </s></span>
+                            </p> :
+                            <p style={{marginBottom: 0}}>
+                                <span style={{fontWeight: 500}}>VND {numberWithCommas(props.price)}</span>
+                            </p>
+                        }
+
+                        <Progress value={!isNaN(props.sold) ? props.sold : 50}
+                                  className={classes.progress}>
+                            {!isNaN(props.sold) &&
+                            <span> {!!props.hot &&
+                            <WhatshotIcon style={{color: "white", fontSize: '1.3em', paddingBottom: '0.2em'}}/>}
+                                Sold {props.sold}</span>
+                            }
+                        </Progress>
+                        {props.timeInMilliSec &&
+                        <span className={classes.timer}>
+                          <Countdown
+                              date={Date.now() + props.timeInMilliSec}
+                              renderer={renderer}
+                          />
+                        </span>
+                        }
+                    </div>
+
                 </div>
             </Link>
         </Ripples>;
@@ -147,129 +174,150 @@ const Card = (props) => {
             <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
 
-                <div className={classes.container} onClick={props.onClick !== undefined ? props.onClick : undefined}>
-                    <img src={props.image} alt="product" width={"100%"} style={{borderRadius: '3px'}}/> <br/>
-                    <img src={TikiNow} alt="tikinow" width={"25%"}/> <span className={classes.divider}>|</span>
-                    <span className={classes.title}>{props.title}</span>
-                    {props.discount !== undefined && props.discount > 0 ?
-                        <>
-                            <p style={{marginBottom: 0}}><span
-                                style={{fontWeight: 500}}>{numberWithCommas(discounted_price)} VND</span>
-                                <span className={classes.discount}> -{props.discount}%</span></p>
-                            <p className={classes.price} style={{marginBottom: 0}}>
-                                <s>{numberWithCommas(props.price)} </s>VND
-                            </p>
-                        </> :
-                        <>
-                            <p style={{marginBottom: 0}}><span
-                                style={{fontWeight: 500}}>{numberWithCommas(props.price)} VND</span></p>
-                        </>
-                    }
+                <div className={classes.container} onClick={props.onClick !== undefined ? props.onClick : undefined}
+                     style={{...props.style}}>
+                    <div>
+                        <img src={props.image} alt="product" width={"100%"}
+                             style={{borderRadius: '3px', maxHeight: '18em', minHeight: '12em'}}/> <br/>
+                    </div>
+                    <div>
+                        {props.count !== undefined && <p style={{marginBottom: 0, fontWeight: 500, fontSize: '0.8em', color: '#26BC4E'}}>Amount ordered {props.count}</p>}
+                        <Grid container style={{marginBottom: '0.5em'}}>
+                            <Grid item xs={3} md={4} lg={4} style={{margin: 0, marginTop: '0.1em'}}>
+                                <div>
+                                    <img src={TikiNow} alt="tikinow" width={"70%"}/> <span className={classes.divider}>|</span>
+                                </div>
+                            </Grid>
+                            <Grid item xs={9} md={8} lg={8} style={{margin: 0}}>
+                                <span className={classes.title}>{props.title}</span>
+                            </Grid>
+                        </Grid>
 
-                    <p>
-                        <IconButton aria-label="" color="inherit" style={{
-                            paddingLeft: 0,
-                            paddingRight: 0,
-                            paddingTop: '0.1em',
-                            paddingBottom: '0.1em',
-                            color: '#26BC4E'
-                        }}>
-                            <Icon className={"fas fa-angle-double-right"}
-                                  style={{paddingLeft: 0, paddingRight: 0, fontSize: '1.25vw'}}/>
-                        </IconButton>
-                        <span style={{fontWeight: 500, fontSize: '0.8em', color: '#26BC4E'}}>Fast delivery 2h</span>
-                    </p>
-                    <div style={{marginBottom: '0.2rem'}}>
-                        <Rating name="half-rating-read" defaultValue={!isNaN(props.rating) ? props.rating : 3}
-                                precision={0.5} readOnly size="small"
-                                style={{width: '60%', margin: 0, fontSize: '0.9rem'}}/>
-                        <p className={classes.title} style={{
-                            width: '40%',
-                            marginBottom: '2em',
-                            display: 'inline-block'
-                        }}> ({getProductReviewLength()} reviews)</p>
+                        {props.discount !== undefined && props.discount > 0 ?
+                            <>
+                                <p style={{marginBottom: 0}}><span
+                                    style={{fontWeight: 500}}>{numberWithCommas(discounted_price)} VND</span>
+                                    <span className={classes.discount}> -{props.discount}%</span></p>
+                                <p className={classes.price} style={{marginBottom: 0}}>
+                                    <s>{numberWithCommas(props.price)} </s>VND
+                                </p>
+                            </> :
+                            <>
+                                <p style={{marginBottom: 0}}><span
+                                    style={{fontWeight: 500}}>{numberWithCommas(props.price)} VND</span></p>
+                            </>
+                        }
+
+                        <p>
+                            <IconButton aria-label="" color="inherit" style={{
+                                paddingLeft: 0,
+                                paddingRight: 0,
+                                paddingTop: '0.1em',
+                                paddingBottom: '0.1em',
+                                color: '#26BC4E'
+                            }}>
+                                <Icon className={"fas fa-angle-double-right"}
+                                      style={{paddingLeft: 0, paddingRight: 0, fontSize: '1.25vw'}}/>
+                            </IconButton>
+                            <span style={{fontWeight: 500, fontSize: '0.8em', color: '#26BC4E'}}>Fast delivery 2h</span>
+                        </p>
+                        <div style={{marginBottom: '0.2rem'}}>
+                            <Rating name="half-rating-read" defaultValue={props.rating !== undefined ? props.rating : 3}
+                                    precision={0.5} readOnly size="small"
+                                    style={{width: '60%', margin: 0, fontSize: '0.9rem'}}/>
+                            <p className={classes.title} style={{
+                                width: '40%',
+                                marginBottom: '2em',
+                                display: 'inline-block'
+                            }}> ({getProductReviewLength()} reviews)</p>
+                        </div>
                     </div>
                 </div>
             </Link>
         </Ripples>;
 
     const type4 =
-        <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
-                  className={classes.removeLinkStyle}>
 
-                <div className={classNames(classes.grid, classes.removeLinkStyle)} style={{...props.style}}>
+        <div className={classNames(classes.grid, classes.removeLinkStyle)} style={{...props.style}}
+             onClick={props.onClick !== undefined ? props.onClick : undefined}>
+            <Paper className={classes.paper} elevation={0}>
+                <Grid container spacing={2}>
+                    <Grid item>
+                        <Ripples>
 
-                    <Paper className={classes.paper} elevation={0}>
-                        <Grid container spacing={2}>
-                            <Grid item>
+                            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+                                  className={classes.removeLinkStyle}>
                                 <ButtonBase className={classes.image}>
                                     <img className={classes.img} alt="complex" src={props.image}/>
                                 </ButtonBase>
+                            </Link>
+                        </Ripples>
+
+                    </Grid>
+                    <Grid item xs={12} sm container spacing={2}>
+                        <Grid item xs container direction="column" spacing={2}>
+                            <Grid item xs>
+                                <Typography gutterBottom variant="subtitle1">
+                                    <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+                                          className={classes.removeLinkStyle}>
+                                        <img src={TikiNow} alt={"tikinow"}/> | {props.name}
+                                    </Link>
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    <img src={TikiArrow} className={classes.tikiArrow}
+                                         alt={"tiki arrow "}/> Ship in 2h
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                    Sold by {props.soldBy}
+                                </Typography>
                             </Grid>
-                            <Grid item xs={12} sm container spacing={2}>
-                                <Grid item xs container direction="column" spacing={2}>
-                                    <Grid item xs>
-                                        <Typography gutterBottom variant="subtitle1">
-                                            <img src={TikiNow} alt={"tikinow"}/> | {props.name}
-                                        </Typography>
-                                        <Typography variant="body2" gutterBottom>
-                                            <img src={TikiArrow} className={classes.tikiArrow}
-                                                 alt={"tiki arrow "}/> Ship in 2h
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary">
-                                            Sold by {props.soldBy}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size="small" color="secondary"
-                                                onClick={props.deleteItem !== undefined && props.deleteItem}>Remove</Button>
-                                        <Button size="small" color="primary">Buy later</Button>
+                            <Grid item>
+                                <Button size="small" color="secondary"
+                                        onClick={props.deleteItem !== undefined && props.deleteItem}>Remove</Button>
+                                <Button size="small" color="primary">Buy later</Button>
 
-                                    </Grid>
-                                </Grid>
-                                <Grid item>
-                                    {discounted_price !== "NaN" ?
-                                        <>
+                            </Grid>
+                        </Grid>
+                        <Grid item>
+                            {discounted_price !== "NaN" ?
+                                <>
 
-                                            <Typography variant="subtitle1"
-                                                        style={{textAlign: "right"}}><strong>{discounted_price}đ</strong></Typography>
-                                            <Typography variant="subtitle2">
+                                    <Typography variant="subtitle1"
+                                                style={{textAlign: "right"}}><strong>{discounted_price}đ</strong></Typography>
+                                    <Typography variant="subtitle2">
                                         <span className={classes.priceOrigin}>
                                           {props.price.toFixed(2)}đ
                                       </span>
-                                                | -{props.discount}%
-                                            </Typography>
-                                        </>
-                                        :
-                                        <Typography variant="subtitle1"
-                                                    style={{
-                                                        textAlign: "right",
-                                                        marginTop: '1em'
-                                                    }}><strong>{props.price.toFixed(2)}đ</strong></Typography>
-                                    }
+                                        | -{props.discount}%
+                                    </Typography>
+                                </>
+                                :
+                                <Typography variant="subtitle1"
+                                            style={{
+                                                textAlign: "right",
+                                                marginTop: '1em'
+                                            }}><strong>{props.price.toFixed(2)}đ</strong></Typography>
+                            }
 
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Button onClick={() => {
-                                    props.removeItem !== undefined && props.removeItem();
-                                    setAmount(amt => amt - 1)
-                                }} style={{fontSize: '2em', marginRight: '0.3em'}} color="secondary">-</Button>
-                                <TextField variant="outlined"
-                                           style={{borderRadius: 0, width: '3.3em', margin: '0.3', textAlign: 'center'}}
-                                           value={amount}
-                                           onChange={(e) => setAmount(e.target.value)} disabled/>
-                                <Button onClick={() => {
-                                    props.addItem !== undefined && props.addItem();
-                                    setAmount(amt => amt + 1)
-                                }} style={{fontSize: '2em', marginLeft: '0.3em'}} color="primary">+</Button>
-                            </Grid>
                         </Grid>
-                    </Paper>
-                </div>
-            </Link>
-        </Ripples>;
+                    </Grid>
+                    <Grid item>
+                        <Button onClick={(e) => {
+                            props.removeItem !== undefined && props.removeItem();
+                            setAmount(amt => amt - 1)
+                        }} style={{fontSize: '2em', marginRight: '0.3em'}} color="secondary">-</Button>
+                        <TextField variant="outlined"
+                                   style={{borderRadius: 0, width: '3.3em', margin: '0.3', textAlign: 'center'}}
+                                   value={amount}
+                                   onChange={(e) => setAmount(e.target.value)} disabled/>
+                        <Button onClick={(e) => {
+                            props.addItem !== undefined && props.addItem();
+                            setAmount(amt => amt + 1)
+                        }} style={{fontSize: '2em', marginLeft: '0.3em'}} color="primary">+</Button>
+                    </Grid>
+                </Grid>
+            </Paper>
+        </div>
     const handleCardType = (type) => {
         switch (type) {
             case "default":

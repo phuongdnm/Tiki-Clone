@@ -418,7 +418,7 @@ const ProductPriceInfo = ({product}) => {
                         <TextField variant="outlined" style={{borderRadius: 0, padding: 0, margin: 0}}
                                     value={amount} onChange={handleChange}/>
                         <Button onClick={handleIncrease}>+</Button>
-                      </ButtonGroup>  
+                      </ButtonGroup>
                     </Grid>
 
                     <Grid item>
@@ -636,6 +636,13 @@ const ReviewCard = ({review, product}) => {
   const [title, setTitle] = useState(review.title);
   const [rating, setRating] = useState(review.rating);
   const [isLoading, setIsLoading] = useState(false);
+
+  // fixed bug when user tires to edit review after user deletes a review and adds new review
+  useEffect(()=>{
+    setText(review.text);
+    setTitle(review.title) ;
+    setRating(review.rating);
+  }, [review]);
 
 
   const handleUpdateReview = async (e) => {
@@ -1013,7 +1020,6 @@ const ProductDetailPage = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const {productName, productId} = props.match.params;
-  const [firstImageLoad, setFirstImageLoad] = useState(true);
   // const product = useSelector(state => state.products.products !== null && state.products.products.find(prod => prod.id === productId));
   const product = useSelector(state => state.products.currentProduct);
   const productReviews = useSelector(state => state.reviews.reviews);
@@ -1021,15 +1027,17 @@ const ProductDetailPage = (props) => {
   const [currentImg, setCurrentImg] = useState(noPhoto);
   // const [currentImg, setCurrentImg] = useState(typeof(product) !== 'boolean' ? `http://34.87.156.245/uploads/${product.photo}` : noPhoto);
 
-  if (product !== null && firstImageLoad && product.photo !== "no-photo.jpg") {
-    setCurrentImg(`http://34.87.156.245/uploads/${product.photo}`);
-    setFirstImageLoad(false)
-  }
 
   useEffect(() => {
     dispatch(productActions.getProductById(productId));
     dispatch(reviewActions.getProductReviews(productId))
   }, []);
+
+  useEffect(()=>{
+    if (product !== null ) {
+      setCurrentImg(product.photo !== 'no-photo.jpg' ? `http://34.87.156.245/uploads/${product.photo}`:noPhoto);
+    }
+  }, [product]);
 
 
   return (
@@ -1046,6 +1054,7 @@ const ProductDetailPage = (props) => {
                 }
               </Grid>
               <Grid item xs={9}>
+                {product !== null &&<>
                 <SideBySideMagnifier
                     imageSrc={currentImg}
                     largeImageSrc={currentImg}
@@ -1057,7 +1066,8 @@ const ProductDetailPage = (props) => {
                                   <img src={ZoomIcon} alt={"a zoom icon"}/>
                                   Drag your mouse to zoom out
                                 </span>
-                </div>
+                </div></>
+                }
               </Grid>
 
             </Grid>
