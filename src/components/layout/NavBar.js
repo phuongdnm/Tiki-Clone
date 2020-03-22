@@ -262,7 +262,7 @@ const NavBar = (props) => {
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonIcon/>}
                 name="0"
-                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}}
+                onClick={(e)=>{handleOpenModal(); handleOnClick(e); setIsLoginTip(false)}}
 
             >
                 Login
@@ -272,7 +272,7 @@ const NavBar = (props) => {
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonAddIcon />}
-                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}}
+                onClick={(e)=>{handleOpenModal(); handleOnClick(e); setIsLoginTip(false)}}
                 name="1"
             >
                 Create Account
