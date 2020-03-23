@@ -4,6 +4,7 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
     container: {
         width: "15vw",
+        height: '31em',
         padding: "1em",
         margin: '1em',
         "&:hover": {
@@ -11,13 +12,15 @@ const useStyles = makeStyles(theme => ({
 
             cursor: 'pointer'
         },
-        display: 'inline-block',
+        display: 'inline-flex',
+        flexDirection: "column",
+        justifyContent: "space-around",
         [theme.breakpoints.down('md')]: {
             fontSize: "0.65em !important"
         },
     },
-    divider: {marginLeft: '0.25em', marginRight: '0.25em', color: '#858585'},
-    title: {fontSize: '0.75em', color: '#858585', lineHeight: '0.5cm'},
+    divider: {marginLeft: '0.15em', marginRight: '0.15em', color: '#858585'},
+    title: {fontSize: '0.75em', color: '#858585', fontWeight: 600, marginBottom: '1.5em'},
     discount: {color: 'rgba(36, 36, 36, 0.6)', fontSize: '0.75em', marginLeft: '0.5em'},
     price: {fontSize: '0.8em', color: '#858585', marginTop: 0},
     progress: {
@@ -48,7 +51,7 @@ const useStyles = makeStyles(theme => ({
         mozAnimation: 'rip 6s infinite ease-out',
     },
     "@global .react-ripples": {
-        display: 'inline-block !important'
+        display: 'inline-flex !important'
     },
     paper: {
         margin: 'auto',
@@ -75,7 +78,7 @@ const useStyles = makeStyles(theme => ({
         textDecoration: "line-through"
     },
     removeLinkStyle:{
-        textDecoration: "none",
+        textDecoration: "none !important",
         color: "inherit !important" ,
     },
 }));

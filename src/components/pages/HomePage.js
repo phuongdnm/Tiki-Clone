@@ -10,7 +10,6 @@ import InterestedProducts from "../UI/InterestedProducts";
 import HotKeyword from "../UI/HotKeyword";
 import ItemContainer from "../UI/ItemContainer";
 import {useSelector, useDispatch} from "react-redux";
-import * as cartActions from '../../store/actions/cartActions'
 import * as errorActions from '../../store/actions/errorActions'
 import {message} from "antd";
 import "antd/dist/antd.css";
@@ -119,30 +118,8 @@ const HomePage = (props) => {
             <HotKeyword/>
 
             <ItemContainer
-                title={"PRIVACY FOR YOU"}
-            >
-                {products !== null && products.map((prod, index) => (
-                    <>
-                        <Card
-                            onClick={()=> dispatch(cartActions.addToCart(prod))}
-                            key={prod.id}
-                            id={prod.id}
-                            type={'review'}
-                            price={prod.price}
-                            discount={prod.discount}
-                            title={prod.name}
-                            image={prod.photo === "no-photo.jpg" ? BottleWarmer : `http://34.87.156.245/uploads/${prod.photo}`}
-                            rating={prod.averageRating}
-                        />
-                        <div onClick={()=>dispatch(cartActions.removeFromCart(prod.id))}></div>
-
-                    </>
-
-                ))}
-            </ItemContainer>
-            <ItemContainer
                 title={"ALL PRODUCTS FROM DB"}
-                
+
             >
                 {products !== null && products.map((prod, index) => (
                     <Card

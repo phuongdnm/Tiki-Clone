@@ -59,6 +59,9 @@ export const createNewShop = (shop) => async (dispatch) => {
     await axios.post(url, shop)
         .then(res => {
             console.log(res);
+            if(!res.data.success) {
+                return  message.error("Error creating shop");
+            }
             dispatch(getAllShops());
             message.success("shop created successfully");
         })
@@ -88,12 +91,15 @@ export const updateShopById = (shop, shopId) => async (dispatch) => {
 
 
 // 🔒
-export const deleteShopById = (shop, shopId) => async (dispatch) => {
+export const deleteShopById = (shopId) => async (dispatch) => {
     const url = `${api_url}/api/v1/shops/${shopId}`;
     console.log(url);
     await axios.delete(url)
         .then(res => {
             console.log(res);
+            if(!res.data.success) {
+                return  message.error("Error deleting shop");
+            };
             dispatch(getAllShops());
             message.success("shop deleted successfully");
         })

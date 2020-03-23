@@ -7,12 +7,10 @@ axios.defaults.validateStatus = (status) => {
 const setAuthToken = (token) => {
     if (token) {
         // Apply Authorization token to header to every request
-        axios.defaults.headers.common['Authorization'] = token;
-        axios.defaults.headers.common['Bearer'] = token;
+        axios.defaults.headers.common['Authorization'] = 'Bearer '+ token;
     } else {
         // Delete auth header
         delete axios.defaults.headers.common['Authorization'];
-        delete axios.defaults.headers.common['Bearer'];
     }
 };
 

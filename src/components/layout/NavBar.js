@@ -33,6 +33,9 @@ import tikiNow from '../../image/tiki-now.png'
 import ticketBox from '../../image/ticketBox.png'
 import zaloLogo from '../../image/Logo_Zalo.png'
 import userStyles from '../../styles/NavbarStyles'
+import TikiXu from '../../image/tiki-xu.svg'
+import Bookcare from '../../image/bookcare.svg'
+import Tikinow2 from '../../image/tiki-now2.png'
 import {loadCSS} from 'fg-loadcss';
 import ProductNavigation from "../UI/ProductNavigation";
 import TransitionsModal from '../user/UserModal'
@@ -64,9 +67,9 @@ const NavBar = (props) => {
             'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
             document.querySelector('#font-awesome-css'),
         );
-        // console.log(props.location);
-        setOpen(props.showForm !== undefined ? props.showForm : false);
-        props.showForm !== undefined && props.showForm && message.info("You need to be logged in!")
+        setOpen(!!props.showForm);
+        !!props.showForm && message.info("You need to be logged in!");
+        props.checkIsAdmin !== undefined && props.checkIsAdmin && message.error("you to be logged in as an admin to access this route");
     }, []);
 
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -135,12 +138,13 @@ const NavBar = (props) => {
                      setIsLoginTip(false)
                  }}
                  style={{
-                     width: "18em",
+                     width: "20em",
                      height: "30em",
                      textAlign: "center",
                      padding: "1.2em",
                      backgroundColor: "rgba(255,255,255,0.8)",
                      margin: 0,
+                     zIndex: '999999',
                      display: "None"
                  }}>
             <Button
@@ -171,6 +175,16 @@ const NavBar = (props) => {
                     style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5" }}
                 >
                     Review product purchased
+                </Button>
+            </Link>
+
+            <Link to={'/dashboard/6'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
+                <Button
+                    size={"small"}
+                    variant="contained"
+                    style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5"}}
+                >
+                    Viewed Products
                 </Button>
             </Link>
 
@@ -210,8 +224,7 @@ const NavBar = (props) => {
                     size={"small"}
                     variant="contained"
                     style={{color: "black",  width: "100%",backgroundColor: "#D5D5D5"}}
-                >
-                    Tiki Now
+                ><img src={Tikinow2} alt="ticketBox" style={{width: "10%", marginRight: "1em"}}/> <span>Tiki Now</span>
                 </Button>
             </Link>
 
@@ -220,7 +233,7 @@ const NavBar = (props) => {
                     size={"small"}
                     variant="contained"
                     style={{color: "black", width: "100%", backgroundColor: "#D5D5D5"}}
-                >
+                ><img src={TikiXu} alt="ticketBox" style={{width: "10%", marginRight: "1em"}}/>
                     Tiki Xu
                 </Button>
             </Link>
@@ -228,6 +241,7 @@ const NavBar = (props) => {
             <Link to={'/dashboard/13'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
                 <Button
                     size={"small"}
+                    startIcon={<img src={Bookcare} alt="ticketBox" style={{width: "70%", margin: 0}}/>}
                     variant="contained"
                     style={{color: "black",  width: "100%", backgroundColor: "#D5D5D5"}}
                 >
@@ -239,7 +253,7 @@ const NavBar = (props) => {
     ):(
         <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
                   onMouseLeave={()=>{setIsLoginTip(false)}}
-                  style={{width: "18em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
+                  style={{width: "20em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
 
 
             <Button
@@ -248,7 +262,7 @@ const NavBar = (props) => {
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonIcon/>}
                 name="0"
-                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}}
+                onClick={(e)=>{handleOpenModal(); handleOnClick(e); setIsLoginTip(false)}}
 
             >
                 Login
@@ -258,7 +272,7 @@ const NavBar = (props) => {
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
                 startIcon={<PersonAddIcon />}
-                onClick={(e)=>{handleOpenModal(); handleOnClick(e)}}
+                onClick={(e)=>{handleOpenModal(); handleOnClick(e); setIsLoginTip(false)}}
                 name="1"
             >
                 Create Account
@@ -289,7 +303,7 @@ const NavBar = (props) => {
                 Login with Zalo
             </Button>
             <TransitionsModal open={open} onClose={handleCloseModal} piority={index}
-                              closeModal={handleCloseModal} {...props} type={'authModal'}/>
+                              closeModal={handleCloseModal} {...props} type={'authModal'} adminForm={!!props.adminForm}/>
         </section>
     );
 
@@ -313,19 +327,19 @@ const NavBar = (props) => {
                                  }}
 
     >
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <img src={ticketBox} alt="ticketBox" style={{height: "50%", width: "50%"}}/>
             </IconButton>
             ticketBox
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <img src={tikiAssistant} alt="tikiAssistant" style={{height: "50%", width: "50%"}}/>
             </IconButton>
             Assistant Tiki
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -337,7 +351,7 @@ const NavBar = (props) => {
             </IconButton>
             partner Incentives
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -349,7 +363,7 @@ const NavBar = (props) => {
             </IconButton>
             Hotel reservations
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -362,13 +376,13 @@ const NavBar = (props) => {
 
             Ticket Booking
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" style={{padding: 0}}>
                 <WhatshotIcon style={{color: "F2D33B"}}/>
             </IconButton>
             Hot Promotion
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -380,7 +394,7 @@ const NavBar = (props) => {
             </IconButton>
             International goods
         </Typography>
-        <Typography className={classes.title} variant="subtitle2" noWrap>
+        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -489,7 +503,6 @@ const NavBar = (props) => {
                 </Link>
 
             </Typography>
-            {authLinks}
             {/* number of products */}
             <Link to={"/cart"} onClick={e => {
                 e.stopPropagation();
@@ -633,6 +646,7 @@ const NavBar = (props) => {
                     setProductNavigation(false)
                 }}
             />}
+            {authLinks}
         </section>
     );
 };

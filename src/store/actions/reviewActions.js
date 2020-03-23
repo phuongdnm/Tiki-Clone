@@ -103,20 +103,24 @@ export const getReviewById = (reviewId) => async (dispatch) => {
 export const addNewReview = (review, productId) => async (dispatch) => {
 
     const url = `${api_url}/api/v1/products/${productId}/reviews`;
-    axios.defaults.headers.common['Authorization'] = "Bearer "+axios.defaults.headers.common['Authorization'];
+    // axios.defaults.headers.common['Authorization'] = "Bearer "+axios.defaults.headers.common['Authorization'];
 
     console.log(url);
     await axios.post(url, review)
         .then(res => {
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
+            // axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
             console.log(res);
+
+            if(!res.data.success) {
+                return message.error("Error adding review");
+            };
             dispatch(getProductReviews(productId));
             message.success("Got review");
         })
         .catch(err => {
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
-            console.log('Error' + err);
-                message.error("Error getting review");
+                // axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
+                console.log('Error' + err);
+                message.error("Error adding review");
             }
         );
 
@@ -126,21 +130,26 @@ export const addNewReview = (review, productId) => async (dispatch) => {
 export const updateReviewById = (review, reviewId, productId, userId) => async (dispatch) => {
 
     const url = `${api_url}/api/v1/reviews/${reviewId}`;
-    axios.defaults.headers.common['Authorization'] = "Bearer "+axios.defaults.headers.common['Authorization'];
+    // axios.defaults.headers.common['Authorization'] = "Bearer "+axios.defaults.headers.common['Authorization'];
 
     console.log(url);
     await axios.put(url, review)
         .then(res => {
-            console.log( axios.defaults.headers.common['Authorization'])
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
+            // axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
             console.log(res);
-            dispatch(getProductReviews(productId));
-            dispatch(getAllUserReviews(userId));
+            if(!res.data.success) {
+                return message.error("Error updating review");
+            }
+            if(productId !== undefined && userId !== undefined){
+                dispatch(getProductReviews(productId));
+                dispatch(getAllUserReviews(userId));
+            }
+            dispatch(getAllReviews());
             message.success("Updated review");
         })
         .catch(err => {
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
-            console.log('Error' + err);
+                // axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
+                console.log('Error' + err);
                 message.error("Error updating review");
             }
         );
@@ -151,19 +160,22 @@ export const updateReviewById = (review, reviewId, productId, userId) => async (
 export const deleteReviewById = (reviewId, productId, userId) => async (dispatch) => {
 
     const url = `${api_url}/api/v1/reviews/${reviewId}`;
-    axios.defaults.headers.common['Authorization'] = "Bearer "+axios.defaults.headers.common['Authorization'];
     console.log(url);
     await axios.delete(url)
         .then(res => {
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
             console.log(res);
-            dispatch(getProductReviews(productId));
-            dispatch(getAllUserReviews(userId));
+            if(!res.data.success) {
+                return message.error("Error deleting review");
+            };
+            if(productId !== undefined && userId !== undefined){
+                dispatch(getProductReviews(productId));
+                dispatch(getAllUserReviews(userId));
+            }
+            dispatch(getAllReviews());
             message.success("Deleted review");
         })
         .catch(err => {
-            axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
-            console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error deleting review");
             }
         );

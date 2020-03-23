@@ -133,7 +133,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         position: "absolute",
         zIndex: "999999 !important",
-        top: "4.4em",
+        top: "10em",
         right: 0,
         bottom: 0,
         left: "70%",
@@ -173,4 +173,3 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default useStyles;
-
