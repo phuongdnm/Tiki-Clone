@@ -95,7 +95,7 @@ const userStyles = makeStyles(() => ({
 }));
 
 
-const Address = (props) => {
+export const Address = (props) => {
     const classes = userStyles();
     const [name, setName] = useState("");
     const [companyName, setCompanyName] = useState("");

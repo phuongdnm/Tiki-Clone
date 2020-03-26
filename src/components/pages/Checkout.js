@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {
   makeStyles,
   MuiThemeProvider,
@@ -24,7 +25,6 @@ import Icon from "@material-ui/core/Icon";
 import Login from "../user/Login";
 import SignUp from "../user/SignUp";
 import hotline from "../../image/hotline.png";
-import { useDispatch, useSelector } from "react-redux";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 
 import FormControl from "@material-ui/core/FormControl";
@@ -37,6 +37,15 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import zaloPay from "../../image/icon-zalopay.svg";
+import {useDispatch, useSelector} from "react-redux";
+import * as authActions from "../../store/actions/authActions";
+import { message } from "antd";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import MenuItem from "@material-ui/core/MenuItem";
+import * as addressAction from '../../store/actions/addressActions'
+import * as orderAction from '../../store/actions/orderActions'
+import store from '../../store'
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
@@ -156,7 +165,7 @@ const Bill = () => {
           Bill<span> ({cartItems.length} product(s))</span>
           <span>
             <Button
-              variant="outlined"
+              variant="text"
               size="small"
               style={{ position: "relative", float: "right" }}
             >
@@ -214,7 +223,6 @@ const Bill = () => {
 const LoginUI = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -308,38 +316,151 @@ const LoginUI = () => {
 };
 
 // address ui
-const UserAddress = () => {};
 const AddressUI = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [name, setName] = React.useState('')
-  const [phone, setPhone] = React.useState('')
-  const [city, setCity] = React.useState('')
-  const [district, setDistrict] = React.useState('')
-  const [text, setText] = React.useState('')
+  const [name, setName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [city, setCity] = useState("");
+  const [district, setDistrict] = useState("");
+  const [ward, setWard] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [radio, setRadio] = useState("House/Condominium");
+  const [checked, setChecked] = useState(false);
+  const userAddr = useSelector(state => state.user_address.location)
+  React.useEffect(()=>{
+    if(userAddr){
+      setName(userAddr.name)
+      setCompanyName(userAddr.companyName)
+      setCity(userAddr.city)
+      setDistrict(userAddr.district)
+      setWard(userAddr.ward)
+      setPhoneNo(userAddr.phoneNo)
+      setAddress(userAddr.address)
+    }
+  },[])
+  const city_ = [
+    "Ho Chi Minh",
+    "Hanoi",
+    "Danang",
+    "An Giang",
+    "BA Ria Vung Tau",
+    "Bac Giang",
+    "Bac Kan",
+    "Bac Lieu",
+    "Bac Ninh",
+    "Ben tre",
+    "Binh Duong",
+    "Binh Phuoc",
+    "Binh Thuan",
+    "Pacify",
+    "Ca Mau",
+    "Can Tho",
+    "As tall as",
+    "Gia Lai",
+    "Ha Giang",
+    "Henan",
+    "Ha Tinh",
+    "Hai Duong",
+    "Hai Phong",
+    "Hau Giang",
+    "Hòa Bình",
+    "hung Yen",
+    "Khánh Hòa",
+    "Kien Giang",
+    "Kon Tum",
+    "Lai Chau",
+    "Lam Dong",
+    "Lang Son",
+    "Lao Cai",
+    "Long An",
+    "Nam Dinh",
+    "Nghe An",
+    "Ninh Binh",
+    "Ninh Thuận",
+    "Phu-Tho",
+    "Phu Yen",
+    "Quang Binh",
+    "Quang Nam",
+    "Quang Ngai",
+    "Quang Ninh",
+    "Quang Tri",
+    "Soc Trang",
+    "Son La",
+    "Xining",
+    "peaceful",
+    "Thai Nguyen",
+    "Thanh Hoa",
+    "Hue",
+    "Tien Giang",
+    "Tra Vinh",
+    "Tuyen Quang",
+    "Vinh Long",
+    "Vinh Phuc",
+    "Yen Bai",
+    "Dak Lak",
+    "Dak Nong",
+    "Dien Bien",
+    "Dong Nai",
+    "Dong Thap"
+  ];
+  const district_ = [
+    "Quận Ba Đình",
+    "Quận Hoàn Kiếm",
+    "Quận Hai Bà Trưng",
+    "Quận Đống Đa",
+    "Quận Cầu Giấy",
+    "Quận Long Biên",
+    "Quận Hoàng Mai",
+    "Huyện Sóc Sơn",
+    "Quận Bắc Từ Liêm",
+    "Huyện Thanh Trì",
+    "Huyện Gia Lâm",
+    "Huyện Ba Vì",
+    "Huyện Chương Mỹ",
+    "Huyện Đan Phượng",
+    "Huyện Hoài Đức",
+    "Huyện Mỹ Đức",
+    "Huyện Phú Xuyên",
+    "Huyện Phúc Thọ",
+    "Huyện Quốc Oai",
+    "Huyện Thạch Thất",
+    "Huyện Thanh Oai",
+    "Huyện Thường Tín",
+    "Huyện Ứng Hòa",
+    "Huyện Mê Linh",
+    "Quận Hà Đông",
+    "Thị xã Sơn Tây",
+    "Huyện Đông Anh",
+    "Quận Nam Từ Liêm",
+    "Quận Thanh Xuân",
+    "Quận Tây Hồ"
+  ];
+  const ward_ = [
+    "Phường Cống Vị",
+    "Phường Điện Biên",
+    "Phường Đội Cấn",
+    "Phường Giảng Võ",
+    "Phường Kim Mã",
+    "Phường Liễu Giai",
+    "Phường Ngọc Hà",
+    "Phường Ngọc Khánh",
+    "Phường Nguyễn Trung Trực",
+    "Phường Phúc Xá",
+    "Phường Quán Thánh",
+    "Phường Thành Công",
+    "Phường Trúc Bạch",
+    "Phường Vĩnh Phúc"
+  ];
 
-  const handleNameChange = (event) => {
-    setName(event.target.value)
-  };
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value)
-  };
-  const handleCity = event=>{
-    setCity(event.target.value)
-  }
-  const handleDistrict = event=>{
-    setDistrict(event.target.value)
-  }
-  const handleText = event=>{
-    setText(event.target.value)
+  const handleSubmit = ()=>{
+    const UserAddress = {name, companyName, city, district, ward, phoneNo, address}
+    console.log("input: ", UserAddress)
+    dispatch(addressAction.setAddress(UserAddress))
   }
 
-  const handleSubmit = () => {
-    const userAddress = {name, phone, city, district, text}
-    const addressJson = JSON.stringify(userAddress)
-  };
   return (
     <div
       style={{
@@ -348,89 +469,211 @@ const AddressUI = () => {
         backgroundColor: "white"
       }}
     >
-      <Grid container>
-        <Grid item xl={12}>
-          <div>
-            <FormGroup onSubmit={handleSubmit} fullWidth="true">
-              <FormControl margin="normal">
-                <InputLabel htmlFor="my-input">Name</InputLabel>
-                <Input
-                  id="my-input"
-                  aria-describedby="my-helper-text"
-                  name="name"
-                  onChange={handleNameChange}
-                />
-                {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
-              </FormControl>
-              <FormControl margin="normal">
-                <InputLabel htmlFor="my-input">Phone number</InputLabel>
-                <Input
-                  id="my-input2"
-                  aria-describedby="my-helper-text"
-                  name="phone"
-                  onChange={handlePhoneChange}
-                />
-              </FormControl>
-              <FormControl margin="normal">
-                <InputLabel htmlFor="my-input">City</InputLabel>
-                <Input
-                  id="my-input2"
-                  aria-describedby="my-helper-text"
-                  name="city"
-                  onChange={handlePhoneChange}
-                />
-              </FormControl>
-              <FormControl margin="normal">
-                <InputLabel htmlFor="my-input">District</InputLabel>
-                <Input
-                  id="my-input2"
-                  aria-describedby="my-helper-text"
-                  name="district"
-                  onChange={handlePhoneChange}
-                />
-              </FormControl>
-              <TextareaAutosize
-                aria-label="minimum height"
-                rowsMin={3}
-                placeholder="22 Jump Street"
-              />
-            </FormGroup>
-            <div
-              style={{ marginTop: "2%", position: "relative", float: "right" }}
+      <ValidatorForm onSubmit={handleSubmit}>
+        <FormGroup>
+          <FormControl>
+            <TextValidator
+              size="small"
+              label="Full Name"
+              style={{ margin: 8 }}
+              placeholder="Your full name"
+              value={name}
+              margin="normal"
+              InputLabelProps={{
+                shrink: true
+              }}
+              onChange={e => setName(e.target.value)}
+              variant="standard"
+              validators={["required"]}
+              errorMessages={["Enter Your Full Name"]}
+            />
+          </FormControl>
+          <FormControl>
+            <TextValidator
+              id="outlined-full-width"
+              size="small"
+              label="Company name"
+              style={{ margin: 8 }}
+              placeholder="Your company name"
+              value={companyName}
+              margin="normal"
+              InputLabelProps={{
+                shrink: true
+              }}
+              onChange={e => setCompanyName(e.target.value)}
+              variant="standard"
+              validators={["required"]}
+              errorMessages={["Enter your company name"]}
+            />
+          </FormControl>
+          <FormControl>
+            <TextValidator
+              size="small"
+              label="Phone Number"
+              style={{ margin: 8 }}
+              placeholder="Phone No."
+              value={phoneNo}
+              onChange={e => setPhoneNo(e.target.value)}
+              margin="normal"
+              type={"tel"}
+              InputLabelProps={{
+                shrink: true
+              }}
+              variant="standard"
+              validators={["required"]}
+              errorMessages={["Enter your phone number"]}
+            />
+          </FormControl>
+          <FormControl>
+            <TextValidator
+              size="small"
+              select
+              label="City/Province"
+              value={city}
+              style={{ margin: 8 }}
+              onChange={e => setCity(e.target.value)}
+              // helperText="Please select your city/province"
+              variant="standard"
+              validators={["required"]}
+              errorMessages={["Select a city"]}
             >
-              <Button
-                variant="contained"
-                color="default"
-                size={"small"}
-                style={{ marginRight: "30px" }}
-              >
-                Cancel
-              </Button>
-              <Button
-                variant="contained"
-                size={"small"}
-                color="primary"
-                className={classes.button}
-                onClick={handleSubmit}
-              >
-                Update
-              </Button>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
+              {city_.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextValidator>
+          </FormControl>
+          <FormControl>
+            <TextValidator
+              size="small"
+              select
+              label="District"
+              value={district}
+              style={{ margin: 8 }}
+              onChange={e => setDistrict(e.target.value)}
+              // helperText="Please select your city/province"
+              variant="standard"
+              validators={["required"]}
+              errorMessages={["Select a district"]}
+            >
+              {district_.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextValidator>
+          </FormControl>
+          <FormControl>
+            <TextValidator
+              size="small"
+              select
+              label="Ward"
+              value={ward}
+              style={{ margin: 8 }}
+              onChange={e => setWard(e.target.value)}
+              // helperText="Please select your city/province"
+              variant="standard"
+            >
+              {ward_.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextValidator>
+          </FormControl>
+          <FormControl>
+            <TextValidator
+              size="small"
+              label="Address"
+              value={address}
+              style={{ margin: 8 }}
+              onChange={e => setAddress(e.target.value)}
+              // helperText="Please select your city/province"
+              variant="standard"
+              validators={["required"]}
+              errorMessages={["Enter your address"]}
+            />
+          </FormControl>
+
+          <Button
+            variant="outlined"
+            type={"submit"}
+            color="secondary"
+            className={classes.button}
+            style={{
+              fontSize: "0.7em",
+              margin: 0,
+              marginLeft: "1em",
+              marginRight: "0.5em",
+              marginTop: "2em"
+            }}
+            onClick={handleSubmit}
+          >
+            Update
+          </Button>
+        </FormGroup>
+      </ValidatorForm>
     </div>
   );
 };
 
+const ShippingAddr = ()=>{
+  const classes = useStyles()
+  const userAddr = useSelector(state => state.user_address.location)
+  console.log('userAddr: ', userAddr.name, ", type: ", typeof(userAddr))
+  return(
+    <div
+    className={classes.bill}
+    style={{ padding: "5%", borderRadius: "4px" }}
+  >
+    <div
+      className="title"
+      style={{ borderBottom: "1px solid lightgrey", margin: "2%" }}
+    >
+      <p>
+        User address
+        <span>
+          <Button
+            variant="text"
+            size="small"
+            style={{ position: "relative", float: "right" }}
+          >
+            Change
+          </Button>
+        </span>
+      </p>
+    </div>
+    
+    <div style={{ paddingBottom: "1em" }}>
+      <span style={{ fontWeight: 600 }}>{userAddr.name}</span>
+      <p style={{margin: 0}}>{userAddr.address}, {userAddr.ward}, {userAddr.district}, {userAddr.city}, Viet Nam</p>
+      <p style={{margin: 0}}>Phone: {userAddr.phoneNo}</p>
+    </div>
+  </div>
+  )
+}
 // payment method uix
 const PaymentMethodUI = () => {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const cartInfo = useSelector(state=>state.cart.items)
+  const orderTotal = useSelector(state=>state.cart.totalAmount)
+  const userAddr = useSelector(state =>state.user_address.location)
+  const cartObj = cartInfo[Object.keys(cartInfo)[0]]
+  // console.log("cartinfo: ", Object.keys(cartInfo).length)
+  console.log("cart info: ", cartObj)
+  const orderProduct = cartObj.productId
+  console.log('productid: ', orderProduct)
+  const orderShop = cartObj.product.shop.id
+  const orderQuantity = cartObj.quantity
+  const orderAddress = userAddr.address
+  const orderPhone = userAddr.phoneNo
+
   const [shipping, setShipping] = React.useState("standard");
   const [payXu, setPayXu] = React.useState(false);
   const [payment, setPayment] = React.useState("cash");
-  console.log("1st shipping: ", shipping);
-  console.log("1st payxu: ", payXu);
+  const [loading, setLoading] = useState(false)  
 
   const handleShipping = event => {
     setShipping(event.target.value);
@@ -444,10 +687,25 @@ const PaymentMethodUI = () => {
     setPayment(event.target.value);
   };
 
-  const handleSubmit = ()=>{
-    const options = {shipping, payXu, payment}
-    const optionsJson = JSON.stringify(options)
+  const handleOrder= async e =>{
+    setLoading(true)
+    const msg = message.loading("Ordering!", 0)
+    const product = orderProduct
+    const shop = orderShop
+    const quantity = orderQuantity
+    const address = orderAddress
+    const phone = orderPhone
+    const total = orderTotal
+    const order = {product, shop, quantity, address, phone, total}
+    console.log('order: ', JSON.stringify(order))
+    await dispatch(orderAction.addNewOrder(order))
+    setTimeout(msg, 1)
+    setLoading(false)
   }
+
+
+
+ 
   return (
     <div className="payment-method">
       <Grid container spacing={2}>
@@ -682,11 +940,22 @@ const PaymentMethodUI = () => {
               </div>
             </FormControl>
           </div>
-        
-          <Button variant="contained" color="secondary" size="big" style={{marginTop: '2%'}}>Order</Button>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            size="big"
+            style={{ marginTop: "2%" }}
+            onClick={handleOrder}
+          >
+            Order
+          </Button>
         </Grid>
         <Grid item xl={4}>
-          <div style={{ marginTop: "11%" }}>
+          <div style={{ marginTop: "11%", marginBottom: '2%'}}>
+              <ShippingAddr />
+            </div>
+          <div style={{marginBottom: '2%'}}>
             <Bill />
           </div>
         </Grid>
@@ -729,8 +998,19 @@ function getSteps() {
 
 const Checkout = props => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(1);
+  const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
+  
+ 
   const steps = getSteps();
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      setActiveStep(1);
+    } else {
+      setActiveStep(0);
+    }
+  }, []);
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -743,6 +1023,7 @@ const Checkout = props => {
   const handleReset = () => {
     setActiveStep(0);
   };
+
   return (
     <div className={classes.root}>
       <div
@@ -796,19 +1077,23 @@ const Checkout = props => {
           <div>
             <Typography className={classes.instructions}>
               {bodyTemplate(activeStep)}
+              <div>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  className={classes.backButton}
+                >
+                  Back
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNext}
+                >
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+              </div>
             </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
-                Back
-              </Button>
-              <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
           </div>
         )}
       </div>
