@@ -63,9 +63,8 @@ const paperStyle = createMuiTheme({
 const CartPage = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-
-
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+    console.log('cart: ', useSelector(state => state.cart.items))
     const cartTotalAmountDiscounted = useSelector(state => state.cart.totalAmount_discounted);
     const cartItems = useSelector(state => {
             // transform the object of object to array of object
