@@ -941,15 +941,7 @@ const PaymentMethodUI = () => {
             </FormControl>
           </div>
 
-          <Button
-            variant="contained"
-            color="secondary"
-            size="big"
-            style={{ marginTop: "2%" }}
-            onClick={handleOrder}
-          >
-            Order
-          </Button>
+          
         </Grid>
         <Grid item xl={4}>
           <div style={{ marginTop: "11%", marginBottom: '2%'}}>
@@ -958,6 +950,16 @@ const PaymentMethodUI = () => {
           <div style={{marginBottom: '2%'}}>
             <Bill />
           </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="big"
+            style={{ marginTop: "2%" }}
+            onClick={handleOrder}
+            fullWidth="true"
+          >
+            Order
+          </Button>
         </Grid>
       </Grid>
     </div>
@@ -1077,11 +1079,12 @@ const Checkout = props => {
           <div>
             <Typography className={classes.instructions}>
               {bodyTemplate(activeStep)}
-              <div>
+              <div style={{marginTop: '2%'}}>
                 <Button
                   disabled={activeStep === 0}
                   onClick={handleBack}
                   className={classes.backButton}
+                  style={{marginRight: '2%'}}
                 >
                   Back
                 </Button>
