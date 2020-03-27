@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {message} from 'antd';
-import {getAllProducts} from "./productActions";
 
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 export const GET_MY_ORDERS = 'GET_MY_ORDERS';

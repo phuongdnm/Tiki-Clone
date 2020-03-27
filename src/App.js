@@ -20,7 +20,6 @@ import {getAllProducts} from "./store/actions/productActions";
 import {getCart} from "./store/actions/cartActions";
 import {getAllShops} from "./store/actions/shopActions";
 import {getAllReviews} from "./store/actions/reviewActions";
-import {getAddress} from './store/actions/addressActions'
 import AdminPage from "./components/pages/AdminPage";
 import {getAllOrders} from "./store/actions/orderActions";
 
@@ -31,10 +30,6 @@ const actionsOnPageLoad = ()=> {
     store.dispatch(getAllShops());
     store.dispatch(getAllOrders());
     store.dispatch(getAllReviews());
-    if(localStorage.user_address){
-        store.dispatch(getAddress())
-    }
-
 // Check for token
     if (localStorage.jwtToken) {
         // Set auth token header auth

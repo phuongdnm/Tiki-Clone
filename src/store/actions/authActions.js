@@ -133,8 +133,6 @@ export const setCurrentUserInfo = () => async (dispatch) => {
     axios.get(url)
         .then(res => {
             if (res.data.success) {
-                // console.log(`successful`);
-                // console.log(res);
                 dispatch( {
                     type: SET_CURRENT_USER_INFO,
                     payload: res.data.data

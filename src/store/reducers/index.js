@@ -8,7 +8,6 @@ import orderReducer from "./orderReducer";
 import reviewReducer from "./reviewReducer";
 import userReducer from "./userReducer";
 import statsReducer from "./statsReducer";
-import addressReducer from './addressReducer'
 export default combineReducers({
     auth: authReducer,       // to call is from our component we use this.props.auth
     users: userReducer,
@@ -19,5 +18,4 @@ export default combineReducers({
     orders: orderReducer,
     reviews: reviewReducer,
     stats:statsReducer,
-    user_address: addressReducer
 });
