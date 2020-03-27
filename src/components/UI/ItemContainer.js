@@ -56,9 +56,9 @@ const ItemContainer = (props) =>{
 
             }
 
-            <Grid container className={classes.grid}>
+            <Grid container className={classes.grid} style={{padding: '1% 5%'}}>
                 {props.children ? props.children.map((item, index)=>(
-                    <Grid  item xs={props.space !== undefined ? props.space : 2} key={index}>
+                    <Grid  item xs={props.space !== undefined ? props.space : 2} key={index} style={{marginRight: '8%'}}>
                         {item}
                     </Grid>
                 )) : null}

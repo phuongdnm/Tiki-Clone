@@ -313,14 +313,13 @@ const NavBar = (props) => {
     </Toolbar>;
     const NavSection2 = <Toolbar className={classNames(classes.toolbar, classes.sectionDesktop)}
                                  style={{
-                                     padding: 0,
+                                     padding: "0 10%",
                                      backgroundColor: "#1D71AB",
                                      minHeight: "1.6em",
                                      height: "1.6em",
                                      marginTop: "-0.1em",
                                      justifyContent: "space-around",
-                                     paddingRight: "4em",
-                                     paddingLeft: "4em"
+                                     
                                  }}
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
@@ -412,12 +411,13 @@ const NavBar = (props) => {
         </Typography>
     </Toolbar>;
 
-    const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF"}}
+    const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF", padding: '0 10%'}}
                                  onMouseEnter={() => {
                                      setProductModal(false);
                                      setProductNavigation(false)
                                  }}>
-        <Link to={"/"} className={classes.removeDefaultLink}>
+        
+        <Link to={"/"} className={classes.removeDefaultLink} style={{marginLeft: '5%'}}>
             <Typography className={classes.title3} variant="h6" noWrap>
                 TIKI
             </Typography>
@@ -537,7 +537,7 @@ const NavBar = (props) => {
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
                                  }}
-                                 style={{backgroundColor: "#189EFF"}}>
+                                 style={{backgroundColor: "#189EFF", padding: '0 15%'}}>
         <IconButton
             edge="start"
             className={classes.menuButton}

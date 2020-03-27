@@ -28,27 +28,34 @@ function Footer() {
     <Grid item xs={2} sm={2} style ={{paddingTop:"1.5em"}}>
       <img alt="newslogo" src={newsLogo} className={classes.imageNews} style={{}}/>
     </Grid>
-    <section style ={{paddingTop:"3em"}}>
-    <Grid container spacing={4}>
+    <section style ={{paddingTop:"5em"}}>
+      <Grid container spacing={4}>
 
-        <Grid item xs={3} sm={7} >
-          <Typography variant="h6" className={classes.newsTypo} noWrap>
-            Subscribed to receive letter from Tiki
-          </Typography>
-          <Typography variant="inherit" className={classes.newsTypo} noWrap>
-            Dont slip your chance to collect thousand of deals everyday
-          </Typography>
-        </Grid>
-        <Grid item xs={7} sm={5} >
-          <form className={classes.form} noValidate autoComplete="off" >
-            <TextField id="email" label="Your email" variant="outlined"
-            className={classes.subscribeText} InputProps={{classes: { input : classes.input1 }  }} />
-            <Button variant="contained" color="primary" style={{marginLeft:"0.3em"}}>
-              Subscribe
-            </Button>
-          </form>
-        </Grid>
-    </Grid>
+          <Grid item xs={3} sm={7} >
+            <p style={{fontWeight: 600, margin: 0, fontSize: '1.3em'}}>
+              Subscribed to receive letter from Tiki
+
+            </p>
+            <p style={{fontWeight: 600, margin: 0, fontSize: '1.1em'}}>
+              Dont slip your chance to collect thousand of deals everyday
+
+            </p>
+            <Typography variant="h6" className={classes.newsTypo} noWrap>
+             
+            </Typography>
+            <Typography variant="inherit" className={classes.newsTypo} noWrap>
+            </Typography>
+          </Grid>
+          <Grid item xs={7} sm={5} >
+            <form className={classes.form} noValidate autoComplete="off" >
+              <TextField id="email" label="Your email" variant="outlined"
+              className={classes.subscribeText} InputProps={{classes: { input : classes.input1 }  }} />
+              <Button variant="contained" color="primary" style={{marginLeft:"0.3em"}}>
+                Subscribe
+              </Button>
+            </form>
+          </Grid>
+      </Grid>
 
     </section>
 
@@ -146,8 +153,14 @@ function Footer() {
         <Grid>
           <Typography style={{fontWeight:'bold',lineHeight:3}} component={'span'}>Install App On Your Mobile
             <Grid>
-              <img alt="appstore" className={classes.apprefer} src={appstore} />
-              <img alt="playstore" className={classes.apprefer} src={playstore} />
+              <div>
+              <img alt="appstore" className={classes.apprefer} src={appstore} style={{width: '134px'}}/>
+
+              </div>
+              <div>
+              <img alt="playstore" className={classes.apprefer} src={playstore} style={{width: '134px'}}/>
+
+              </div>
             </Grid>
           </Typography>
         </Grid>
@@ -157,11 +170,11 @@ function Footer() {
   </Grid>
 
   return (
-    <div className={classes.root}>
-      <div className={classes.news}>
+    <div className={classes.root} style={{margin: '0 10%', background: 'white'}}>
+      <div className={classes.news} style={{padding: '0 2%'}}>
         {newsletter}
       </div>
-      <div className= {classes.about}>
+      <div className= {classes.about} style={{padding: '0 2%'}}>
       {about}
       </div>
     </div>

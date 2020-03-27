@@ -44,7 +44,12 @@ const useStyles = makeStyles(theme => ({
         color: "inherit !important" ,
     },
     leftDrawer:{
-        height: '73vh !important',
+        [theme.breakpoints.up('md')]:{
+            height: '78vh !important',
+        },
+        [theme.breakpoints.up('lg')]:{
+            height: '60vh !important',
+        },
         marginTop: "1em",
         paddingTop: "2em",
         paddingLeft: "3em",
@@ -57,27 +62,29 @@ const useStyles = makeStyles(theme => ({
     sectionDesktop3:{
         display: 'none',
         [theme.breakpoints.up('md')]: {
-            display: 'block'
+            display: 'block',
+            height: "78vh !important"
+
         },
         [theme.breakpoints.up('lg')]: {
-            height: "73vh !important"
+            height: "60vh !important"
         },
     },
     item2:{
         [theme.breakpoints.up('md')]: {
-            fontSize: "0.65em"
+            fontSize: "12px"
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: "0.8em"
+            fontSize: "15px"
         },
     },
     item:{
 
         [theme.breakpoints.up('md')]: {
-            width: "0.8em !important"
+            width: "12px !important"
         },
         [theme.breakpoints.up('lg')]: {
-            width: "1em !important"
+            width: "15px !important"
         },
     }
 }));
