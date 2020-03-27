@@ -66,9 +66,7 @@ const CartPage = (props) => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
     console.log('cart: ', useSelector(state => state.cart.items))
     const cartTotalAmountDiscounted = useSelector(state => state.cart.totalAmount_discounted);
-    const handleClick=()=>{
-        window.location.href = "/checkout"
-    }
+
     const cartItems = useSelector(state => {
             // transform the object of object to array of object
             const transformedCartItems = [];
@@ -242,8 +240,10 @@ const CartPage = (props) => {
                             {total()}
                         </div>
                     </Paper>
-                    <Button fullWidth variant="contained" color="secondary" 
-                            style={{marginTop: 10}} onClick={handleClick}>Order</Button>
+                    <Link to={'/checkout'}>
+                        <Button fullWidth variant="contained" color="secondary"
+                                style={{marginTop: 10}}>Order</Button>
+                    </Link>
                 </Grid>
             </Grid>
         )

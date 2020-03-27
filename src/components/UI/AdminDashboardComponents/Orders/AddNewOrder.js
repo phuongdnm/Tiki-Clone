@@ -226,7 +226,6 @@ const AddNewOrder = () => {
                                             id="size-small-outlined-multi"
                                             size="small"
                                             onChange={(e, value) => {
-                                                console.log(`boooo`);
                                                 setCurrentState(value)
                                             }}
                                             value={currentState}
