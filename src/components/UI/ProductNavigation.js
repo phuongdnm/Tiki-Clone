@@ -83,7 +83,7 @@ const ProductNavigation = props => {
         <div className={ classNames(classes.root, classes.sectionDesktop3,{
             [classes.resize]: toggleDrawer,
         })}
-             style={{...props.style}}
+             style={{...props.style, left: '9.5%'}}
 
              onMouseLeave={
                  ()=>{setToggleDrawer(false);
@@ -107,7 +107,7 @@ const ProductNavigation = props => {
                                     {optionsIcon[index]}
                                 </ListItemIcon>
                                 <ListItemText primary={option} primaryTypographyProps={{variant: "inherit"}}
-                                              style={{marginTop: 0, marginBottom: 0, paddingTop:0, paddingBottom: 0}} className={classes.item2}/>
+                                              style={{marginTop: '1%', marginBottom: 0, paddingTop:0, paddingBottom: 0}} className={classes.item2}/>
                             </ListItem>
                         ))}
                     </List>
@@ -117,44 +117,60 @@ const ProductNavigation = props => {
                     [classes.showDrawer]:  toggleDrawer
                 }) }>
                     <Grid container>
-                        <Grid item xs={3} >
-                            <div className={classes.category2}>Drinks</div>
+                        <Grid item xs={3}>
+                            <div className={classes.category2}>Trends</div>
                             <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> {options[selectedIndex]}</Link></p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Iphone </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Samsung </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Vsmart </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Sony </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> LG </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> {options[selectedIndex]}</Link></p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Iphone </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Samsung </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Vsmart </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Sony </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> LG </Link> </p>
                         </Grid>
                         <Grid item xs={3}>
-                            <div className={classes.category2}>computer</div>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-
+                            <div className={classes.category2}>Top selling</div>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Toshiba </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Hitachi </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Asus </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Xiaomi </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> HTC </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Ifruit </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> {options[selectedIndex]}</Link></p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Iphone </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Samsung </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Vsmart </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Sony </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> LG </Link> </p>
                         </Grid>
-                        <Grid item xs={3} >
-                            <div className={classes.category2}>electronics</div>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
-                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> an item </Link> </p>
+                        <Grid item xs={3}>
+                            <div className={classes.category2}>Best of 2020</div>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Shirts </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> T-shirt </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Jeans </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Shocks </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Sneakers </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Hats </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> {options[selectedIndex]}</Link></p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Iphone </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Samsung </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Vsmart </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Sony </Link> </p>
+                            <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> LG </Link> </p>
                         </Grid>
-                        <Grid item xs={3} >
-                            <Link className={classes.removeDefaultLink} to={"#"}>
-                                <img src={cooker} style={{width: "10em", marginTop: "50%"}} alt={"oven"}/>,
-                            </Link>
+                            <Grid item xs={3} >
+                                <Link className={classes.removeDefaultLink} to={"#"}>
+                                    <img src={cooker} style={{width: "10em", marginTop: "10%"}} alt={"oven"}/>,
+                                </Link>
+                            </Grid>
+                            <section className={classes.items}>
+                        </section>
                         </Grid>
-                        <section className={classes.items}>
-                    </section>
                     </Grid>
-                </Grid>
 
             </Grid>
         </div>
