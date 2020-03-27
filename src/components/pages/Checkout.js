@@ -1093,6 +1093,7 @@ const Checkout = props => {
     }
     dispatch(await  authActions.updateUserInfo({name: user.name,address, phone: phoneNo}));
     setTimeout(msg, 1);
+    props.history.push('/');
 
     setLoading(false)
   };

@@ -240,7 +240,7 @@ const CartPage = (props) => {
                             {total()}
                         </div>
                     </Paper>
-                    <Link to={'/checkout'}>
+                    <Link to={'/checkout'} className={classes.removeLink}>
                         <Button fullWidth variant="contained" color="secondary"
                                 style={{marginTop: 10}}>Order</Button>
                     </Link>
