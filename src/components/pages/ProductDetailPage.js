@@ -58,41 +58,6 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import {message} from "antd";
 import FormGroup from "@material-ui/core/FormGroup";
 
-
-const product = {
-  category: [
-    "accessories",
-    "books-gifts"
-  ],
-  colors: [
-    "Black&Red",
-    "Blacka&Green",
-    "Black&Blue"
-  ],
-  reviews: ["ds", 'i hate it', 'i love it'],
-  photo: "no-photo.jpg",
-  _id: "5e48f8970bedbc0e99c44f02",
-  name: "HyperX Pulsefire Raid - Gaming Mouse",
-  price: 59.99,
-  description: "11 Programmable Buttons, RGB, Ergonomic Design, Comfortable Side Grips, Software-Controlled Customization",
-  weight: "50g",
-  specs: "Connection Type: Wired, Buttons: 11, Max Speed: 450IPS",
-  branch: "HyperX",
-  origin: "US",
-  discount: 10,
-  shop: "5e4406dfe67ba2619654062e",
-  user: "5e479b23df94eb34c43a0ca8",
-  createdAt: "2020-02-28T14:17:54.088Z",
-  slug: "hyperx-pulsefire-raid-gaming-mouse",
-  __v: 0,
-  averageRating: 4,
-  id: "5e48f8970bedbc0e99c44f02",
-  sold: 90,
-  hot: 'true',
-  timeInMilliSec: 50000
-};
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -326,7 +291,7 @@ const ProductPriceInfo = ({product}) => {
     if (price > 5) {
       return (
           <Button variant="contained" color='primary'
-                  style={{marginBottom: '1em', marginTop: '1em', fontSize: '0.6em'}}> Installment only
+          style={{fontSize: '0.7em', marginLeft: '2em', marginTop: '2%'}}> Installment only
             345.000$/month</Button>
       )
     }

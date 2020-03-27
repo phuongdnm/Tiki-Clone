@@ -67,7 +67,7 @@ const Card = (props) => {
         <Ripples>
             <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
-                <div className={classes.container} style={{height: '25em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
+                <div className={classes.container} style={{height: '25em', margin: '0 5%'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
                     <div>
                         <img src={props.image} alt="product " width={"100%"} style={{borderRadius: '3px', maxHeight: '18em', minHeight: '14em'}}/> <br/>
 

@@ -22,7 +22,7 @@ const ProductCategoryDeal = props => {
     const classes = userStyles();
 
     return (
-        <Grid container className={classes.container}>
+        <Grid container className={classes.container} spacing={2}>
             <Grid item xs={8}>
                 <Grid item xs={12}>
                     <Carousel interval={3000} >
@@ -32,7 +32,7 @@ const ProductCategoryDeal = props => {
 
                     </Carousel>
                 </Grid>
-                <Grid container>
+                <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <Link to={"#"}><img src={ProductDeal7} alt="" className={classes.mediumProduct}/></Link>
 
@@ -44,7 +44,7 @@ const ProductCategoryDeal = props => {
 
                 </Grid>
             </Grid>
-            <Grid container item xs={4}>
+            <Grid container item xs={4} spacing={2}>
                 <Grid item xs={6}>
                     <Link to={"#"}><img src={ProductDeal4} alt=""  className={classes.smallProduct}/></Link>
 

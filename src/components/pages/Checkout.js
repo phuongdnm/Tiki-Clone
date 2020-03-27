@@ -206,6 +206,10 @@ const Bill = () => {
         </div>
     );
   });
+
+  const handleClick=()=>{
+    window.location.href="/cart"
+  }
   return (
       <div
           className={classes.bill}
@@ -1075,7 +1079,7 @@ const Checkout = props => {
   };
 
   const handleReset = () => {
-    setActiveStep(0);
+    setActiveStep(0)
   };
   const handleOrder= async e =>{
     setLoading(true);
