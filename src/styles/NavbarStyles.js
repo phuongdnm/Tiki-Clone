@@ -169,6 +169,19 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "white",
         textAlign: "center",
         borderRadius: "0.5em",
+    },
+    "@global #autocomContainer .MuiInputBase-root.MuiInput-root.MuiAutocomplete-inputRoot.MuiInputBase-fullWidth.MuiInput-fullWidth.MuiInputBase-formControl.MuiInput-formControl.MuiInputBase-adornedEnd.MuiInput-underline:before":{
+        border: "none !important",
+
+    },
+    "@global #autocomContainer .MuiInputBase-root.MuiInput-root.MuiAutocomplete-inputRoot.MuiInputBase-fullWidth.MuiInput-fullWidth.MuiInputBase-formControl.MuiInput-formControl.MuiInputBase-adornedEnd.MuiInput-underline:after":{
+        border: "none !important"
+    },
+    "@global .MuiButtonBase-root.MuiIconButton-root.MuiAutocomplete-popupIndicator, .MuiButtonBase-root.MuiIconButton-root.MuiAutocomplete-clearIndicator.MuiAutocomplete-clearIndicatorDirty":{
+        color: "white !important"
+    },
+    "@global #autocomInput":{
+        color: "white !important"
     }
 }));
 

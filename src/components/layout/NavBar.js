@@ -33,34 +33,45 @@ import tikiNow from '../../image/tiki-now.png'
 import ticketBox from '../../image/ticketBox.png'
 import zaloLogo from '../../image/Logo_Zalo.png'
 import userStyles from '../../styles/NavbarStyles'
-import TikiXu from '../../image/tiki-xu.svg'
-import Bookcare from '../../image/bookcare.svg'
-import Tikinow2 from '../../image/tiki-now2.png'
 import {loadCSS} from 'fg-loadcss';
 import ProductNavigation from "../UI/ProductNavigation";
 import TransitionsModal from '../user/UserModal'
 import {useDispatch, useSelector} from "react-redux";
 import * as authActions from '../../store/actions/authActions'
 import {message} from "antd";
-
+import TikiXu from '../../image/tiki-xu.svg'
+import Bookcare from '../../image/bookcare.svg'
+import Tikinow2 from '../../image/tiki-now2.png'
+import {TextValidator} from "react-material-ui-form-validator";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import {countries} from "../UI/AdminDashboardComponents/Products/AddANewProduct";
+import TextField from "@material-ui/core/TextField";
 
 const NavBar = (props) => {
     const classes = userStyles();
     const dispatch = useDispatch();
 
     // function to open and close modal
-     const [open, setOpen] = useState(false);
-     const [index, setIndex] = useState(0);
+    const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
+    const {type} = props.match.params;
+    const [search, setSearch] = useState("");
 
-     const handleOpenModal=()=>{
-         setOpen(true)
-     };
-     const handleCloseModal = ()=>{
-         setOpen(false)
-     };
-     const handleOnClick=(event)=>{
-         setIndex(event.currentTarget.name)
-     };
+
+
+    const cartQuantity = useSelector(state => Object.keys(state.cart.items).length);
+    const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
+    const allProducts = useSelector(state=> state.products.products);
+
+    const handleOpenModal = () => {
+        setOpen(true)
+    };
+    const handleCloseModal = () => {
+        setOpen(false)
+    };
+    const handleOnClick = (event) => {
+        setIndex(event.currentTarget.name)
+    };
 
     useEffect(() => {
         loadCSS(
@@ -69,16 +80,17 @@ const NavBar = (props) => {
         );
         setOpen(!!props.showForm);
         !!props.showForm && message.info("You need to be logged in!");
+        // console.log(`check isAdmin is:`);
+        // console.log(props.checkIsAdmin);
+        // console.log(!!props.checkIsAdmin);
         props.checkIsAdmin !== undefined && props.checkIsAdmin && message.error("you to be logged in as an admin to access this route");
-    }, []);
 
+    }, []);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const [productModal, setProductModal] = useState(false);
     const [isLoginTip, setIsLoginTip] = useState(false);
     const [productNavigation, setProductNavigation] = useState(false);
 
-    const cartQuantity = useSelector(state => Object.keys(state.cart.items).length);
-    const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
 
 
 
@@ -219,6 +231,7 @@ const NavBar = (props) => {
                     My comment
                 </Button>
             </Link>
+
             <Link to={'/dashboard/11'} onClick={(e) => e.stopPropagation()} className={classes.removeDefaultLink}>
                 <Button
                     size={"small"}
@@ -248,12 +261,23 @@ const NavBar = (props) => {
                     Bookcare
                 </Button>
             </Link>
+
         </section>
 
-    ):(
-        <section  className={classNames({[classes.loginToolTip]: isLoginTip})}
-                  onMouseLeave={()=>{setIsLoginTip(false)}}
-                  style={{width: "20em", height:"17em",  textAlign: "center", padding: "1.2em",backgroundColor: "rgba(255,255,255,0.8)", margin: 0, display: "None"}} >
+    ) : (
+        <section className={classNames({[classes.loginToolTip]: isLoginTip})}
+                 onMouseLeave={() => {
+                     setIsLoginTip(false)
+                 }}
+                 style={{
+                     width: "20em",
+                     height: "17em",
+                     textAlign: "center",
+                     padding: "1.2em",
+                     backgroundColor: "rgba(255,255,255,0.8)",
+                     margin: 0,
+                     display: "None"
+                 }}>
 
 
             <Button
@@ -271,14 +295,16 @@ const NavBar = (props) => {
                 size={"small"}
                 variant="contained"
                 style={{backgroundColor: "#FDDE54"}}
-                startIcon={<PersonAddIcon />}
+                startIcon={<PersonAddIcon/>}
                 onClick={(e)=>{handleOpenModal(); handleOnClick(e); setIsLoginTip(false)}}
+
                 name="1"
             >
                 Create Account
             </Button>
             <Button
                 size={"small"}
+                disabled
                 variant="contained"
                 className={classes.button}
                 style={{backgroundColor: "#4267B2", color: "white"}}
@@ -287,6 +313,7 @@ const NavBar = (props) => {
                 Login with Facebook
             </Button>
             <Button
+                disabled
                 size={"small"}
                 variant="contained"
                 style={{backgroundColor: "#DC4F42", color: "white"}}
@@ -295,6 +322,7 @@ const NavBar = (props) => {
                 Sign in with Google
             </Button>
             <Button
+                disabled
                 size={"small"}
                 variant="contained"
                 style={{backgroundColor: "#0180CE", color: "white"}}
@@ -319,14 +347,13 @@ const NavBar = (props) => {
                                      height: "1.6em",
                                      marginTop: "-0.1em",
                                      justifyContent: "space-around",
-                                     
                                  }}
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
                                  }}
 
     >
-        <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+        <Typography className={classes.title} variant="subtitle2" noWrap component={'p'}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <img src={ticketBox} alt="ticketBox" style={{height: "50%", width: "50%"}}/>
             </IconButton>
@@ -411,12 +438,11 @@ const NavBar = (props) => {
         </Typography>
     </Toolbar>;
 
-    const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF", padding: '0 10%'}}
+    const NavSection3 = <Toolbar className={classes.toolbar} style={{backgroundColor: "#189EFF", padding: '0 7%'}}
                                  onMouseEnter={() => {
                                      setProductModal(false);
                                      setProductNavigation(false)
                                  }}>
-        
         <Link to={"/"} className={classes.removeDefaultLink} style={{marginLeft: '5%'}}>
             <Typography className={classes.title3} variant="h6" noWrap>
                 TIKI
@@ -426,18 +452,64 @@ const NavBar = (props) => {
 
             <img src={tikiLogo} alt={"logo"} className={classes.tikiLogo}/>
         </Link>
-        <div className={classes.search}>
-            <div className={classes.searchIcon}>
+        <div className={classes.search} id={'autocomContainer'}>
+            <div className={classes.searchIcon} onClick={()=> search.length > 0 && props.history.push(`/product/${search}`)}>
                 <SearchIcon/>
             </div>
-            <InputBase
-                placeholder="Search…"
+            {allProducts !== null && allProducts!== undefined && allProducts.length > 0 &&
+            <Autocomplete
+                id="autocomInput"
+                freeSolo
+                options={allProducts}
                 classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
+                    option: classes.option,
                 }}
-                inputProps={{'aria-label': 'search'}}
+                style={{width: '90%', marginLeft: '4em', paddingRight: '2em'}}
+                getOptionLabel={option => {
+                    return option.name
+                }}
+                onChange={(e, value) => {
+                    setSearch(e.target.value)
+                }}
+                onInputChange={(e)=>{
+                    e !== null && setSearch(e.target.value)
+                }}
+                onKeyPress={(e)=>{
+                    e.charCode === 13 && props.history.push(`/product/${search}`)    // if enter key is pressed redirect to product category and search
+                }}
+                renderOption={(option, state) => (
+                    <p style={{
+                        padding: "0 !important",
+                        margin: "0 !important",
+                        width: 1000,
+                        color: '#000',
+                    }}
+                       onClick={()=>props.history.push(`/product/${option.name}`)}
+                    >
+                        {option.name}
+                    </p>
+                )}
+
+                renderInput={params => (
+
+                    <TextField
+                        fullWidth
+                        {...params}
+                        placeholder="Search for a product"
+                        value={search}
+                        style={{color: 'white'}}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps= {{
+                            ...params.inputProps,
+                        }}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                )}
             />
+            }
+
         </div>
         <div className={classes.sectionDesktop2}>
 
@@ -537,7 +609,7 @@ const NavBar = (props) => {
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
                                  }}
-                                 style={{backgroundColor: "#189EFF", padding: '0 15%'}}>
+                                 style={{backgroundColor: "#189EFF", padding: '0 5%', marginLeft: '7%'}}>
         <IconButton
             edge="start"
             className={classes.menuButton}
@@ -549,7 +621,6 @@ const NavBar = (props) => {
         >
             <MenuIcon/>
         </IconButton>
-
         <Typography className={classes.title2} noWrap>
             PRODUCT CATEGORY
         </Typography>
@@ -632,7 +703,7 @@ const NavBar = (props) => {
     return (
         <section>
             <div className={classes.grow}>
-                <AppBar position="static">
+                <AppBar position="static" style={{backgroundColor: "#189EFF"}}>
                     {NavSection1}
                     {NavSection2}
                     {NavSection3}

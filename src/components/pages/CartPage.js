@@ -63,10 +63,10 @@ const paperStyle = createMuiTheme({
 const CartPage = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const cartTotalAmount = useSelector(state => state.cart.totalAmount);
-    console.log('cart: ', useSelector(state => state.cart.items))
-    const cartTotalAmountDiscounted = useSelector(state => state.cart.totalAmount_discounted);
 
+
+    const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+    const cartTotalAmountDiscounted = useSelector(state => state.cart.totalAmount_discounted);
     const cartItems = useSelector(state => {
             // transform the object of object to array of object
             const transformedCartItems = [];
@@ -240,7 +240,7 @@ const CartPage = (props) => {
                             {total()}
                         </div>
                     </Paper>
-                    <Link to={'/checkout'}>
+                    <Link to={'/checkout'} className={classes.removeLink}>
                         <Button fullWidth variant="contained" color="secondary"
                                 style={{marginTop: 10}}>Order</Button>
                     </Link>
@@ -251,7 +251,7 @@ const CartPage = (props) => {
 
     return (
         <div>
-            <NavBar/>
+            <NavBar {...props}/>
             <div className="body" style={{marginBottom: "20%"}}>
                 {CartSection()}
             </div>

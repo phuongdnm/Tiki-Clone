@@ -162,10 +162,11 @@ const useStyles = makeStyles(theme => ({
   "@global .MuiOutlinedInput-root": {
     borderRadius: '0 !important',
   },
-  "@global .MuiRating-decimal .MuiRating-label": {
-    display: "inline"
+  "@global .MuiRating-label ": {
+    display: 'block !important',
+    color: 'inherit',
+    fontSize: 'inherit'
   }
-
 }));
 
 
@@ -1007,7 +1008,7 @@ const ProductDetailPage = (props) => {
 
   return (
       <div style={{backgroundColor: "#F4F4F4"}}>
-        <NavBar/>
+        <NavBar {...props}/>
         {/*<h1>{productName}</h1>*/}
         {/*<h1>{productId}</h1>*/}
         <div className={classes.root} style={{paddingBottom: '1em'}}>

@@ -7,7 +7,7 @@ import Footer from "../layout/Footer";
 const OrdersPage = (props) => {
     return (
         <div>
-            < NavBar/>
+            < NavBar {...props}/>
             < AccountDashBoard index={2}/>
             < Footer/>
 

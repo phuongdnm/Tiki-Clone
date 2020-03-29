@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
     root:{
         flexGrow: 1,
         width: "20%",
-        height: "68vh !important",
+        height: "auto !important",
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     resize:{
         flexGrow: 1,
         width: "80%",
-        height: "68vh !important",
+        height: "auto !important",
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",
@@ -44,12 +44,6 @@ const useStyles = makeStyles(theme => ({
         color: "inherit !important" ,
     },
     leftDrawer:{
-        [theme.breakpoints.up('md')]:{
-            height: '78vh !important',
-        },
-        [theme.breakpoints.up('lg')]:{
-            height: '60vh !important',
-        },
         marginTop: "1em",
         paddingTop: "2em",
         paddingLeft: "3em",
@@ -63,28 +57,24 @@ const useStyles = makeStyles(theme => ({
         display: 'none',
         [theme.breakpoints.up('md')]: {
             display: 'block',
-            height: "78vh !important"
-
-        },
-        [theme.breakpoints.up('lg')]: {
-            height: "60vh !important"
-        },
+            height: 'auto'
+        }
     },
     item2:{
         [theme.breakpoints.up('md')]: {
-            fontSize: "12px"
+            fontSize: "0.7em"
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: "15px"
+            fontSize: "0.8em"
         },
     },
     item:{
 
         [theme.breakpoints.up('md')]: {
-            width: "12px !important"
+            width: "0.8em !important"
         },
         [theme.breakpoints.up('lg')]: {
-            width: "15px !important"
+            width: "1em !important"
         },
     }
 }));
