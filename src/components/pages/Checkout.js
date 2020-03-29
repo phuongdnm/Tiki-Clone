@@ -207,9 +207,6 @@ const Bill = () => {
     );
   });
 
-  const handleClick=()=>{
-    window.location.href="/cart"
-  }
   return (
       <div
           className={classes.bill}

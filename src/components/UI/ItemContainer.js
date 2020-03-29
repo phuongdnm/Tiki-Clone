@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 const userStyles = makeStyles(() => ({
     root:{
         margin: '2em',
+        padding: '0.5em'
     },
     title: {
         fontSize: '1.1em',
@@ -19,8 +20,6 @@ const userStyles = makeStyles(() => ({
         backgroundColor: 'white',
         borderRadius: '3px',
         boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
-
-
     }
 
 }));
@@ -33,7 +32,7 @@ const ItemContainer = (props) =>{
 
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{...props.style}}>
             {props.title !== undefined ?
                 <div className={classes.title}>{props.title}</div>:
                 <section style={{backgroundColor: 'white', paddingTop: '1em', boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",}}>
@@ -56,7 +55,7 @@ const ItemContainer = (props) =>{
 
             }
 
-            <Grid container className={classes.grid} style={{padding: '1% 5%'}}>
+            <Grid container className={classes.grid} style={{padding: '1% 5%',...props.gridStyle}}>
                 {props.children ? props.children.map((item, index)=>(
                     <Grid  item xs={props.space !== undefined ? props.space : 2} key={index} style={{marginRight: '8%'}}>
                         {item}

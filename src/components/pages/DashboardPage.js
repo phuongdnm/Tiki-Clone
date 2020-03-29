@@ -8,7 +8,7 @@ const DashboardPage = (props) => {
     const {type} = props.match.params;
     return (
         <div>
-            < NavBar/>
+            < NavBar {...props}/>
             < AccountDashBoard index={parseInt(type)}/>
             < Footer/>
 
