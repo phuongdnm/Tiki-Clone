@@ -65,7 +65,7 @@ const Card = (props) => {
 
     const type1 =
         <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
                 <div className={classes.container} style={{height: '25em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
                     <div>
@@ -103,7 +103,7 @@ const Card = (props) => {
 
     const type2 =
         <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
 
                 <div className={classes.container}  style={{height: '26em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
@@ -151,9 +151,9 @@ const Card = (props) => {
                         <Progress value={!isNaN(props.sold) ? props.sold : 50}
                                   className={classes.progress}>
                             {!isNaN(props.sold) &&
-                            <span> {!!props.hot &&
+                            <span style={{zIndex: 9999}}> {!!props.hot &&
                             <WhatshotIcon style={{color: "white", fontSize: '1.3em', paddingBottom: '0.2em'}}/>}
-                                Sold {props.sold}</span>
+                                <span style={{fontSize: "0.8em"}}>Sold {props.sold}</span></span>
                             }
                         </Progress>
                         {props.timeInMilliSec &&
@@ -171,7 +171,7 @@ const Card = (props) => {
         </Ripples>;
     const type3 =
         <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
 
                 <div className={classes.container} onClick={props.onClick !== undefined ? props.onClick : undefined}
@@ -245,7 +245,7 @@ const Card = (props) => {
                     <Grid item>
                         <Ripples>
 
-                            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+                            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                                   className={classes.removeLinkStyle}>
                                 <ButtonBase className={classes.image}>
                                     <img className={classes.img} alt="complex" src={props.image}/>
@@ -258,7 +258,7 @@ const Card = (props) => {
                         <Grid item xs container direction="column" spacing={2}>
                             <Grid item xs>
                                 <Typography gutterBottom variant="subtitle1">
-                                    <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+                                    <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                                           className={classes.removeLinkStyle}>
                                         <img src={TikiNow} alt={"tikinow"}/> | {props.name}
                                     </Link>

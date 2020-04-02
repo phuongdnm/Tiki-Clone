@@ -1,4 +1,4 @@
-import {ADD_TO_CART, DELETE_FROM_CART, GET_CART, REMOVE_FROM_CART} from "../actions/cartActions";
+import {ADD_TO_CART, DELETE_FROM_CART, GET_CART, REMOVE_FROM_CART, CLEAR_CART} from "../actions/cartActions";
 import CartItem from "../../models/cart-item";
 
 
@@ -67,7 +67,7 @@ export default (state=initialState, action)=>{
                 // need to reduce it, not erase it
                 const updatedCartItem = new CartItem(selectedCartItem.quantity -1, selectedCartItem.productPrice, selectedCartItem.discountedPrice, selectedCartItem.product,
                     selectedCartItem.productId, selectedCartItem.sum_discounted - selectedCartItem.discountedPrice, selectedCartItem.sum - selectedCartItem.productPrice);
-                    // selectedCartItem.productId, selectedCartItem.sum - selectedCartItem.productPrice);
+                // selectedCartItem.productId, selectedCartItem.sum - selectedCartItem.productPrice);
                 updatedCartItems = {...state.items, [action.pid]: updatedCartItem}
             }else {
                 // erase it
@@ -113,10 +113,17 @@ export default (state=initialState, action)=>{
                     ...state
                 }
             }
-
+        case CLEAR_CART:
+            if(action.cart === null){
+                return {
+                    items: {},
+                    totalAmount_discounted: 0,
+                    totalAmount: 0
+                }
+            }
         default:
             return {
-            ...state
-        }
+                ...state
+            }
     }
 }

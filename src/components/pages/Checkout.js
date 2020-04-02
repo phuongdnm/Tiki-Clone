@@ -40,6 +40,7 @@ import * as orderActions from '../../store/actions/orderActions'
 import {Link} from "react-router-dom";
 import {loadCSS} from "fg-loadcss";
 import * as authActions from "../../store/actions/authActions";
+import * as cartActions from "../../store/actions/cartActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -206,7 +207,6 @@ const Bill = () => {
         </div>
     );
   });
-
   return (
       <div
           className={classes.bill}
@@ -1057,7 +1057,10 @@ const Checkout = props => {
         document.querySelector('#font-awesome-css'),
     );
     isLoggedIn ? setActiveStep(1) : setActiveStep(0);
-
+    if(cartItems.length <= 0){
+      setTimeout(()=> props.history.goBack(), 1000);
+      message.error("No items in cart to checkout!");
+    }
   }, []);
 
   if(firstLoad && (user.address !== undefined || user.phone !== undefined || user.name !== undefined)){
@@ -1076,7 +1079,7 @@ const Checkout = props => {
   };
 
   const handleReset = () => {
-    setActiveStep(0)
+    setActiveStep(0);
   };
   const handleOrder= async e =>{
     setLoading(true);
@@ -1085,17 +1088,18 @@ const Checkout = props => {
       let order_ = {
         shop: cartItems[i].product.shop.id,
         product: cartItems[i].productId,
-        quantity: parseInt(cartItems.quantity),
+        quantity: parseInt(cartItems[i].quantity),
         phone: phoneNo,
         address,
         total
       };
+      console.log(order_);
       dispatch( await orderActions.addNewOrder(order_));
     }
+    dispatch(await cartActions.clearCart());
     dispatch(await  authActions.updateUserInfo({name: user.name,address, phone: phoneNo}));
     setTimeout(msg, 1);
     props.history.push('/');
-
     setLoading(false)
   };
 
@@ -1116,9 +1120,9 @@ const Checkout = props => {
                 <IconButton
                     aria-label="where do you want to shop to?"
                     color="inherit"
-                    style={{ padding: "auto 0px", paddingLeft: "0" }}
+                    style={{padding: "auto 0px", paddingLeft: "0"}}
                 >
-                  <i className={classes.iconLogoBlue} />
+                  <i className={classes.iconLogoBlue}/>
                 </IconButton>
               </Link>
 
@@ -1132,10 +1136,10 @@ const Checkout = props => {
                 ))}
               </Stepper>
             </Grid>
-            <Grid item xs={2} style={{ padding: "2% 0" }}>
+            <Grid item xs={2} style={{padding: "2% 0"}}>
               <img
                   src={hotline}
-                  style={{ position: "relative", float: "left" }}
+                  style={{position: "relative", float: "left"}}
               />
             </Grid>
           </Grid>
@@ -1143,7 +1147,7 @@ const Checkout = props => {
 
         <div
             className="progress-body"
-            style={{ padding: "1% 15% 20% 15%", backgroundColor: "#f4f4f4" }}
+            style={{padding: "1% 15% 20% 15%", backgroundColor: "#f4f4f4"}}
         >
           {activeStep === steps.length ? (
               <div>
@@ -1155,7 +1159,7 @@ const Checkout = props => {
           ) : (
               <div>
                 <div className={classes.instructions}>
-                  {bodyTemplate(activeStep, handleNext, setActiveStep, handleOrder, loading, setName, setCompanyName, setCity, setDistrict, setWard, setPhoneNo, setAddress, setRadio, name, companyName, city, district, ward, phoneNo, address, radio)}
+                  {cartItems.length > 0 && bodyTemplate(activeStep, handleNext, setActiveStep, handleOrder, loading, setName, setCompanyName, setCity, setDistrict, setWard, setPhoneNo, setAddress, setRadio, name, companyName, city, district, ward, phoneNo, address, radio)}
                   <div style={{marginTop: '2%'}}>
                     <Button
                         disabled={activeStep === 0}

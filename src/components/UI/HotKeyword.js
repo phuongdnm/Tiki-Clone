@@ -8,16 +8,27 @@ import {Link} from "react-router-dom";
 const userStyles = makeStyles(() => ({
     // "@global .BrainhubCarousel": {marginLeft: '2em', marginRight: '2em', marginTop: '3em'},
     "@global .BrainhubCarousel__arrows": {
-        backgroundColor: '#189EFF',
+        backgroundColor: 'rgba(219, 219, 219, 0.6 )',
+        borderRadius: '50%',
+    },
+    "@global .BrainhubCarousel__arrows:focus": {
+        outline: "none"
     },
     "@global .BrainhubCarousel__arrows:hover:enabled": {
-        backgroundColor: '#189EFF'
+        backgroundColor: 'rgba(219, 219, 219, 0.6 )',
+        borderRadius: '50%',
+    },
+    "@global .BrainhubCarousel__arrows span": {
+        borderColor: "rgba(255, 255, 255, 0.6) !important",
+    },
+    "@global .BrainhubCarousel__arrows:hover span":{
+        borderColor: "rgba(255, 255, 255, 1) !important"
     },
     image: {
         padding: '1.25em',
-        paddingRight: '1em',
-        paddingLeft: '1em',
+        textAlign: "center",
         borderRadius: '5px',
+        width: '8vw',
         "&:hover": {
             boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
             cursor: 'pointer'
@@ -46,8 +57,9 @@ const HotKeyword = (props) => {
                 arrows
                 infinite
                 offset={1}
+
             >
-                <div className={classes.image} style={{backgroundColor: pickRandColor()}}>
+                <div className={classes.image} style={{backgroundColor: pickRandColor(), marginLeft: '3em'}}>
                     <Link to={"#"} className={classes.removeLinkStyle}>
                         <span style={{fontSize: '0.8em', marginTop: '0.5em', textAlign: 'center'}}>Backpack</span>
                     </Link>

@@ -3,13 +3,11 @@ import {makeStyles} from "@material-ui/core/styles";
 const fterStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        fontFamily:"Roboto",
-        margin:"5% 2% 0 2%"
+        margin:"5% 2% 0 2%",
+        paddingBottom: "2%"
     },
     form: {
-        alignItems:"center",
         paddingTop:"2%",
-        width:"150%",
         [theme.breakpoints.down('sm')]: {
             paddingTop:"0",
             paddingBottom:"1em"
@@ -25,11 +23,6 @@ const fterStyles = makeStyles(theme => ({
     },
     news: {
         backgroundColor: "#F7F7F7",
-        
-    },
-    subscribeText: {
-        width: "50%",
-        
     },
     input1: {
         height: 0,
@@ -48,7 +41,7 @@ const fterStyles = makeStyles(theme => ({
         },
     },
     imageNews:{
-        width:"70%", 
+        width:"70%",
         marginLeft:"1em",
         [theme.breakpoints.only('sm')]: {
             display: 'none',
@@ -68,11 +61,42 @@ const fterStyles = makeStyles(theme => ({
     },
     icon:{
         paddingLeft:"0.2em",
+        marginRight: '0.5em'
     },
     apprefer:{
         width:"70%",
         height:"70%",
+    },
+    headers:{
+        fontSize: '0.95em',
+        fontWeight:'bold',
+        lineHeight:3,
+        paddingBottom:"0.47em"
+    },
+    fontSmall:{
+        fontSize: "0.85em",
+        fontWeight: 600
+    },
+    removeLinkStyles:{
+        textDecoration: "none !important",
+        color: "inherit !important" ,
+        "&:hover":{
+            color: "rgba(0, 0, 0, 0.4) !important"
+        }
+    },
+    '@global .MuiInput-underline:after': {
+        borderBottom: '2px solid #189EFF !important'
+    },
+    '@global .MuiButtonBase-root.MuiIconButton-root': {
+        outline: 'none !important'
+    },
+    "@global .MuiFormLabel-root.Mui-focused":{
+        color: "#189EFF !important"
+    },
+    "@global #subscribe.MuiButton-containedPrimary":{
+        backgroundColor: "#189EFF !important"
     }
 }));
 
 export default fterStyles;
+

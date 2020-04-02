@@ -224,34 +224,34 @@ const DeleteAProduct = (props) => {
                         </Button>
                         <div tabIndex={0}
                              onBlur={(event)=> {!event.currentTarget.contains(event.relatedTarget) && setToggleList(false)}}>
-                        <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}>
-                            Search by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
-                            <ExpandMore style={{marginLeft: '0.5em'}}/>}
+                            <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}>
+                                Search by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
+                                <ExpandMore style={{marginLeft: '0.5em'}}/>}
 
-                        </Button>
-                        <List component="nav" aria-label="filter options"
-                              className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
-                              style={{marginTop:"0.5em", left: '85%'}}
-                        >
-                            <ListItem button onClick={() => {
-                                setFilterOptions("id");
-                                setToggleList(val => !val)
-                            }} selected={"id" === filterOptions}>
-                                <ListItemText primary="Id"/>
-                            </ListItem>
-                            <ListItem button onClick={() => {
-                                setFilterOptions("name");
-                                setToggleList(val => !val)
-                            }} selected={"name" === filterOptions}>
-                                <ListItemText primary="Name"/>
-                            </ListItem>
-                            <ListItem button onClick={() => {
-                                setFilterOptions("price");
-                                setToggleList(val => !val)
-                            }} selected={"price" === filterOptions}>
-                                <ListItemText primary="Price"/>
-                            </ListItem>
-                        </List>
+                            </Button>
+                            <List component="nav" aria-label="filter options"
+                                  className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
+                                  style={{marginTop:"0.5em", left: '85%'}}
+                            >
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("id");
+                                    setToggleList(val => !val)
+                                }} selected={"id" === filterOptions}>
+                                    <ListItemText primary="Id"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("name");
+                                    setToggleList(val => !val)
+                                }} selected={"name" === filterOptions}>
+                                    <ListItemText primary="Name"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("price");
+                                    setToggleList(val => !val)
+                                }} selected={"price" === filterOptions}>
+                                    <ListItemText primary="Price"/>
+                                </ListItem>
+                            </List>
                         </div>
 
                     </section>
@@ -263,17 +263,18 @@ const DeleteAProduct = (props) => {
                     products_.map((product, index) => (
                         <Grid item xs={4} md={3} lg={3} style={{margin: 0}} key={index}>
                             <ProductCard
-                            style={{backgroundColor: 'rgba(256, 256, 256, 0.2)', height: '30em'}}
-                            onClick={()=> {setCurrentProduct(product); setShowProductCard(val => !val)}}
-                            key={product.id}
-                            id={product.id}
-                            type={'review'}
-                            price={product.price}
-                            discount={product.discount !== undefined ? product.discount : null}
-                            title={product.name}
-                            image={product.photo === "no-photo.jpg" ? NoPhoto : `${process.env.REACT_APP_API}/uploads/${product.photo}`}
-                            rating={product.averageRating}
-                            link={false}
+                                style={{backgroundColor: 'rgba(256, 256, 256, 0.2)', height: '30em'}}
+                                onClick={()=> {setCurrentProduct(product); setShowProductCard(val => !val)}}
+                                key={product.id}
+                                id={product.id}
+                                type={'review'}
+                                slug={product.slug}
+                                price={product.price}
+                                discount={product.discount !== undefined ? product.discount : null}
+                                title={product.name}
+                                image={product.photo === "no-photo.jpg" ? NoPhoto : `${process.env.REACT_APP_API}/uploads/${product.photo}`}
+                                rating={product.averageRating}
+                                link={false}
                             />
                         </Grid>
                     )) : null}

@@ -58,6 +58,7 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import {message} from "antd";
 import FormGroup from "@material-ui/core/FormGroup";
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -167,6 +168,7 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
     fontSize: 'inherit'
   }
+
 }));
 
 
@@ -292,7 +294,7 @@ const ProductPriceInfo = ({product}) => {
     if (price > 5) {
       return (
           <Button variant="contained" color='primary'
-          style={{fontSize: '0.7em', marginLeft: '2em', marginTop: '2%'}}> Installment only
+                  style={{marginBottom: '1em', marginTop: '1em', fontSize: '0.6em'}}> Installment only
             345.000$/month</Button>
       )
     }
@@ -382,7 +384,7 @@ const ProductPriceInfo = ({product}) => {
                       <ButtonGroup size="small" style={{height: '2em'}} color={'primary'}>
                         <Button onClick={handleDecrease} style={{padding: 0, margin: 0}}>-</Button>
                         <TextField variant="outlined" style={{borderRadius: 0, padding: 0, margin: 0}}
-                                    value={amount} onChange={handleChange}/>
+                                   value={amount} onChange={handleChange}/>
                         <Button onClick={handleIncrease}>+</Button>
                       </ButtonGroup>
                     </Grid>
@@ -396,7 +398,7 @@ const ProductPriceInfo = ({product}) => {
                           marginRight: "10px",
                           fontSize: '0.75em'
                         }}
-                            alt={"a cart icon"}
+                             alt={"a cart icon"}
                         />
                         Add to cart
                       </Button>
@@ -609,7 +611,6 @@ const ReviewCard = ({review, product}) => {
     setTitle(review.title) ;
     setRating(review.rating);
   }, [review]);
-
 
   const handleUpdateReview = async (e) => {
     e.preventDefault();
@@ -982,10 +983,15 @@ const ProductReview = ({product, reviews}) => {
       </div>
   )
 }
+
+const mainImage = ({product, currentImg})=>{
+
+}
 const ProductDetailPage = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const {productName, productId} = props.match.params;
+  const [firstImageLoad, setFirstImageLoad] = useState(true);
   // const product = useSelector(state => state.products.products !== null && state.products.products.find(prod => prod.id === productId));
   const product = useSelector(state => state.products.currentProduct);
   const productReviews = useSelector(state => state.reviews.reviews);
@@ -996,7 +1002,10 @@ const ProductDetailPage = (props) => {
 
   useEffect(() => {
     dispatch(productActions.getProductById(productId));
-    dispatch(reviewActions.getProductReviews(productId))
+    dispatch(reviewActions.getProductReviews(productId));
+  }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, []);
 
   useEffect(()=>{
@@ -1004,7 +1013,6 @@ const ProductDetailPage = (props) => {
       setCurrentImg(product.photo !== 'no-photo.jpg' ? `http://34.87.156.245/uploads/${product.photo}`:noPhoto);
     }
   }, [product]);
-
 
   return (
       <div style={{backgroundColor: "#F4F4F4"}}>
@@ -1021,18 +1029,18 @@ const ProductDetailPage = (props) => {
               </Grid>
               <Grid item xs={9}>
                 {product !== null &&<>
-                <SideBySideMagnifier
-                    imageSrc={currentImg}
-                    largeImageSrc={currentImg}
-                    imageAlt="Example"
-                    style={{marginTop: '3em'}}
-                />
-                <div className='image-description' style={{textAlign: 'center'}}>
+                  <SideBySideMagnifier
+                      imageSrc={currentImg}
+                      largeImageSrc={currentImg}
+                      imageAlt="Example"
+                      style={{marginTop: '3em'}}
+                  />
+                  <div className='image-description' style={{textAlign: 'center'}}>
                                 <span style={{fontSize: '0.75em'}}>
                                   <img src={ZoomIcon} alt={"a zoom icon"}/>
                                   Drag your mouse to zoom out
                                 </span>
-                </div></>
+                  </div></>
                 }
               </Grid>
 

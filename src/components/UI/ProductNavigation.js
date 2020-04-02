@@ -57,7 +57,7 @@ const ProductNavigation = props => {
         <TvIcon className={classes.item}/>,
         <HeadsetIcon className={classes.item}/>,
         <Badge color="secondary" badgeContent={<span style={{fontSize: "0.8em", padding: "0.2em"}}>new</span>}>
-             <LaptopIcon className={classes.item}/>
+            <LaptopIcon className={classes.item}/>
         </Badge>,
         <CameraAltIcon className={classes.item}/>,
         <img src={OvenIcon} style={{width: "1.5em"}} alt={"oven"}/>,
@@ -83,11 +83,11 @@ const ProductNavigation = props => {
         <div className={ classNames(classes.root, classes.sectionDesktop3,{
             [classes.resize]: toggleDrawer,
         })}
-             style={{...props.style, left: '9.5%'}}
+             style={{...props.style}}
 
              onMouseLeave={
                  ()=>{setToggleDrawer(false);
-                 typeof props.toggleDrawer === "function" && props.toggleDrawer();
+                     typeof props.toggleDrawer === "function" && props.toggleDrawer();
                  }}
         >
             <Grid container>
@@ -95,7 +95,7 @@ const ProductNavigation = props => {
                     <List component="nav" aria-label="main mailbox folders" style={{margin: 0}}>
                         {options.map((option, index) => (
                             <ListItem
-                                style={{marginTop: 0, marginBottom: 0, paddingTop:"1.3%", paddingBottom: "1.3%", alignItems: 'center'}}
+                                style={{marginTop: 0, marginBottom: 0, paddingTop:"1.8%", paddingBottom: "1.8%", alignItems: 'center'}}
                                 key={option}
                                 button
                                 selected={index === selectedIndex}
@@ -162,15 +162,15 @@ const ProductNavigation = props => {
                             <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> Sony </Link> </p>
                             <p className={classes.category2item}><Link className={classes.removeDefaultLink} to={"#"}> LG </Link> </p>
                         </Grid>
-                            <Grid item xs={3} >
-                                <Link className={classes.removeDefaultLink} to={"#"}>
-                                    <img src={cooker} style={{width: "10em", marginTop: "10%"}} alt={"oven"}/>,
-                                </Link>
-                            </Grid>
-                            <section className={classes.items}>
-                        </section>
+                        <Grid item xs={3} >
+                            <Link className={classes.removeDefaultLink} to={"#"}>
+                                <img src={cooker} style={{width: "10em", marginTop: "10%"}} alt={"oven"}/>,
+                            </Link>
                         </Grid>
+                        <section className={classes.items}>
+                        </section>
                     </Grid>
+                </Grid>
 
             </Grid>
         </div>

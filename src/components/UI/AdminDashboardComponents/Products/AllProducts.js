@@ -91,37 +91,37 @@ const AllProducts = (props) => {
                     return products;
             }
         }else {
-                switch (filterOptions) {
-                    case "createdAt":
-                        products_ !== null && products_.sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
-                        setProducts(products_);
-                        setIsLoading(false);
-                        return;
-                    case "rating":
-                        products_ !== null && products_.sort((a, b) =>{
-                            let a_ = a.averageRating === undefined ? 0 : a.averageRating;
-                            let b_ = b.averageRating === undefined ? 0 : b.averageRating;
-                            return  a_ > b_ ? 1 : -1
-                        });
-                        setProducts(products_);
-                        setIsLoading(false);
-                        return;
-                    case "price":
-                        products_ !== null && products_.sort((a, b) => a.price > b.price ? 1 : -1);
-                        setProducts(products_);
-                        setIsLoading(false);
-                        return;
-                    case "review":
-                        products_ !== null && products_.sort((a, b) => {
-                            return getProductReviewLength(a.id) > getProductReviewLength(b.id) ? 1 : -1
-                        });
-                        setProducts(products_);
-                        setIsLoading(false);
-                        return;
-                    default:
-                        return products;
-                }
+            switch (filterOptions) {
+                case "createdAt":
+                    products_ !== null && products_.sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
+                    setProducts(products_);
+                    setIsLoading(false);
+                    return;
+                case "rating":
+                    products_ !== null && products_.sort((a, b) =>{
+                        let a_ = a.averageRating === undefined ? 0 : a.averageRating;
+                        let b_ = b.averageRating === undefined ? 0 : b.averageRating;
+                        return  a_ > b_ ? 1 : -1
+                    });
+                    setProducts(products_);
+                    setIsLoading(false);
+                    return;
+                case "price":
+                    products_ !== null && products_.sort((a, b) => a.price > b.price ? 1 : -1);
+                    setProducts(products_);
+                    setIsLoading(false);
+                    return;
+                case "review":
+                    products_ !== null && products_.sort((a, b) => {
+                        return getProductReviewLength(a.id) > getProductReviewLength(b.id) ? 1 : -1
+                    });
+                    setProducts(products_);
+                    setIsLoading(false);
+                    return;
+                default:
+                    return products;
             }
+        }
     };
     return (
         <div style={{width: '100%'}}>
@@ -147,46 +147,46 @@ const AllProducts = (props) => {
                              onBlur={(event)=> {!event.currentTarget.contains(event.relatedTarget) && setToggleList(false)}}
                              style={{display: "flex", alignItems: 'center', width: '100%'}}
                         >
-                    <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}
-                            style={{ width: "100%"}}
-                    >
-                        Sort by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
-                        <ExpandMore style={{marginLeft: '0.5em'}}/>}
-                    </Button>
-                    <List component="nav" aria-label="filter options"
-                          className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
-                          style={{marginTop: '3em'}}
-                    >
-                        <ListItem button onClick={() => {
-                            setFilterOptions("createdAt");
-                            setToggleList(val => !val);
-                            handleFilter(false,"createdAt")
-                        }} selected={"createdAt" === filterOptions}>
-                            <ListItemText primary="Time created"/>
-                        </ListItem>
-                        <ListItem button onClick={() => {
-                            setFilterOptions("rating");
-                            setToggleList(val => !val)
-                            handleFilter(false,"rating")
-                        }} selected={"rating" === filterOptions}>
-                            <ListItemText primary="Average rating"/>
-                        </ListItem>
-                        <ListItem button onClick={() => {
-                            setFilterOptions("price");
-                            setToggleList(val => !val);
-                            handleFilter(false,"price")
+                            <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}
+                                    style={{ width: "100%"}}
+                            >
+                                Sort by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
+                                <ExpandMore style={{marginLeft: '0.5em'}}/>}
+                            </Button>
+                            <List component="nav" aria-label="filter options"
+                                  className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
+                                  style={{marginTop: '3em'}}
+                            >
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("createdAt");
+                                    setToggleList(val => !val);
+                                    handleFilter(false,"createdAt")
+                                }} selected={"createdAt" === filterOptions}>
+                                    <ListItemText primary="Time created"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("rating");
+                                    setToggleList(val => !val)
+                                    handleFilter(false,"rating")
+                                }} selected={"rating" === filterOptions}>
+                                    <ListItemText primary="Average rating"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("price");
+                                    setToggleList(val => !val);
+                                    handleFilter(false,"price")
 
-                        }} selected={"price" === filterOptions}>
-                            <ListItemText primary="Price"/>
-                        </ListItem>
-                        <ListItem button onClick={() => {
-                            setFilterOptions("review");
-                            setToggleList(val => !val);
-                            handleFilter(false,"review")
-                        }} selected={"review" === filterOptions}>
-                            <ListItemText primary="Reviews"/>
-                        </ListItem>
-                    </List>
+                                }} selected={"price" === filterOptions}>
+                                    <ListItemText primary="Price"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("review");
+                                    setToggleList(val => !val);
+                                    handleFilter(false,"review")
+                                }} selected={"review" === filterOptions}>
+                                    <ListItemText primary="Reviews"/>
+                                </ListItem>
+                            </List>
                         </div>
                         <Fab aria-label="add" color={"default"} className={classes.fabGreen} style={{marginTop: '1.5em'}}
                              onClick={() => {setToggleSortOrder(val => {handleFilter(!val, filterOptions ); return !val})}}>
@@ -194,9 +194,9 @@ const AllProducts = (props) => {
                         </Fab>
                     </section>
                 </Grid>
-            <Grid item xs={9} md={9} lg={9} className={classes.card} style={{marginTop: '2em'}} >
-                <ProductStats/>
-            </Grid>
+                <Grid item xs={9} md={9} lg={9} className={classes.card} style={{marginTop: '2em'}} >
+                    <ProductStats/>
+                </Grid>
             </Grid>
             <Grid container>
                 {products !== null && products.length > 0 ?
@@ -207,6 +207,7 @@ const AllProducts = (props) => {
                                 key={product.id}
                                 id={product.id}
                                 type={'review'}
+                                slug={product.slug}
                                 price={product.price}
                                 discount={product.discount !== undefined ? product.discount : 0}
                                 title={product.name}

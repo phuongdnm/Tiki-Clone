@@ -12,11 +12,12 @@ const userStyles = makeStyles(() => ({
         padding: '0.5em'
     },
     title: {
-        fontSize: '1.1em',
+        fontSize: '1.2em',
         fontWeight: 400,
-        marginBottom: '0.3em',
+        marginBottom: '0.5em',
     },
     grid:{
+        paddingLeft: "4%",
         backgroundColor: 'white',
         borderRadius: '3px',
         boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
@@ -28,8 +29,6 @@ const userStyles = makeStyles(() => ({
 
 const ItemContainer = (props) =>{
     const classes = userStyles();
-    // const dealHeader =
-
 
     return (
         <div className={classes.root} style={{...props.style}}>
@@ -55,16 +54,22 @@ const ItemContainer = (props) =>{
 
             }
 
-            <Grid container className={classes.grid} style={{padding: '1% 5%',...props.gridStyle}}>
+            <Grid container className={classes.grid} style={{...props.gridStyle}}>
                 {props.children ? props.children.map((item, index)=>(
-                    <Grid  item xs={props.space !== undefined ? props.space : 2} key={index} style={{marginRight: '8%'}}>
+                    <Grid  item xs={5} sm={3} md={props.space !== undefined ? props.space : 2} key={index} style={{marginRight: '2%'}}>
                         {item}
                     </Grid>
                 )) : null}
                 <Grid container >
                     <Grid item xs={12} style={{textAlign: 'center'}}>
-                        <Button variant="outlined" color="primary" style={{fontSize: '0.7em', padding: '0.5em', paddingLeft: '4em', paddingRight: '4em', marginBottom: '1.7em', textTransform: 'lowercase'}}>
-                            See more
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            onClick={props.seeMore !== undefined ? props.seeMore : null}
+                            style={{fontSize: '0.7em', padding: '0.5em', paddingLeft: '4em', paddingRight: '4em', marginBottom: '1.7em', textTransform: 'lowercase'}}
+                            disabled={props.loading !== undefined ? props.loading : false}
+                        >
+                            {props.loading !== undefined ? (props.loading ? "loading": "See more") : "See more"}
                         </Button>
                     </Grid>
                 </Grid>

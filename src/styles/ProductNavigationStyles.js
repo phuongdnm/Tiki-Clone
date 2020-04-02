@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.1)",
         borderRadius: "0.5em !important",
         position: "absolute",
         left: '5%',
@@ -62,10 +62,10 @@ const useStyles = makeStyles(theme => ({
     },
     item2:{
         [theme.breakpoints.up('md')]: {
-            fontSize: "0.7em"
+            fontSize: "0.85em"
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: "0.8em"
+            fontSize: "1em"
         },
     },
     item:{

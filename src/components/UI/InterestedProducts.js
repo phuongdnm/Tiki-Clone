@@ -24,7 +24,7 @@ const userStyles = makeStyles(() => ({
         paddingLeft: '1.9em',
         borderRadius: '5px',
         "&:hover": {
-            boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
+            boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09)",
             cursor: 'pointer'
         },
     },
@@ -48,7 +48,7 @@ const InterestedProducts = (props) => {
                 slidesPerScroll={6}
                 arrows
                 infinite
-                
+
             >
                 <div className={classes.image}>
                     <Link to={"#"} className={classes.removeLinkStyle}>
