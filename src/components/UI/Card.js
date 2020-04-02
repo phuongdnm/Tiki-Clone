@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Progress} from 'reactstrap';
 import Countdown from "react-countdown-now";
 import Rating from '@material-ui/lab/Rating';
@@ -22,6 +22,7 @@ import TextField from '@material-ui/core/TextField'
 import {Link} from "react-router-dom";
 import classNames from "classnames";
 import {useSelector} from "react-redux";
+import {message} from 'antd';
 
 
 const Card = (props) => {
@@ -59,9 +60,9 @@ const Card = (props) => {
         }
     };
 
-    if (props.time !== undefined) {
-        // startTimer()
-    }
+    useEffect(()=>{
+      message.destroy()
+    },[]);
 
     const type1 =
         <Ripples>

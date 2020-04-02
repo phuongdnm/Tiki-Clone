@@ -447,16 +447,9 @@ const AddANewProduct = (props) => {
             discount: parseInt(discount),
             colors
         };
-        // console.log(`product iss ..`);
-        // console.log(product);
-        // console.log(shop);
 
         dispatch( await productActions.createProduct(product, shop, photoFile));
-
-        // console.log("uuuuuuuu");
-        // console.log(photoFile);
         setTimeout(msg, 1);
-        // setTimeout(()=>dispatch(productActions.updateProductPhoto(photoFile, prodId())), 3000) ;
 
         setIsLoading(false);
         setName("");
@@ -486,12 +479,6 @@ const AddANewProduct = (props) => {
         // const img = <img src={photo} alt="..."/>;
         // let imgFormat = document.createElement("p");
         let img = document.createElement("img");
-        // p.appendChild(img);
-        // console.log(`boooooooo`);
-        // console.log(file);
-        // console.log(file.getRawFile());
-        // console.log(u);
-        // console.log(photoPreview);
         setPhotoPreview(file)
         img.src = file;
         img.style.width = "6em";
@@ -538,7 +525,6 @@ const AddANewProduct = (props) => {
                                             id="size-small-outlined-multi"
                                             size="small"
                                             onChange={(e, value)=> {
-                                                console.log(`boooo`);
                                                 setCategory(value)
                                             }}
                                             defaultValue={category}

@@ -131,9 +131,7 @@ const FindAShopOrders = (props) => {
                                     inputProps={{
                                         onChange: (e) => {
                                             setInputText(e.target.value);
-                                            console.log(inputText);
                                         },
-                                        // console.log(`val is: ${inputText}`)},
                                         ...params,
                                         placeholder: `Search user by ${filterOptions}`,
                                         inputProps: {

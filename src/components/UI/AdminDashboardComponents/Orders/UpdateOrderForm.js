@@ -173,8 +173,6 @@ const UpdateOrderForm = ({order, setShowUpdateForm}) => {
             total
         };
 
-        console.log(order_);
-
         dispatch( await orderActions.updateOrderById(order_, order._id));
 
         setTimeout(msg, 1);

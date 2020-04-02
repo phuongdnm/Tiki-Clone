@@ -22,6 +22,7 @@ import {getAllShops} from "./store/actions/shopActions";
 import {getAllReviews} from "./store/actions/reviewActions";
 import AdminPage from "./components/pages/AdminPage";
 import {getAllOrders} from "./store/actions/orderActions";
+import UnderDevelopmentPage from "./components/pages/UnderDevelopmentPage";
 
 
 const actionsOnPageLoad = ()=> {
@@ -85,6 +86,16 @@ function App() {
                         path={"/:productName/:productId"}
                         render={routeProps => <ProductDetailPage {...routeProps} />}
                     />
+                    <Route
+                        exact
+                        path={"/underDevelopment"}
+                        render={routeProps => <UnderDevelopmentPage {...routeProps} status={"underDevelopment"}/>}
+                    />
+                    <Route
+                        exact
+                        path={"/notFound"}
+                        render={routeProps => <UnderDevelopmentPage {...routeProps} status={"notFound"}/>}
+                    />
                     <PrivateRoute
                         exact
                         path={"/cart"}
@@ -99,6 +110,9 @@ function App() {
                         exact
                         path={"/checkout"}
                         component={Checkout}
+                    />
+                    <Route
+                        render={routeProps => <UnderDevelopmentPage {...routeProps} status={"404"}/>}
                     />
                 </Switch>
             </BrowserRouter>

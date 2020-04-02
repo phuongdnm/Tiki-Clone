@@ -101,7 +101,6 @@ const UpdateUserForm = (props) => {
         if(checked){
             user = {newName: name, newPassword: newPassword, newRole: role, newGender: gender, newPhone: phone, newAddress: address, newDob: selectedDate };
         }else{
-            console.log(`heree`);
             user = {newName: name, newRole: role, newGender: gender, newPhone: phone, newAddress: address, newDob: selectedDate };
         }
         await dispatch(userActions.updateUserById(user, props.user._id));

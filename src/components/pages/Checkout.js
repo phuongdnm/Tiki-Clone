@@ -1093,7 +1093,6 @@ const Checkout = props => {
         address,
         total
       };
-      console.log(order_);
       dispatch( await orderActions.addNewOrder(order_));
     }
     dispatch(await cartActions.clearCart());

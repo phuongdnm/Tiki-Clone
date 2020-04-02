@@ -11,10 +11,8 @@ const api_url = process.env.REACT_APP_API;
 export const getTopSoldProducts= (limit="5", sort="order") => async (dispatch) => {
 
     const url = `${api_url}/api/v1/stats/products?limit=${limit}&sort=${sort}`;
-    console.log(url);
     await axios.get(url)
         .then(res => {
-            console.log(res);
             if(!res.data.success){
                 return message.error("Error getting products");
             }
@@ -26,7 +24,6 @@ export const getTopSoldProducts= (limit="5", sort="order") => async (dispatch) =
             message.success("Got top Products");
         })
         .catch(err => {
-                console.log('Error' + err);
                 message.error("Error getting products");
             }
         );
@@ -37,10 +34,8 @@ export const getTopSoldProducts= (limit="5", sort="order") => async (dispatch) =
 export const getTopSoldProductsOfShop= (shopId, limit="5") => async (dispatch) => {
 
     const url = `${api_url}/api/v1/shops/${shopId}/stats?limit=${limit}`;
-    console.log(url);
     await axios.get(url)
         .then(res => {
-            console.log(res);
             if(!res.data.success){
                 return message.error("Error getting products");
             }
@@ -52,7 +47,6 @@ export const getTopSoldProductsOfShop= (shopId, limit="5") => async (dispatch) =
             message.success("Got Products");
         })
         .catch(err => {
-                console.log('Error' + err);
                 message.error("Error getting products");
             }
         );

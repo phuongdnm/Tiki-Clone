@@ -14,9 +14,9 @@ const userStyles = makeStyles(theme => ({
         marginLeft: '5%',
         marginTop: "0.7%",
         paddingTop: "0.7%",
-        marginBottom: '6.5em',
+        marginBottom: '7em',
         [theme.breakpoints.up('md')]: {
-            width: "70%",
+            width: "75%",
             marginLeft: "25%",
         },
     },

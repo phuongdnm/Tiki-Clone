@@ -8,8 +8,6 @@ const PrivateRoute = ({component: Component, checkIsAdmin, ...rest}) => {
     const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
     const isAdmin = useSelector(state => !!state.auth.userData.role ? state.auth.userData.role === "admin" : null);
 
-    // console.log(`lll`);
-    // console.log(isAdmin +" "+ isLoggedIn +" "+ !!checkIsAdmin);
     if (isAdmin && isLoggedIn && !!checkIsAdmin) {      // if you are an admin and logged in
 
         return (

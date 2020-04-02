@@ -49,8 +49,6 @@ const OrderCard = ({order, handleDeleteOrder, setCurrentOrder, isLoading, toggle
         if(currentState === "Delivered") return  1;
     };
     const OrderTimeLine = ({createdAt, currentState})=> {
-        // console.log(`currstate is`);
-        // console.log(currentState);
         return(
             <Timeline align={"left"}>
                 <Timeline.Item className={classes.oldTimeItem}>
@@ -293,8 +291,6 @@ const UpdateOrDeleteOrder = (props) => {
                                 }} onClick={(e) => {
                                     setInputText(e.target.textContent)
                                 }}>
-                                    {console.log(`inputtext is`)}
-                                    {console.log(inputText)}
                                     {handleFilter(filterOptions, option)}
                                 </p>
                             }
@@ -306,9 +302,7 @@ const UpdateOrDeleteOrder = (props) => {
                                     inputProps={{
                                         onChange: (e) => {
                                             setInputText(e.target.value);
-                                            console.log(inputText);
                                         },
-                                        // console.log(`val is: ${inputText}`)},
                                         ...params,
                                         placeholder: `Search user by ${filterOptions}`,
                                         inputProps: {

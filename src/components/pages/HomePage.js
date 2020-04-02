@@ -165,7 +165,7 @@ const HomePage = props => {
                 <HotKeyword />
                 {products !== null &&
                 <ItemContainer
-                    title={"ALL PRODUCTS FROM DB"}
+                    title={"Recommended for you"}
                     seeMore={() => {
                         setSeeMoreProd(val => val + 10);
                         setLoadingProd(true);

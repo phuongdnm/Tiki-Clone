@@ -122,12 +122,7 @@ const ReviewStats = (props) => {
                 }
             }
         };
-        // console.log("reeeee");
-        // console.log(reviewChart_);
         setReviewChart(reviewChart_);
-        // console.log(`date list is`);
-        // console.log(Last7days);
-        // console.log(Last7daysReviewCount);
     };
 
     const calculateRatingData = () => {
@@ -228,13 +223,7 @@ const ReviewStats = (props) => {
                 }
             }
         };
-        // console.log("reeeee");
-        // console.log(reviewChart_);
         setReviewChartRating(reviewChart_);
-        // console.log(`date list is`);
-        // console.log(Last7days);
-        // console.log(Last7daysReviewCount);
-        // console.log(Last7daysReviewCountRatingAverage);
     };
 
     if (firstLoad) {

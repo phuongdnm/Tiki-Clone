@@ -130,10 +130,8 @@ const SignUp = (props) => {
     setLoading(true);
     const msg = message.loading("Creating a new user!", 0);
     let formatedDate = Moment(selectedDate.toDateString()).format('YYYY-MM-DD');
-    console.log(formatedDate);
 
     const text = {name, email, password, gender, dob: formatedDate};
-    console.log(text);
     await dispatch(authActions.registerUser(text, props.history, props.closeModal));
     setTimeout(msg, 1);
     setLoading(false)
@@ -143,7 +141,9 @@ const SignUp = (props) => {
   };
   return (
       <div >
-        <FormGroup >
+        <FormGroup   onKeyPress={(e)=>{
+          e.charCode === 13 && handleSubmit(e)    // if enter key is pressed redirect to product category and search
+        }}>
           <FormControl >
             <InputLabel htmlFor="my-input">Name</InputLabel>
             <Input
