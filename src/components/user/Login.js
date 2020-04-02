@@ -46,7 +46,6 @@ const Login = props => {
     const msg = message.loading("Logging in user!", 0);
 
     const text = { email, password };
-    console.log(text);
 
     await dispatch(
         authActions.loginUser(text, props.history, props.closeModal)

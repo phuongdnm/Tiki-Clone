@@ -113,7 +113,6 @@ const FindAProduct = (props) => {
                                         onChange: (e) => {
                                             setInputText(e.target.value);
                                         },
-                                        // console.log(`val is: ${inputText}`)},
                                         ...params,
                                         placeholder: `Search user by ${filterOptions}`,
                                         inputProps: {

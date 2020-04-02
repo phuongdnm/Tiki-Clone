@@ -11,19 +11,15 @@ const api_url = process.env.REACT_APP_API;
 export const getAllShops = () => async (dispatch) => {
 
     const url = `${api_url}/api/v1/shops`;
-    console.log(url);
     await axios.get(url)
         .then(res => {
-            // console.log(res);
             dispatch({
                 type: GET_ALL_SHOPS,  //this call test dispatch. to dispsatch to our reducer
                 shops: res.data.data
             });
-
-            message.success("Got shops");
+            // message.success("Got shops");
         })
         .catch(err => {
-                console.log('Error' + err);
                 message.error("Error getting shops");
             }
         );
@@ -34,19 +30,16 @@ export const getAllShops = () => async (dispatch) => {
 export const getShopById = (id) => async (dispatch) => {
 
     const url = `${api_url}/api/v1/shops/${id}`;
-    console.log(url);
     await axios.get(url)
         .then(res => {
-            console.log(res);
             dispatch({
                 type: GET_SHOP_BY_ID,  //this call test dispatch. to dispsatch to our reducer
                 currentShop: res.data.data
             });
 
-            message.success("Got shop");
+            // message.success("Got shop");
         })
         .catch(err => {
-                console.log('Error' + err);
                 message.error("Error getting shop");
             }
         );
@@ -55,10 +48,8 @@ export const getShopById = (id) => async (dispatch) => {
 // 🔒
 export const createNewShop = (shop) => async (dispatch) => {
     const url = `${api_url}/api/v1/shops`;
-    console.log(url);
     await axios.post(url, shop)
         .then(res => {
-            console.log(res);
             if(!res.data.success) {
                 return  message.error("Error creating shop");
             }
@@ -66,7 +57,6 @@ export const createNewShop = (shop) => async (dispatch) => {
             message.success("shop created successfully");
         })
         .catch(err => {
-                console.log('Error' + err);
                 message.error("Error creating shop");
             }
         );
@@ -75,10 +65,8 @@ export const createNewShop = (shop) => async (dispatch) => {
 // 🔒
 export const updateShopById = (shop, shopId) => async (dispatch) => {
     const url = `${api_url}/api/v1/shops/${shopId}`;
-    console.log(url);
     await axios.put(url, shop)
         .then(res => {
-            console.log(res);
             dispatch(getAllShops());
             message.success("shop updated successfully");
         })
@@ -93,10 +81,8 @@ export const updateShopById = (shop, shopId) => async (dispatch) => {
 // 🔒
 export const deleteShopById = (shopId) => async (dispatch) => {
     const url = `${api_url}/api/v1/shops/${shopId}`;
-    console.log(url);
     await axios.delete(url)
         .then(res => {
-            console.log(res);
             if(!res.data.success) {
                 return  message.error("Error deleting shop");
             };

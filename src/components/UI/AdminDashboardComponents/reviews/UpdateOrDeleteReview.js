@@ -154,7 +154,6 @@ const UpdateOrDeleteReview = (props) => {
         e.preventDefault();
         setIsLoading(true);
         const msg = message.loading("Deleting Review!", 0);
-        console.log(currentReview);
         await dispatch(reviewActions.deleteReviewById(currentReview._id));
         setTimeout(msg, 1);
         setIsLoading(false)

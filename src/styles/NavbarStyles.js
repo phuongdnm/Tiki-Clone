@@ -144,12 +144,13 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         padding: 0,
         position: "absolute",
-        top: "4.4em",
+        top: "27.75%",
         right: 0,
         left: 0,
         bottom: 0,
-        width: "98.5vw",
-        height: "70vh",
+        width: "100%",
+        height: "100%",
+        zIndex: 99999,
         backgroundColor: "rgba(0, 0, 0, 0.15)"
     },
     customSubModal:{
@@ -181,6 +182,9 @@ const useStyles = makeStyles(theme => ({
     },
     "@global #autocomInput":{
         color: "white !important"
+    },
+    "@global .MuiButtonBase-root.MuiFab-root:focus":{
+        outline: "none"
     }
 }));
 

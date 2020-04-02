@@ -462,13 +462,6 @@ const UpdateAProductForm = ({product, setShowProductCard}) => {
             discount: parseInt(discount),
             colors
         };
-        // console.log(`product iss ..`);
-        // console.log(product_);
-        // console.log(shop);
-
-        // if(photo === undefined){    // if photo is undefined then delete product's photo from db
-        //     // delete product action not implemented yet
-        // }
         dispatch(await productActions.updateProductById(product_, product.id, photoFile));
 
 
@@ -484,8 +477,6 @@ const UpdateAProductForm = ({product, setShowProductCard}) => {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.onload = (e) => {
-            // console.log(`reso is`);
-            // console.log(e);
             if (xhr.status === 200) {
                 file = new File([xhr.response], `Product Image.jpeg`);
                 newFileObj = {
@@ -503,8 +494,6 @@ const UpdateAProductForm = ({product, setShowProductCard}) => {
                 setPhotoPreview(newFileObj);
                 setTimeout(() => addImageToListUi(defaultPhoto), 1000)
             }
-
-            // console.log(file);
         };
         xhr.send();
     };
@@ -528,34 +517,12 @@ const onAdd = async (event) => {
 
 const addImageToListUi = (file) => {
     let img = document.createElement("img");
-    // p.appendChild(img);
-    // console.log(`boooooooo`);
-    // console.log(file);
-    // console.log(file.getRawFile());
-    // console.log(u);
-    // console.log(photoPreview);
     setPhotoPreview(file)
     img.src = file;
     img.style.width = "6em";
     let container = document.getElementsByClassName("k-file-single")[0];
     container.insertBefore(img, container.childNodes[1]);
 };
-
-// const onDrop = (e) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     console.log(`weeeeeee`);
-//     const imageUrl = e.dataTransfer.getData('text/html');   // get the html img element
-//     const rex = /src="?([^"\s]+)"?\s*/;     // use regex to extract src
-//     let url, res;
-//     url = rex.exec(imageUrl);
-//     convertImageUrlToFile(url[1], true);    // convert img src to url and update and set new photo
-//     console.log(imageUrl);
-//     console.log(url);
-//     console.log(url[0]);
-//     console.log(url[1]);
-//     console.log(e);
-// };
 
 return (
     <div style={{width: '100%'}}>

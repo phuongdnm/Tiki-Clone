@@ -220,7 +220,6 @@ const CartPage = (props) => {
                     <Paper elevation={0} variant='outlined' square className={classes.feePaper}>
                         <div className={classes.boxFee}>
                             <p className={classes.listInfoPrice} style={{margin: 0}}>
-                                {console.log(cartTotalAmountDiscounted)}
                                 {cartTotalAmountDiscounted !== null && !isNaN(cartTotalAmountDiscounted) && cartTotalAmountDiscounted > 0?
                                     <>
                                         <span>Original Price: </span>

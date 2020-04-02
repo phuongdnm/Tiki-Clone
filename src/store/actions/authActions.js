@@ -15,13 +15,9 @@ const api_url = process.env.REACT_APP_API;
 export const registerUser = (userData, history, closeModal) => async (dispatch) => {
 
     const url = `${api_url}/api/v1/auth/register`;
-    console.log(url);
     await axios.post(url, userData)
         .then(res => {
             if (res.data.success) {
-                console.log(`res is`);
-                console.log(res);
-                // history.push('/login');
                 dispatch(loginUser(userData, history, closeModal));
                 message.success("Signed up successfully")
             } else {
@@ -29,12 +25,10 @@ export const registerUser = (userData, history, closeModal) => async (dispatch) 
                 if (res.data.error === "Duplicated field value in body") {    // username already exists
                     errors = {"username": "Username/Email already exists!"}
                 } else {
-                    console.log(res);
                     let res_ = res.data.error;
                     let res__ = res_.replace('User validation failed: ', '{"') + '"}';
                     let errObj = res__.replace(new RegExp(': ', 'g'), '" : "').replace(new RegExp(', ', 'g'), '", "');
                     errors = JSON.parse(errObj);
-                    console.log(errObj);
                 }
                 dispatch({
                     type: GET_ERRORS,  //this call test dispatch. to dispsatch to our reducer
@@ -43,8 +37,6 @@ export const registerUser = (userData, history, closeModal) => async (dispatch) 
             }
         })     // redirect to login
         .catch(err => {
-                console.log('Error: ' + err);
-                // console.log(`error.res is :  ${err.response.error}`);
 
                 dispatch({
                     type: GET_ERRORS,  //this call test dispatch. to dispsatch to our reducer
@@ -61,27 +53,19 @@ export const registerUser = (userData, history, closeModal) => async (dispatch) 
 export const loginUser = (userData, history, closeModal) => async (dispatch) => {
     // axios.defaults.withCredentials = true;
     const url = `${api_url}/api/v1/auth/login`;
-    console.log(`logging in user `);
     await axios.post(url, userData)
         .then(res => {
             if (res.data.success) {
-                console.log("res is:" + res);
-                console.log(res);
                 //Save to localStorage
                 const {token} = res.data;
                 // Set token t  o localStorage
                 localStorage.setItem('jwtToken', token);
                 // Set token to Auth header. Apply Authorization token to header to every request
                 setAuthToken(token);
-                console.log(`Token from auth actions is:`);
-                console.log(token);
                 // the token includes user info but it is encoded
                 // to decode we use jwt-decode
                 //Decode token to get user data
                 const decoded = jwt_decode(token);
-                // const decoded = res.data.user;
-                console.log(`decoded:`);
-                console.log(decoded);
                 // Set current user
                 dispatch(setCurrentUser(decoded));
                 dispatch(setCurrentUserInfo());
@@ -98,12 +82,10 @@ export const loginUser = (userData, history, closeModal) => async (dispatch) => 
                     errors = {"username": "Password is not correct!"}
                 }
                 else {
-                    console.log(res);
                     let res_ = res.data.error;
                     let res__ = res_.replace('User validation failed: ', '{"') + '"}';
                     let errObj = res__.replace(new RegExp(': ', 'g'), '" : "').replace(new RegExp(', ', 'g'), '", "');
                     errors = JSON.parse(errObj);
-                    console.log(errObj);
                 }
                 dispatch({
                     type: GET_ERRORS,  //this call test dispatch. to dispsatch to our reducer
@@ -112,10 +94,6 @@ export const loginUser = (userData, history, closeModal) => async (dispatch) => 
             }
         })
         .catch(err => {
-                console.log(`err is :${err}`);
-                console.log(err);
-                console.log(err.data);
-                console.log(err.response);
                 dispatch({
                     type: GET_ERRORS,  //this call test dispatch. to dispsatch to our reducer
                     payload: err //sets payload to errors coming from server
@@ -161,10 +139,8 @@ export const setCurrentUser = (decoded) =>  (dispatch) => {
 // 🔒 Log user out
 export const logoutUser = () => async (dispatch) => {
     const url = `${api_url}/api/v1/auth/logout`;
-    console.log(url);
     await axios.get(url)
         .then(res => {
-            console.log(res);
             message.success("Logged user out");
             // Remove token from localStorage
             localStorage.removeItem('jwtToken');
@@ -175,7 +151,6 @@ export const logoutUser = () => async (dispatch) => {
 
         })
         .catch(err => {
-                console.log('Error' + err);
                 message.error("Unable to log user out");
             }
         );
@@ -187,11 +162,9 @@ export const forgotPassword = (email) => async (dispatch) => {
     await axios.post(url, email)
         .then(res => {
             if (res.data.success) {
-                console.log(res);
                 message.success("Email has been sent!");
 
             } else {
-                console.log(res);
                 message.error("Unable to send email!");
             }
 
@@ -209,12 +182,10 @@ export const resetPassword = (password, resetToken) => async (dispatch) => {
     await axios.put(url, password)
         .then(res => {
             if (res.data.success) {
-                console.log(res);
                 message.success("Password has been changed!");
                 dispatch(logoutUser())
 
             } else {
-                console.log(res);
                 message.error("Unable to change password!");
             }
 
@@ -232,11 +203,9 @@ export const updateUserInfo = (userDetails) => async (dispatch) => {
         .then(res => {
             if (res.data.success) {
                 dispatch(setCurrentUserInfo());
-                console.log(res);
                 message.success("User Info updated!");
 
             } else {
-                console.log(res);
                 message.error("Failed to update user info!");
             }
 
@@ -253,12 +222,10 @@ export const changePassword = (password) => async (dispatch) => {
     await axios.put(url, password)
         .then(res => {
             if (res.data.success) {
-                console.log(res);
                 message.success("User password updated!");
                 dispatch(logoutUser())
 
             } else {
-                console.log(res);
                 message.error("Failed to update user password!");
             }
 

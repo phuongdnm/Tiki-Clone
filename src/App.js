@@ -91,6 +91,11 @@ function App() {
                         path={"/underDevelopment"}
                         render={routeProps => <UnderDevelopmentPage {...routeProps} status={"underDevelopment"}/>}
                     />
+                    <Route
+                        exact
+                        path={"/notFound"}
+                        render={routeProps => <UnderDevelopmentPage {...routeProps} status={"notFound"}/>}
+                    />
                     <PrivateRoute
                         exact
                         path={"/cart"}

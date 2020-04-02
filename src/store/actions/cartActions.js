@@ -28,8 +28,6 @@ export const getCart = () => {
     let cart = {};
     try {
         cart = JSON.parse(localStorage.getItem('cart'));
-        // console.log(`cart is:`);
-        // console.log(cart);
     }catch (e) {
         console.log(e);
     }

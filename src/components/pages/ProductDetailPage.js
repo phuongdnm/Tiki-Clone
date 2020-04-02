@@ -57,6 +57,7 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import {message} from "antd";
 import FormGroup from "@material-ui/core/FormGroup";
+import UnderDevelopmentPage from "./UnderDevelopmentPage";
 
 
 const useStyles = makeStyles(theme => ({
@@ -169,8 +170,8 @@ const useStyles = makeStyles(theme => ({
         fontSize: 'inherit'
     },
     "@global .MuiOutlinedInput-notchedOutline": {
-        marginTop: "0.05em !important",
-        height: "2em !important",
+        marginTop: "0.025em !important",
+        height: "2.005em !important",
         borderColor: "#3F51B5 !important"
     }
 
@@ -299,7 +300,7 @@ const ProductPriceInfo = ({product}) => {
         if (price > 5) {
             return (
                 <Button variant="contained" color='primary'
-                        style={{marginBottom: '1em', marginTop: '1em', fontSize: '0.6em'}}> Installment only
+                        style={{marginBottom: '1em', marginTop: '1em', fontSize: '0.75em'}}> Installment only
                     345.000$/month</Button>
             )
         }
@@ -412,7 +413,7 @@ const ProductPriceInfo = ({product}) => {
                                     </Grid>
                                 </Grid>
                             </div>
-                            <Grid item container className='product-add-to-cart' justify={'center'}>
+                            <Grid item container className='product-add-to-cart'>
                                 {discount_price !== "NaN" &&
                                 <>
                                     {groupButton(discounted_price)}
@@ -989,11 +990,7 @@ const ProductReview = ({product, reviews}) => {
             </div>
         </div>
     )
-}
-
-const mainImage = ({product, currentImg}) => {
-
-}
+};
 const ProductDetailPage = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -1012,12 +1009,15 @@ const ProductDetailPage = (props) => {
         dispatch(reviewActions.getProductReviews(productId));
     }, []);
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }, []);
 
     useEffect(() => {
-        if (product !== null) {
+        if (product !== null && product !== undefined) {
             setCurrentImg(product.photo !== 'no-photo.jpg' ? `http://34.87.156.245/uploads/${product.photo}` : noPhoto);
+        }
+        if(product === undefined){
+            props.history.push('/notFound')
         }
     }, [product]);
 
@@ -1030,12 +1030,12 @@ const ProductDetailPage = (props) => {
                 <Grid container className={classes.grid} style={{margin: 0, marginTop: '2em'}}>
                     <Grid item container xs={5} spcaing={0} style={{paddingLeft: 0, paddingRight: 0}}>
                         <Grid item xs={3}>
-                            {product !== null &&
+                            {product !== null && product !== undefined&&
                             <ImageList product={product} setCurrentImg={setCurrentImg}/>
                             }
                         </Grid>
                         <Grid item xs={9}>
-                            {product !== null && <>
+                            {product !== null && product !== undefined&& <>
                                 <SideBySideMagnifier
                                     imageSrc={currentImg}
                                     largeImageSrc={currentImg}
@@ -1055,7 +1055,7 @@ const ProductDetailPage = (props) => {
                     </Grid>
                     <Grid item xs={7}>
                         <div style={{marginLeft: '0.5em', borderLeft: "2px solid #F7F7F7", padding: '3%'}}>
-                            {product !== null &&
+                            {product !== null && product !== undefined&&
 
                             <ProductPriceInfo product={product}/>
                             }
@@ -1063,12 +1063,12 @@ const ProductDetailPage = (props) => {
                     </Grid>
 
                 </Grid>
-                {product !== null &&
+                {product !== null && product !== undefined&&
 
                 < ProductDetailInfo product={product}/>
                 }
                 {ProductQA()}
-                {product !== null &&
+                {product !== null && product !== undefined&&
                 < ProductReview reviews={productReviews} product={product}/>
                 }
             </div>

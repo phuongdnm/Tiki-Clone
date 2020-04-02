@@ -57,7 +57,6 @@ const ProductCategoryPage = (props) => {
             let isMatchesWord = false;
             type.split(' ').forEach((word) => { // if product name matches a word in search
                 if (product.name.contains(word)) {
-                    console.log(`it was true`);
                     isMatchesWord = true
                 }
             });

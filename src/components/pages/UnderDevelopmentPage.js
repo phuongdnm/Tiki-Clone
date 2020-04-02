@@ -43,16 +43,24 @@ const UnderDevelopmentPage = (props) =>{
                 <div style={{backgroundColor:"#fdba13",height: "25vh"}}>
                     <img src={superImg} alt={"superImg"} style={{position: "absolute", top: '60%', left: '15%'}}/>
                     <section style={{marginLeft: "30%", paddingTop: '1em'}}>
-                        {props.status === "404" ?
+                        {props.status === "404" &&
                         <>
                         <img src={error404} alt={"err404"}/>
                         <div style={{fontWeight: 800, fontSize: '2.2em', color: "white", display: 'inline', marginLeft: "3em"}}>
                             Sorry, the page you are looking for does not exist!
-                        </div></>:
+                        </div></>}
+                        {props.status === "underDevelopment" &&
                             <>
                                 <img src={gear} alt={"gear"} style={{width: "10%", position: "absolute", top: '80%', left: '35%'}}/>
                                 <div style={{fontWeight: "bold", fontSize: '2.2em', color: "white", position: "absolute", top: '85%', left: '50%'}}>
                                     Sorry, this page is under development!
+                                </div></>
+                        }
+                        {props.status === "notFound" &&
+                            <>
+                                <img src={gear} alt={"gear"} style={{width: "10%", position: "absolute", top: '80%', left: '35%'}}/>
+                                <div style={{fontWeight: "bold", fontSize: '2.2em', color: "white", position: "absolute", top: '85%', left: '50%'}}>
+                                    Sorry, the product you are looking for doesn't exist!
                                 </div></>
                         }
                     </section>

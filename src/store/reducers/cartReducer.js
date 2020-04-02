@@ -22,15 +22,7 @@ export default (state=initialState, action)=>{
             if(isNaN(disPrice)){
                 disPrice = prodPrice
             }
-            console.log(`type is: `);
-            console.log(typeof(parseFloat(prodPrice)));
-            console.log(typeof(parseFloat(prod.discount)));
-            console.log(typeof((parseFloat(prodPrice) * (parseFloat(prod.discount) / 100) ) ));
-            console.log(typeof(parseFloat(prodPrice) - (parseFloat(prodPrice) * (parseFloat(prod.discount) / 100) ) ));
-            console.log(typeof(disPrice));
-            console.log(disPrice);
 
-            console.log('got here!!!');
             let updatedOrNewCartItem;
             if(state.items[prodId]){
                 // already have the item in the cart

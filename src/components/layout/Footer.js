@@ -31,7 +31,7 @@ function Footer() {
     <section style={{paddingTop: "2em", paddingBottom: '3em', width: "82%"}}>
       <Grid container spacing={4}>
 
-        <Grid item xs={3} sm={5} direction={"column"} alignItems={'center'}>
+        <Grid item xs={3} sm={5}>
 
           <p style={{fontWeight: "bold", margin: 0, fontSize: '1.1em', color: 'black'}}>
             <strong> Subscribe to receive letter from Tiki</strong>
@@ -40,7 +40,7 @@ function Footer() {
             <strong>Don't slip your chance to collect thousand of deals everyday</strong>
           </p>
         </Grid>
-        <Grid item xs={5} sm={7} justify={"flex-end"} style={{display: "flex"}}>
+        <Grid item xs={5} sm={7} style={{display: "flex", alignItems: "flex-end"}}>
           <form className={classes.form} noValidate autoComplete="off">
             <TextField id="email" label="Your email address"
                        size={"small"}

@@ -189,7 +189,6 @@ const AddNewOrder = () => {
             total
         };
 
-        console.log(order_);
 
         dispatch( await orderActions.addNewOrder(order_));
 
@@ -279,7 +278,6 @@ const AddNewOrder = () => {
                                             style={{width: '100%'}}
                                             noOptionsText={`No product with that name or id`}
                                             onChange={(e, value)=> {
-                                                console.log(value);
                                                 setCurrentShop(value !== null ? value._id : "");
                                                 setAllShopProducts(allProducts.filter(product => product.shop._id === value._id))
                                             }}
@@ -333,7 +331,6 @@ const AddNewOrder = () => {
                                             style={{width: '100%'}}
                                             noOptionsText={`No product with that name or id`}
                                             onChange={(e, value)=> {
-                                                console.log(value);
                                                 setCurrentProduct(value !== null ? value._id : "");
                                             }}
                                             getOptionLabel={option => option.name+ "  " + option._id}

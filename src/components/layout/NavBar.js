@@ -43,6 +43,8 @@ import Bookcare from '../../image/bookcare.svg'
 import Tikinow2 from '../../image/tiki-now2.png'
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
+import Fab from "@material-ui/core/Fab";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const NavBar = (props) => {
     const classes = userStyles();
@@ -52,7 +54,7 @@ const NavBar = (props) => {
     const [open, setOpen] = useState(false);
     const [index, setIndex] = useState(0);
     const [search, setSearch] = useState("");
-
+    const [position, setPosition] = useState(false);
 
 
     const cartQuantity = useSelector(state => Object.keys(state.cart).length !== 0 ? Object.keys(state.cart.items).length : null);
@@ -68,17 +70,34 @@ const NavBar = (props) => {
     const handleOnClick = (event) => {
         setIndex(event.currentTarget.name)
     };
+    const scrollStep =(scrollStepInPx, intervalId_)=> {
+        if (window.pageYOffset === 0) {
+            clearInterval(intervalId_);
+            scrollStepInPx =0
+        }
+        window.scroll(0, window.pageYOffset - scrollStepInPx);
+    };
+    const scrollToTop= (scrollStepInPx, delayInMs)=> {
+        let intervalId_ = setInterval(()=>{scrollStep(scrollStepInPx, intervalId_)}, delayInMs);
+
+    };
+
 
     useEffect(() => {
+        document.addEventListener("scroll", () => {
+            if (window.scrollY > 170) {
+               setPosition(true)
+            } else {
+                setPosition(false)
+            }
+        });
+        window.scrollTo(0, 0);
         loadCSS(
             'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
             document.querySelector('#font-awesome-css'),
         );
         setOpen(!!props.showForm);
         !!props.showForm && message.info("You need to be logged in!");
-        // console.log(`check isAdmin is:`);
-        // console.log(props.checkIsAdmin);
-        // console.log(!!props.checkIsAdmin);
         props.checkIsAdmin !== undefined && props.checkIsAdmin && message.error("you to be logged in as an admin to access this route");
 
     }, []);
@@ -673,15 +692,6 @@ const NavBar = (props) => {
                           style={{fontSize: 20, width: "1.5em"}}/>
                 </IconButton>
                 Products you have viewed
-                <div className={classNames(classes.customModal, {[classes.productModal]: productModal})}
-                     style={{display: "none"}}>
-                    <div className={classes.customSubModal} onMouseLeave={() => {
-                        setProductModal(false)
-                    }}>
-                        <br/><br/><br/>You have not viewed any products. <br/> keep exploring tiki, the
-                        product you viewed will show up here!
-                    </div>
-                </div>
             </Typography>
             <section style={{alignItems: "center", flexDirection: 'row', display: 'flex'}}>
                 <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
@@ -748,6 +758,23 @@ const NavBar = (props) => {
                 }}
             />}
             {authLinks}
+            {/*modal*/}
+            <div className={classNames(classes.customModal, {[classes.productModal]: productModal})}
+                 style={{display: "none"}}>
+                <div className={classes.customSubModal} onMouseLeave={() => {
+                    setProductModal(false)
+                }}>
+                    <br/><br/><br/>You have not viewed any products. <br/> keep exploring tiki, the
+                    product you viewed will show up here!
+                </div>
+            </div>
+            {/*Fav Nav*/}
+            {position &&
+            <Fab aria-label="up" size={"small"} style={{top: "90%", left: "2%", position: "fixed", zIndex: 99999}}
+                 onClick={() => scrollToTop(50, 8.66)}>
+                <ArrowUpwardIcon/>
+            </Fab>
+            }
         </section>
     );
 };
