@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import * as authActions from "../../store/actions/authActions";
 import { message } from "antd";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const userStyles = makeStyles(() => ({
   groupButton: {
@@ -55,7 +56,10 @@ const Login = props => {
   };
   const form1 = (
       <div style={{width: "100%", borderRadius: '4px'}}>
-        <FormGroup onSubmit={handleSubmit} fullWidth="true">
+        <FormGroup onSubmit={handleSubmit} fullWidth="true"
+                   onKeyPress={(e)=>{
+          e.charCode === 13 && handleSubmit(e)    // if enter key is pressed redirect to product category and search
+        }}>
           <FormControl margin="normal" >
             <InputLabel htmlFor="my-input">Email address</InputLabel>
             <Input

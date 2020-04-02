@@ -100,13 +100,12 @@ const useStyles = makeStyles(theme => ({
         marginRight: "1em"
     },
     navText2:{
+        width: '12em',
         marginLeft: "2em",
-        // marginTop: "4em",
-        // marginBottom: "4em",
-        paddingLeft: "4.5em",
-        paddingRight: "4.5em",
-        paddingTop: "3%",
-        paddingBottom: "0.3%",
+        paddingLeft: "2.5em",
+        paddingRight: "2.5em",
+        paddingTop: "6%",
+        paddingBottom: "1.3%",
         fontSize: "0.7em",
         border: "2px solid white",
         textAlign: "center",

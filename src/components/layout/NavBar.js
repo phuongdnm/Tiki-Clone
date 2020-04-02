@@ -350,18 +350,23 @@ const NavBar = (props) => {
 
     >
         <Typography className={classes.title} variant="subtitle2" noWrap component={'p'}>
-            <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
-                <img src={ticketBox} alt="ticketBox" style={{height: "50%", width: "50%"}}/>
-            </IconButton>
-            ticketBox
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
+                <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
+                    <img src={ticketBox} alt="ticketBox" style={{height: "50%", width: "50%"}}/>
+                </IconButton>
+                ticketBox
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <img src={tikiAssistant} alt="tikiAssistant" style={{height: "50%", width: "50%"}}/>
             </IconButton>
             Assistant Tiki
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -372,8 +377,10 @@ const NavBar = (props) => {
                 }}/>
             </IconButton>
             partner Incentives
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -384,8 +391,10 @@ const NavBar = (props) => {
                 }}/>
             </IconButton>
             Hotel reservations
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -395,16 +404,19 @@ const NavBar = (props) => {
                     marginRight: "0.1em"
                 }}/>
             </IconButton>
-
             Ticket Booking
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" style={{padding: 0}}>
                 <WhatshotIcon style={{color: "F2D33B"}}/>
             </IconButton>
             Hot Promotion
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -415,8 +427,10 @@ const NavBar = (props) => {
                 }}/>
             </IconButton>
             International goods
+            </Link>
         </Typography>
         <Typography className={classes.title} variant="subtitle2" noWrap  component={'p'}>
+            <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <i style={{
                     backgroundImage: `url(${sprite}?v=100000000)`,
@@ -427,6 +441,7 @@ const NavBar = (props) => {
                 }}/>
             </IconButton>
             Sales with Tiki
+            </Link>
             <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
                 <Icon className={"fas fa-angle-down"}
                       style={{fontSize: 14, width: "1.5em"}}/>
@@ -591,9 +606,9 @@ const NavBar = (props) => {
 
                 <Typography className={classes.navText2}>
                     <Badge badgeContent={cartQuantity} color="error" className={classes.iconNav2}>
-                        <ShoppingCartIcon style={{paddingLeft: "20%"}}/>
+                        <ShoppingCartIcon style={{marginBottom: "0.2em"}}/>
                     </Badge>
-                    Cart
+                    <span style={{fontSize: '1.3em'}}>Cart</span>
                 </Typography>
             </Link>
 
@@ -629,7 +644,9 @@ const NavBar = (props) => {
             <MenuIcon/>
         </IconButton>
         <Typography className={classes.title2} noWrap>
+            <Link to={'/product/book'} className={classes.removeDefaultLink}>
             PRODUCT CATEGORY
+            </Link>
         </Typography>
         <section style={{
             display: "flex",
@@ -639,12 +656,14 @@ const NavBar = (props) => {
             alignItems: "center"
         }}>
             <Typography className={classes.title2} noWrap>
+                <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
                 <IconButton aria-label="where do you want to shop to?" color="inherit"
                             style={{paddingRight: 0}}>
                     <Icon className={"fas fa-map-marker-alt"}
                           style={{fontSize: 20, width: "1.5em"}}/>
                 </IconButton>
                 Where do you want to shop to?
+                </Link>
             </Typography>
             <Typography className={classes.title2} component={'span'} noWrap onMouseEnter={() => {
                 setProductModal(true)
@@ -665,6 +684,7 @@ const NavBar = (props) => {
                 </div>
             </Typography>
             <section style={{alignItems: "center", flexDirection: 'row', display: 'flex'}}>
+                <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
                 <IconButton aria-label="where do you want to shop to?" color="inherit"
                             style={{padding: 0, marginRight: "0.53em"}}>
                     <img src={tikiNow} alt="tikiNow" style={{
@@ -672,36 +692,40 @@ const NavBar = (props) => {
                         width: "100%",
                         backgroundColor: "white",
                         padding: "0.28em",
+                        marginBottom: "0.5em",
                         borderRadius: "30%",
                     }}/>
                 </IconButton>
-                <Typography className={classes.title2} noWrap>
+                <Typography className={classes.title2} style={{display: "inline-block"}}>
 
                     TIKInow fast delivery Hundreds <br/>of thousands of products
                 </Typography>
+                </Link>
             </section>
             <section style={{alignItems: "center", flexDirection: 'row', display: 'flex'}}>
-
+                <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
                 <IconButton aria-label="All products are 100% genuine" color="inherit"
                             style={{padding: "0.3em"}}>
                     <Icon className={"fas fa-medal"}
-                          style={{fontSize: 20, width: "1.5em", color: "#F2D33B"}}/>
+                          style={{fontSize: 20, width: "1.5em", color: "#F2D33B", marginBottom: "0.5em"}}/>
                 </IconButton>
-                <Typography className={classes.title2} noWrap>
+                <Typography className={classes.title2} style={{display: "inline-block"}}>
 
                     All products are <br/>100% genuine
                 </Typography>
+                </Link>
             </section>
             <section style={{alignItems: "center", flexDirection: 'row', display: 'flex'}}>
-
+                <Link to={'/underDevelopment'} className={classes.removeDefaultLink}>
                 <IconButton aria-label="All products are 100% genuine" color="inherit"
                             style={{padding: "0.3em"}}>
                     <Icon className={"fas fa-box-open"}
-                          style={{fontSize: 20, width: "1.5em", color: "#F2D33B"}}/>
+                          style={{fontSize: 20, width: "1.5em", color: "#F2D33B", marginBottom: "0.5em"}}/>
                 </IconButton>
-                <Typography className={classes.title2} noWrap>
+                <Typography className={classes.title2} style={{display: "inline-block"}}>
                     30 days exchange<br/> easily
                 </Typography>
+                </Link>
             </section>
         </section>
 

@@ -28,7 +28,7 @@ const userStyles = makeStyles(() => ({
         padding: '1.25em',
         textAlign: "center",
         borderRadius: '5px',
-        width: '8vw',
+        width: '8.75vw',
         "&:hover": {
             boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
             cursor: 'pointer'

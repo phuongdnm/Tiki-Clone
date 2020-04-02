@@ -143,7 +143,9 @@ const SignUp = (props) => {
   };
   return (
       <div >
-        <FormGroup >
+        <FormGroup   onKeyPress={(e)=>{
+          e.charCode === 13 && handleSubmit(e)    // if enter key is pressed redirect to product category and search
+        }}>
           <FormControl >
             <InputLabel htmlFor="my-input">Name</InputLabel>
             <Input
