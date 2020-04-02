@@ -114,28 +114,28 @@ const FindAShop = (props) => {
                         </Button>
                         <div tabIndex={0}
                              onBlur={(event)=> {!event.currentTarget.contains(event.relatedTarget) && setToggleList(false)}}>
-                        <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}>
-                            Search by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
-                            <ExpandMore style={{marginLeft: '0.5em'}}/>}
+                            <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}>
+                                Search by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
+                                <ExpandMore style={{marginLeft: '0.5em'}}/>}
 
-                        </Button>
-                        <List component="nav" aria-label="filter options"
-                              className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
-                              style={{marginTop: "0.5em", left: "85%"}}
-                        >
-                            <ListItem button onClick={() => {
-                                setFilterOptions("id");
-                                setToggleList(val => !val)
-                            }} selected={"id" === filterOptions}>
-                                <ListItemText primary="Id"/>
-                            </ListItem>
-                            <ListItem button onClick={() => {
-                                setFilterOptions("name");
-                                setToggleList(val => !val)
-                            }} selected={"name" === filterOptions}>
-                                <ListItemText primary="Name"/>
-                            </ListItem>
-                        </List>
+                            </Button>
+                            <List component="nav" aria-label="filter options"
+                                  className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
+                                  style={{marginTop: "0.5em", left: "85%"}}
+                            >
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("id");
+                                    setToggleList(val => !val)
+                                }} selected={"id" === filterOptions}>
+                                    <ListItemText primary="Id"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("name");
+                                    setToggleList(val => !val)
+                                }} selected={"name" === filterOptions}>
+                                    <ListItemText primary="Name"/>
+                                </ListItem>
+                            </List>
                         </div>
                     </section>
                 </Grid>
@@ -175,6 +175,7 @@ const FindAShop = (props) => {
                             style={{backgroundImage: `linear-gradient(60deg, #EEEEEE, #DDDDDD)`, height: '23em'}}
                             key={product.id}
                             id={product.id}
+                            slug={product.slug}
                             type={'review'}
                             price={product.price}
                             discount={product.discount !== undefined ? product.discount : 0}

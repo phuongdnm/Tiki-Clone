@@ -196,7 +196,7 @@ const OrderManagement = (props) => {
             <div className={classes.grid2}>
                 <OrderStep myOrder={myOrder}/>
                 <p style={{fontSize: '1.4em', marginBottom: '0.5em', textAlign: 'center'}}>You ordered
-                    <Link to={`/${product.name}/${product._id}`} className={classes.removeLinkStyles}>
+                    <Link to={`/${product.slug}/${product._id}`} className={classes.removeLinkStyles}>
                         <span className={classes.boldGreen}> {product.name}</span> </Link>
                     from <span
                         className={classes.boldGreen}>{shop.name}</span></p>

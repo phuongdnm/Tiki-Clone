@@ -123,28 +123,28 @@ const ProductsOfShop = (props) => {
                         </Button>
                         <div tabIndex={0}
                              onBlur={(event)=> {!event.currentTarget.contains(event.relatedTarget) && setToggleList(false)}}>
-                        <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}>
-                            Search by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
-                            <ExpandMore style={{marginLeft: '0.5em'}}/>}
+                            <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}>
+                                Search by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
+                                <ExpandMore style={{marginLeft: '0.5em'}}/>}
 
-                        </Button>
-                        <List component="nav" aria-label="filter options"
-                              className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
-                              style={{marginTop: '0.5em', left: '80%'}}
-                        >
-                            <ListItem button onClick={() => {
-                                setFilterOptions("id");
-                                setToggleList(val => !val)
-                            }} selected={"id" === filterOptions}>
-                                <ListItemText primary="Id"/>
-                            </ListItem>
-                            <ListItem button onClick={() => {
-                                setFilterOptions("name");
-                                setToggleList(val => !val)
-                            }} selected={"name" === filterOptions}>
-                                <ListItemText primary="Name"/>
-                            </ListItem>
-                        </List>
+                            </Button>
+                            <List component="nav" aria-label="filter options"
+                                  className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
+                                  style={{marginTop: '0.5em', left: '80%'}}
+                            >
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("id");
+                                    setToggleList(val => !val)
+                                }} selected={"id" === filterOptions}>
+                                    <ListItemText primary="Id"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("name");
+                                    setToggleList(val => !val)
+                                }} selected={"name" === filterOptions}>
+                                    <ListItemText primary="Name"/>
+                                </ListItem>
+                            </List>
                         </div>
 
                     </section>
@@ -159,6 +159,7 @@ const ProductsOfShop = (props) => {
                                 style={{backgroundColor: 'rgba(256, 256, 256, 0.2)', height: '30em'}}
                                 key={product.id}
                                 id={product.id}
+                                slug={product.slug}
                                 type={'review'}
                                 price={product.price}
                                 discount={product.discount !== undefined ? product.discount : 0}
@@ -174,9 +175,9 @@ const ProductsOfShop = (props) => {
                             <p style={{fontSize: "3em", fontWeight: 600, textAlign: 'center', marginTop: '2em', color: "rgba(149, 149, 149, 1)"}}>Search for a shop by Id or name.</p>
                         </section>
                     </Grid>
-                    }
+                }
                 {
-                     isLoading &&
+                    isLoading &&
                     <ReactLoading type={"balls"} color={"#189EFF"} width={'10%'} height={'10%'} className={classes.loading3}/>
                 }
             </Grid>

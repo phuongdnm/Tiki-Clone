@@ -106,36 +106,36 @@ const AllShops = (props) => {
                         <div tabIndex={0}
                              style={{display: "flex", alignItems: 'center', width: '100%'}}
                              onBlur={(event)=> {!event.currentTarget.contains(event.relatedTarget) && setToggleList(false)}}>
-                        <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}
-                                style={{marginLeft: "2em !important", width: "100%"}}
-                        >
-                            Sort by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
-                            <ExpandMore style={{marginLeft: '0.5em'}}/>}
-                        </Button>
-                        <List component="nav" aria-label="filter options"
-                              className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
-                              style={{marginTop: '1em'}}
-                        >
-                            <ListItem button onClick={() => {
-                                setFilterOptions("createdAt");
-                                setToggleList(val => !val)
-                                handleFilter(false,"createdAt")
-                            }} selected={"createdAt" === filterOptions}>
-                                <ListItemText primary="Time created"/>
-                            </ListItem>
-                            <ListItem button onClick={() => {
-                                setFilterOptions("noOfProducts");
-                                setToggleList(val => !val);
-                                handleFilter(false,"noOfProducts")
-                            }} selected={"oOfProducts" === filterOptions}>
-                                <ListItemText primary="No of products in shop"/>
-                            </ListItem>
-                        </List>
+                            <Button color="white" className={classes.title} onClick={() => setToggleList(val => !val)}
+                                    style={{marginLeft: "2em !important", width: "100%"}}
+                            >
+                                Sort by {filterOptions} {toggleList ? <ExpandLess style={{marginLeft: '0.5em'}}/> :
+                                <ExpandMore style={{marginLeft: '0.5em'}}/>}
+                            </Button>
+                            <List component="nav" aria-label="filter options"
+                                  className={classNames(classes.listStyle, {[classes.showList]: toggleList})}
+                                  style={{marginTop: '1em'}}
+                            >
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("createdAt");
+                                    setToggleList(val => !val)
+                                    handleFilter(false,"createdAt")
+                                }} selected={"createdAt" === filterOptions}>
+                                    <ListItemText primary="Time created"/>
+                                </ListItem>
+                                <ListItem button onClick={() => {
+                                    setFilterOptions("noOfProducts");
+                                    setToggleList(val => !val);
+                                    handleFilter(false,"noOfProducts")
+                                }} selected={"oOfProducts" === filterOptions}>
+                                    <ListItemText primary="No of products in shop"/>
+                                </ListItem>
+                            </List>
                         </div>
-                    <Fab aria-label="add" color={"default"} className={classes.fabGreen} style={{marginTop: '1.5em', marginLeft: '5.5em'}}
-                         onClick={() => {setToggleSortOrder(val => {handleFilter(val, filterOptions ); return !val})}}>
-                        {toggleSortOrder ? <ArrowDownwardIcon/> : <ArrowUpwardIcon/>}
-                    </Fab>
+                        <Fab aria-label="add" color={"default"} className={classes.fabGreen} style={{marginTop: '1.5em', marginLeft: '5.5em'}}
+                             onClick={() => {setToggleSortOrder(val => {handleFilter(val, filterOptions ); return !val})}}>
+                            {toggleSortOrder ? <ArrowDownwardIcon/> : <ArrowUpwardIcon/>}
+                        </Fab>
                     </section>
                 </Grid>
                 <Grid item xs={9} md={9} lg={9} className={classes.card} style={{marginTop: '2em'}} >
@@ -164,6 +164,7 @@ const AllShops = (props) => {
                                 key={product.id}
                                 id={product.id}
                                 type={'review'}
+                                slug={product.slug}
                                 price={product.price}
                                 discount={product.discount !== undefined ? product.discount : 0}
                                 title={product.name}

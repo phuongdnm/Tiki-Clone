@@ -65,7 +65,7 @@ const Card = (props) => {
 
     const type1 =
         <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
                 <div className={classes.container} style={{height: '25em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
                     <div>
@@ -103,7 +103,7 @@ const Card = (props) => {
 
     const type2 =
         <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
 
                 <div className={classes.container}  style={{height: '26em'}} onClick={props.onClick !== undefined ? props.onClick : undefined}>
@@ -171,7 +171,7 @@ const Card = (props) => {
         </Ripples>;
     const type3 =
         <Ripples>
-            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                   className={classes.removeLinkStyle}>
 
                 <div className={classes.container} onClick={props.onClick !== undefined ? props.onClick : undefined}
@@ -245,7 +245,7 @@ const Card = (props) => {
                     <Grid item>
                         <Ripples>
 
-                            <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+                            <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                                   className={classes.removeLinkStyle}>
                                 <ButtonBase className={classes.image}>
                                     <img className={classes.img} alt="complex" src={props.image}/>
@@ -258,7 +258,7 @@ const Card = (props) => {
                         <Grid item xs container direction="column" spacing={2}>
                             <Grid item xs>
                                 <Typography gutterBottom variant="subtitle1">
-                                    <Link to={props.link !== undefined && props.link !== false ? `/${props.title}/${props.id}` : "#"}
+                                    <Link to={props.link !== undefined && props.link !== false ? `/${props.slug}/${props.id}` : "#"}
                                           className={classes.removeLinkStyle}>
                                         <img src={TikiNow} alt={"tikinow"}/> | {props.name}
                                     </Link>

@@ -53,6 +53,7 @@ const Stats = (props) => {
                                     style={{backgroundImage: `linear-gradient(60deg, #EEEEEE, #DDDDDD)`, height: '30em'}}
                                     key={prod.id}
                                     id={prod.id}
+                                    slug={prod.name.length > 0 ? prod.name.replace(new RegExp(' ', 'g'), '-') : prod.name}
                                     type={'review'}
                                     price={prod.price}
                                     discount={prod.discount !== undefined ? prod.discount : 0}
