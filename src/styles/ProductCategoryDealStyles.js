@@ -1,7 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 
-const useStyles = makeStyles(theme => ({
+const userStyles = makeStyles(theme => ({
     root: {
         width: "40%",
         height: "80%",
@@ -12,49 +12,46 @@ const useStyles = makeStyles(theme => ({
     container: {
         width: '90%',
         marginLeft: '5%',
-        marginTop: "0.5%",
-        marginBottom: '5em',
+        marginTop: "0.7%",
+        paddingTop: "0.7%",
+        marginBottom: '6.5em',
         [theme.breakpoints.up('md')]: {
-            width: "60%",
-            marginLeft: "30%",
+            width: "70%",
+            marginLeft: "25%",
         },
-        // backgroundColor:"#F4F4F4",
-
     },
     mediumProduct: {
         width: "100%",
-        boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
-        borderRadius: "1em",
-        transition: "all .2s ease-in-out",
         "&:hover": {
-            transform: "scale(1.05)",
+            boxShadow: "0 2px 4px 0 rgba(200, 200, 200, 0.2), 0 3px 10px 0 rgba(200, 200, 200, 0.19)",
         }
 
     },
     largeProduct: {
         width: "100%",
-        boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
-        transition: "all .2s ease-in-out",
-        borderRadius: "1em",
         "&:hover": {
-            transform: "scale(1.05)",
+            boxShadow: "0 2px 4px 0 rgba(200, 200, 200, 0.2), 0 3px 10px 0 rgba(200, 200, 200, 0.19)",
         }
 
     },
     smallProduct: {
         width: "100%",
         marginTop: "3.158em",
-        boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)",
-        transition: "all .2s ease-in-out",
-        borderRadius: "1em",
         "&:hover": {
-            transform: "scale(1.05)",
+            boxShadow: "0 2px 4px 0 rgba(200, 200, 200, 0.2), 0 3px 10px 0 rgba(200, 200, 200, 0.19)",
         }
     },
-    "@global .Carousel":{
+    "@global .Carousel": {
         position: "unset"
+    },
+    "@global .Carousel .Indicators": {
+        marginTop: "0 !important",
+        marginBottom: '1em !important'
+    },
+    "@global .MuiSvgIcon-root.Active.Indicator": {
+        color: "rgba(24, 158, 255, 0.6) !important"
     }
 
 }));
 
-export default useStyles;
+export default userStyles;

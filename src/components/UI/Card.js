@@ -151,9 +151,9 @@ const Card = (props) => {
                         <Progress value={!isNaN(props.sold) ? props.sold : 50}
                                   className={classes.progress}>
                             {!isNaN(props.sold) &&
-                            <span> {!!props.hot &&
+                            <span style={{zIndex: 9999}}> {!!props.hot &&
                             <WhatshotIcon style={{color: "white", fontSize: '1.3em', paddingBottom: '0.2em'}}/>}
-                                Sold {props.sold}</span>
+                                <span style={{fontSize: "0.8em"}}>Sold {props.sold}</span></span>
                             }
                         </Progress>
                         {props.timeInMilliSec &&

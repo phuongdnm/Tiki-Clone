@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import classNames from "classnames";
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -42,9 +41,7 @@ import {message} from "antd";
 import TikiXu from '../../image/tiki-xu.svg'
 import Bookcare from '../../image/bookcare.svg'
 import Tikinow2 from '../../image/tiki-now2.png'
-import {TextValidator} from "react-material-ui-form-validator";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import {countries} from "../UI/AdminDashboardComponents/Products/AddANewProduct";
 import TextField from "@material-ui/core/TextField";
 
 const NavBar = (props) => {
@@ -54,12 +51,11 @@ const NavBar = (props) => {
     // function to open and close modal
     const [open, setOpen] = useState(false);
     const [index, setIndex] = useState(0);
-    const {type} = props.match.params;
     const [search, setSearch] = useState("");
 
 
 
-    const cartQuantity = useSelector(state => Object.keys(state.cart.items).length);
+    const cartQuantity = useSelector(state => Object.keys(state.cart).length !== 0 ? Object.keys(state.cart.items).length : null);
     const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
     const allProducts = useSelector(state=> state.products.products);
 
@@ -443,9 +439,20 @@ const NavBar = (props) => {
                                      setProductModal(false);
                                      setProductNavigation(false)
                                  }}>
-        <Link to={"/"} className={classes.removeDefaultLink} style={{marginLeft: '5%'}}>
+        <Link to={"/"} className={classes.removeDefaultLink}>
+
             <Typography className={classes.title3} variant="h6" noWrap>
-                TIKI
+                <IconButton aria-label="where do you want to shop to?" color="inherit" style={{padding: 0}}>
+                    <i style={{
+                        backgroundImage: `url(${sprite}?v=100000000)`,
+                        backgroundPosition: "-148px 0px",
+                        width: "50px",
+                        height: "33px",
+                        filter: "opacity(0.5) drop-shadow(0 0 0 white) drop-shadow(0 0 0 white) drop-shadow(0 0 0 white)"
+                    }}/>
+                </IconButton>
+
+                {/*TIKI*/}
             </Typography>
         </Link>
         <Link to={"/"} className={classes.removeDefaultLink}>
@@ -609,14 +616,14 @@ const NavBar = (props) => {
                                  onMouseEnter={() => {
                                      setIsLoginTip(false)
                                  }}
-                                 style={{backgroundColor: "#189EFF", padding: '0 5%', marginLeft: '7%'}}>
+                                 style={{backgroundColor: "#189EFF", padding: '0 8%'}}>
         <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
             onMouseEnter={() => {
-                setProductNavigation(true)
+                props.location.pathname !== "/" && setProductNavigation(true)
             }}
         >
             <MenuIcon/>
@@ -712,7 +719,6 @@ const NavBar = (props) => {
                 {renderMobileMenu}
             </div>
             {productNavigation && <ProductNavigation
-                // style={{paddingBottom: "2em"}}
                 toggleDrawer={() => {
                     setProductNavigation(false)
                 }}
