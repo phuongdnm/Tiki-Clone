@@ -1,3 +1,6 @@
+# Finally, the app is live on: [tikiclone.xyz](https://tikiclone.xyz)
+(If you see Nginx html file for the first time, simply reload the page!)
+
 # Introduction
 (add later)
 
