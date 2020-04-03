@@ -78,21 +78,21 @@ function Footer() {
         <Typography className={classes.fontSmall}>(10$/min, 8-21 include Sat,Sun)</Typography>
       </Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <Link to={"https://hotro.tiki.vn/hc/vi"}
-              className={classes.removeLinkStyles}>Question&Answer</Link>
+        <a href={"https://hotro.tiki.vn/hc/vi"}
+              className={classes.removeLinkStyles}>Question&Answer</a>
       </Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <Link to={"/https://hotro.tiki.vn/hc/vi/requests/new"} className={classes.removeLinkStyles}>
-          Ask for Support</Link></Grid>
+        <a href={"/https://hotro.tiki.vn/hc/vi/requests/new"} className={classes.removeLinkStyles}>
+          Ask for Support</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <Link to={"/https://hotro.tiki.vn/hc/vi/categories/200126644"} className={classes.removeLinkStyles}>
-          Ordering Instruction</Link></Grid>
+        <a href={"/https://hotro.tiki.vn/hc/vi/categories/200126644"} className={classes.removeLinkStyles}>
+          Ordering Instruction</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <Link to={"https://hotro.tiki.vn/hc/vi/categories/200123960"} className={classes.removeLinkStyles}>
-          Transport Method</Link></Grid>
+        <a href={"https://hotro.tiki.vn/hc/vi/categories/200123960"} className={classes.removeLinkStyles}>
+          Transport Method</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <Link to={"https://tiki.vn/doi-tra-de-dang"} className={classes.removeLinkStyles}>
-          Refund Policy</Link></Grid>
+        <a href={"https://tiki.vn/doi-tra-de-dang"} className={classes.removeLinkStyles}>
+          Refund Policy</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
         <a href={"mailto:hotro@tiki.vn"} className={classes.removeLinkStyles}>
           Customer Support:support@tiki.vn</a></Grid>
@@ -102,12 +102,12 @@ function Footer() {
       <Grid item xs={6} sm={12}>
         <Typography className={classes.headers}>About Tiki</Typography>
       </Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><Link to={"https://tiki.vn/gioi-thieu-ve-tiki"} className={classes.removeLinkStyles}>Tiki Introduction</Link></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><Link to={"https://tuyendung.tiki.vn/"} className={classes.removeLinkStyles}>Recruitment</Link></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><Link to={"https://tiki.vn/bao-mat-thanh-toan"} className={classes.removeLinkStyles}>Payment Security</Link></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><Link to={"https://tiki.vn/bao-mat-thong-tin-ca-nhan"} className={classes.removeLinkStyles}>Information Security</Link></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><Link to={"https://hotro.tiki.vn/hc/vi/articles/201971214"} className={classes.removeLinkStyles}>Term&Agreement</Link></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><Link to={"https://tiki.vn/tu-van/"} className={classes.removeLinkStyles}>Tiki Advice</Link></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/gioi-thieu-ve-tiki"} className={classes.removeLinkStyles}>Tiki Introduction</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tuyendung.tiki.vn/"} className={classes.removeLinkStyles}>Recruitment</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/bao-mat-thanh-toan"} className={classes.removeLinkStyles}>Payment Security</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/bao-mat-thong-tin-ca-nhan"} className={classes.removeLinkStyles}>Information Security</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://hotro.tiki.vn/hc/vi/articles/201971214"} className={classes.removeLinkStyles}>Term&Agreement</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/tu-van/"} className={classes.removeLinkStyles}>Tiki Advice</a></Grid>
       <Grid item xs={6} sm={12}></Grid>
       <Grid item xs={6} sm={12}></Grid>
       <Grid item xs={6} sm={12}></Grid>
