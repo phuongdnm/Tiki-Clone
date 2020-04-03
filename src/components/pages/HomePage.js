@@ -79,7 +79,7 @@ const HomePage = props => {
                     title={prod.name}
                     image={ prod.photo === "no-photo.jpg"
                         ? BottleWarmer
-                        : `http://34.87.156.245/uploads/${prod.photo}`}
+                        : `${process.env.REACT_APP_API}/uploads/${prod.photo}`}
                     sold={Math.floor(Math.random() * 50) + 50}  // picking random num since this feature isn't implemented yet
                     hot={true}
                     timeInMilliSec={(Math.floor(Math.random() * 10)+2) * 100000} // 50 seconds
@@ -104,7 +104,7 @@ const HomePage = props => {
                     image={
                         prod.photo === "no-photo.jpg"
                             ? BottleWarmer
-                            : `http://34.87.156.245/uploads/${prod.photo}`
+                            : `${process.env.REACT_APP_API}/uploads/${prod.photo}`
                     }
                     rating={prod.averageRating}
                     link={true}
