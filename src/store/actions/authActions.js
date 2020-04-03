@@ -116,12 +116,12 @@ export const setCurrentUserInfo = () => async (dispatch) => {
                     payload: res.data.data
                 })
             } else {
-                console.log(res);
+                // console.log(res);
             }
 
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
         })
 
 
@@ -170,7 +170,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             message.error("Unable to send email!");
         })
 };
@@ -191,7 +191,7 @@ export const resetPassword = (password, resetToken) => async (dispatch) => {
 
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             message.error("Unable to change password!");
         })
 };
@@ -211,7 +211,7 @@ export const updateUserInfo = (userDetails) => async (dispatch) => {
 
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             message.error("Failed to update user info!");
         })
 };
@@ -231,7 +231,7 @@ export const changePassword = (password) => async (dispatch) => {
 
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             message.error("Failed to update user password!");
         })
 };

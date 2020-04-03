@@ -29,7 +29,7 @@ export const getCart = () => {
     try {
         cart = JSON.parse(localStorage.getItem('cart'));
     }catch (e) {
-        console.log(e);
+        // console.log(e);
     }
     return {
         type: GET_CART,
@@ -41,7 +41,7 @@ export const clearCart = ()=>{
     try {
         localStorage.removeItem('cart');
     }catch (e) {
-        console.log(e);
+        // console.log(e);
     }
     return{
         type: CLEAR_CART,

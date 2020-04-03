@@ -40,7 +40,7 @@ function Footer() {
             <strong>Don't slip your chance to collect thousand of deals everyday</strong>
           </p>
         </Grid>
-        <Grid item xs={5} sm={7} style={{display: "flex", alignItems: "flex-end"}}>
+        <Grid item xs={5} sm={7} style={{display: "flex", justifyContent: "flex-end", alignItems: "flex-start"}}>
           <form className={classes.form} noValidate autoComplete="off">
             <TextField id="email" label="Your email address"
                        size={"small"}
@@ -78,23 +78,23 @@ function Footer() {
         <Typography className={classes.fontSmall}>(10$/min, 8-21 include Sat,Sun)</Typography>
       </Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <a href={"https://hotro.tiki.vn/hc/vi"}
+        <a href={"https://hotro.tiki.vn/hc/vi"} target="_blank"
               className={classes.removeLinkStyles}>Question&Answer</a>
       </Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <a href={"/https://hotro.tiki.vn/hc/vi/requests/new"} className={classes.removeLinkStyles}>
+        <a href={"/https://hotro.tiki.vn/hc/vi/requests/new"} target="_blank" className={classes.removeLinkStyles}>
           Ask for Support</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <a href={"/https://hotro.tiki.vn/hc/vi/categories/200126644"} className={classes.removeLinkStyles}>
+        <a href={"/https://hotro.tiki.vn/hc/vi/categories/200126644"} target="_blank" className={classes.removeLinkStyles}>
           Ordering Instruction</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <a href={"https://hotro.tiki.vn/hc/vi/categories/200123960"} className={classes.removeLinkStyles}>
+        <a href={"https://hotro.tiki.vn/hc/vi/categories/200123960"} target="_blank" className={classes.removeLinkStyles}>
           Transport Method</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <a href={"https://tiki.vn/doi-tra-de-dang"} className={classes.removeLinkStyles}>
+        <a href={"https://tiki.vn/doi-tra-de-dang"} target="_blank" className={classes.removeLinkStyles}>
           Refund Policy</a></Grid>
       <Grid item xs={6} sm={12} className={classes.fontSmall}>
-        <a href={"mailto:hotro@tiki.vn"} className={classes.removeLinkStyles}>
+        <a href={"mailto:hotro@tiki.vn"} target="_blank" className={classes.removeLinkStyles}>
           Customer Support:support@tiki.vn</a></Grid>
 
     </Grid>
@@ -102,12 +102,12 @@ function Footer() {
       <Grid item xs={6} sm={12}>
         <Typography className={classes.headers}>About Tiki</Typography>
       </Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/gioi-thieu-ve-tiki"} className={classes.removeLinkStyles}>Tiki Introduction</a></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tuyendung.tiki.vn/"} className={classes.removeLinkStyles}>Recruitment</a></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/bao-mat-thanh-toan"} className={classes.removeLinkStyles}>Payment Security</a></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/bao-mat-thong-tin-ca-nhan"} className={classes.removeLinkStyles}>Information Security</a></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://hotro.tiki.vn/hc/vi/articles/201971214"} className={classes.removeLinkStyles}>Term&Agreement</a></Grid>
-      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/tu-van/"} className={classes.removeLinkStyles}>Tiki Advice</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/gioi-thieu-ve-tiki"} target="_blank" className={classes.removeLinkStyles}>Tiki Introduction</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tuyendung.tiki.vn/"} target="_blank" className={classes.removeLinkStyles}>Recruitment</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/bao-mat-thanh-toan"} target="_blank" className={classes.removeLinkStyles}>Payment Security</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/bao-mat-thong-tin-ca-nhan"} target="_blank" className={classes.removeLinkStyles}>Information Security</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://hotro.tiki.vn/hc/vi/articles/201971214"} target="_blank" className={classes.removeLinkStyles}>Term&Agreement</a></Grid>
+      <Grid item xs={6} sm={12} className={classes.fontSmall}><a href={"https://tiki.vn/tu-van/"} target="_blank" className={classes.removeLinkStyles}>Tiki Advice</a></Grid>
       <Grid item xs={6} sm={12}></Grid>
       <Grid item xs={6} sm={12}></Grid>
       <Grid item xs={6} sm={12}></Grid>
