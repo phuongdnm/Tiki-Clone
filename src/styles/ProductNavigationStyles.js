@@ -1,23 +1,25 @@
-import {fade, makeStyles} from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles(theme => ({
     root:{
         flexGrow: 1,
         width: "20%",
-        height: "83% !important",
+        height: "auto !important",
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.1)",
         borderRadius: "0.5em !important",
         position: "absolute",
-        marginTop: "0.5%"
+        left: '5%',
+        marginTop: "0.5%",
+        zIndex: '90'
     },
     resize:{
         flexGrow: 1,
         width: "80%",
-        height: "83% !important",
+        height: "auto !important",
         backgroundColor: "white",
         marginLeft: "2%",
         marginRight: "10%",
@@ -45,7 +47,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: "1em",
         paddingTop: "2em",
         paddingLeft: "3em",
-        borderLeft: "0.1em solid gray",
         boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19)",
         display: "none"
     },
@@ -55,18 +56,16 @@ const useStyles = makeStyles(theme => ({
     sectionDesktop3:{
         display: 'none',
         [theme.breakpoints.up('md')]: {
-            display: 'block'
-        },
-        [theme.breakpoints.up('lg')]: {
-            height: "73vh !important"
-        },
+            display: 'block',
+            height: 'auto'
+        }
     },
     item2:{
         [theme.breakpoints.up('md')]: {
-            fontSize: "0.65em"
+            fontSize: "0.85em"
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: "0.8em"
+            fontSize: "1em"
         },
     },
     item:{
