@@ -172,7 +172,7 @@ const ProductCategoryPage = (props) => {
                                         price={prod.price}
                                         discount={prod.discount !== undefined ? prod.discount : 0}
                                         title={prod.name}
-                                        image={prod.photo === "no-photo.jpg" ? BottleWarmer : `http://34.87.156.245/uploads/${prod.photo}`}
+                                        image={prod.photo === "no-photo.jpg" ? BottleWarmer : `${process.env.REACT_APP_API}/uploads/${prod.photo}`}
                                         rating={prod.averageRating}
                                         link={true}
                                     />

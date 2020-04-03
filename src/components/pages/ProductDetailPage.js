@@ -1001,7 +1001,7 @@ const ProductDetailPage = (props) => {
     const productReviews = useSelector(state => state.reviews.reviews);
 
     const [currentImg, setCurrentImg] = useState(noPhoto);
-    // const [currentImg, setCurrentImg] = useState(typeof(product) !== 'boolean' ? `http://34.87.156.245/uploads/${product.photo}` : noPhoto);
+    // const [currentImg, setCurrentImg] = useState(typeof(product) !== 'boolean' ? `${process.env.REACT_APP_API}/uploads/${product.photo}` : noPhoto);
 
 
     useEffect(() => {
@@ -1014,7 +1014,7 @@ const ProductDetailPage = (props) => {
 
     useEffect(() => {
         if (product !== null && product !== undefined) {
-            setCurrentImg(product.photo !== 'no-photo.jpg' ? `http://34.87.156.245/uploads/${product.photo}` : noPhoto);
+            setCurrentImg(product.photo !== 'no-photo.jpg' ? `${process.env.REACT_APP_API}/uploads/${product.photo}` : noPhoto);
         }
         if(product === undefined){
             props.history.push('/notFound')
