@@ -15,6 +15,7 @@ const api_url = process.env.REACT_APP_API;
 export const getAllProducts = () => async (dispatch) => {
 
     const url = `${api_url}/api/v1/products`;
+    console.log(url);
     await axios.get(url)
         .then(res => {
             dispatch({
@@ -24,7 +25,7 @@ export const getAllProducts = () => async (dispatch) => {
             // message.success("Got products");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting products");
             }
         );
@@ -36,7 +37,7 @@ export const getProductById = (id) => async (dispatch) => {
     const url = `${api_url}/api/v1/products/${id}`;
     await axios.get(url)
         .then(res => {
-            // console.log(res);
+            console.log(res);
             if(res.data.statusText === "Not Found"){
                 message.error("Error getting product");
                 dispatch({
@@ -53,7 +54,7 @@ export const getProductById = (id) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting product");
             }
         );
@@ -74,7 +75,7 @@ export const getProductsByShopId = (shopId) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting products");
             }
         );
@@ -97,7 +98,7 @@ export const createProduct = (product, shopId, photo) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error creating product");
             }
         );
@@ -120,7 +121,7 @@ export const updateProductById = (product, productId, photo) => async (dispatch)
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error updating product");
             }
         );
@@ -137,7 +138,7 @@ export const deleteProductById = (productId) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error deleting product");
             }
         );
@@ -164,7 +165,7 @@ export const updateProductPhoto = (photo, productId) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error updating product photo");
             }
         );

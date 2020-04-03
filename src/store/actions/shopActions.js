@@ -71,7 +71,7 @@ export const updateShopById = (shop, shopId) => async (dispatch) => {
             message.success("shop updated successfully");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error updating shop");
             }
         );
@@ -90,7 +90,7 @@ export const deleteShopById = (shopId) => async (dispatch) => {
             message.success("shop deleted successfully");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error deleting shop");
             }
         );

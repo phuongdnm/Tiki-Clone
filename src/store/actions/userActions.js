@@ -82,7 +82,7 @@ export const updateUserById = (user, userId) => async (dispatch) => {
     const url = `${api_url}/api/v1/users/${userId}`;
     await axios.put(url, user)
         .then(async (res) => {
-            // console.log(res);
+            console.log(res);
             if (!res.data.success) {
                 message.destroy();
                 return message.error("Error updating User");
@@ -92,7 +92,7 @@ export const updateUserById = (user, userId) => async (dispatch) => {
             message.success("User updated successfully");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.destroy();
                 message.error("Error updating User");
             }
@@ -114,7 +114,7 @@ export const deleteUserById = (userId) => async (dispatch) => {
             message.success("User deleted successfully");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
             message.destroy();
             message.error("Error deleting user");
             }

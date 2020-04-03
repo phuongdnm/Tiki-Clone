@@ -23,7 +23,7 @@ export const getAllOrders= () => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting orders");
             }
         );
@@ -42,7 +42,7 @@ export const getAllOrdersOfAShop = (shopId) => async (dispatch) => {
             // message.success("Got orders");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting orders");
             }
         );
@@ -64,7 +64,7 @@ export const getOrderById = (orderId) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting order");
             }
         );
@@ -87,7 +87,7 @@ export const getOrdersByUserId = (userId) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting orders");
             }
         );
@@ -107,7 +107,7 @@ export const addNewOrder = (order) => async (dispatch) => {
             message.success("Order added!");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error making order");
             }
         );
@@ -126,7 +126,7 @@ export const updateOrderById = (order, orderId) => async (dispatch) => {
             message.success("Updated order");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error updating order");
             }
         );
@@ -145,7 +145,7 @@ export const deleteOrderById = (orderId) => async (dispatch) => {
             message.success("Deleted order");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error deleting order");
             }
         );

@@ -43,7 +43,7 @@ export const getAllReviews = () => async (dispatch) => {
             // message.success("Got reviews");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting reviews");
             }
         );
@@ -61,7 +61,7 @@ export const getAllUserReviews = (userId) => async (dispatch) => {
             // message.success("Got reviews");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting reviews");
             }
         );
@@ -83,7 +83,7 @@ export const getReviewById = (reviewId) => async (dispatch) => {
 
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error getting review");
             }
         );
@@ -105,7 +105,7 @@ export const addNewReview = (review, productId) => async (dispatch) => {
             // message.success("Got review");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error adding review");
             }
         );
@@ -132,7 +132,7 @@ export const updateReviewById = (review, reviewId, productId, userId) => async (
         })
         .catch(err => {
                 // axios.defaults.headers.common['Authorization'] =  axios.defaults.headers.common['Authorization'].slice(7);
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error updating review");
             }
         );
@@ -156,7 +156,7 @@ export const deleteReviewById = (reviewId, productId, userId) => async (dispatch
             message.success("Deleted review");
         })
         .catch(err => {
-                // console.log('Error' + err);
+                console.log('Error' + err);
                 message.error("Error deleting review");
             }
         );
