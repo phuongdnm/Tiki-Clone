@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  app:
+    image: nginx:1.17-alpine
+    volumes:
+      - ./build:/usr/share/nginx/html
+    ports:
+      - "5000:80"
+    restart: unless-stopped

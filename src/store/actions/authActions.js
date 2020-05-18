@@ -53,6 +53,7 @@ export const registerUser = (userData, history, closeModal) => async (dispatch) 
 export const loginUser = (userData, history, closeModal) => async (dispatch) => {
     // axios.defaults.withCredentials = true;
     const url = `${api_url}/api/v1/auth/login`;
+    console.log(url);
     await axios.post(url, userData)
         .then(res => {
             if (res.data.success) {
